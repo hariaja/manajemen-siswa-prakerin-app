@@ -41,6 +41,15 @@
             <span class="nav-main-link-name">{{ trans('Dashboard') }}</span>
           </a>
         </li>
+
+        @can('schedules.index')
+          <li class="nav-main-item">
+            <a class="nav-main-link {{ Request::is('schedules*') ? 'active' : '' }}" href="{{ route('schedules.index') }}">
+              <i class="nav-main-link-icon fa fa-calendar"></i>
+              <span class="nav-main-link-name">{{ trans('Jadwal Pendaftaran') }}</span>
+            </a>
+          </li>
+        @endcan
         
         @canany(['roles.index', 'users.index'])
           <li class="nav-main-heading">{{ trans('Management') }}</li>
@@ -50,13 +59,13 @@
               <span class="nav-main-link-name">{{ trans('Settings') }}</span>
             </a>
             <ul class="nav-main-submenu">
-              @can('users.index')
+              {{-- @can('users.index')
               <li class="nav-main-item">
                 <a class="nav-main-link {{ Request::is('settings/users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
                   <span class="nav-main-link-name">{{ trans('Pengguna') }}</span>
                 </a>
               </li>
-              @endcan
+              @endcan --}}
               @can('roles.index')
               <li class="nav-main-item">
                 <a class="nav-main-link {{ Request::is('settings/roles*') ? 'active' : '' }}" href="{{ route('roles.index') }}">

@@ -16,7 +16,7 @@
         {{ trans('page.roles.create') }}
       </h3>
       <div class="block-options">
-        <a href="{{ route('roles.index') }}" class="btn btn-sm btn-danger"><i class="fa fa-chevron-left fa-xs me-2"></i>{{ trans('page.back') }}</a>
+        <a href="{{ route('roles.index') }}" class="btn btn-sm btn-block-option"><i class="fa fa-chevron-left fa-xs me-2"></i>{{ trans('page.back') }}</a>
       </div>
     </div>
     <div class="block-content block-content-full">

@@ -26,4 +26,12 @@ return [
     'edit' => 'Ubah Data Role & Permission',
     'show' => 'Detail Data Role & Permission',
   ],
+
+  'schedules' => [
+    'title' => 'Halaman Jadwal Pendaftaran',
+    'index' => 'Tabel Data Jadwal Pendaftaran',
+    'create' => 'Tambah Data Jadwal Pendaftaran',
+    'edit' => 'Ubah Data Jadwal Pendaftaran',
+    'show' => 'Detail Data Jadwal Pendaftaran',
+  ],
 ];

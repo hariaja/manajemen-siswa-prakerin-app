@@ -19,6 +19,10 @@ class Constant
   public const ACTIVE = 1;
   public const INACTIVE = 0;
 
+  // Submit Registration
+  public const OPEN = 1;
+  public const CLOSE = 0;
+
   // Registration Status
   public const PENDING = 'Pending';
   public const APPROVED = 'Approved';

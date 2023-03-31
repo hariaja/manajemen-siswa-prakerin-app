@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title') {{ trans('page.roles.title') }} @endsection
+@section('title') {{ trans('page.schedules.title') }} @endsection
 @section('hero')
 <div class="bg-body-light">
   <div class="content content-full">
     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-      <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ trans('page.roles.title') }}</h1>
+      <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ trans('page.schedules.title') }}</h1>
     </div>
   </div>
 </div>
@@ -13,16 +13,29 @@
   <div class="block block-rounded">
     <div class="block-header block-header-default">
       <h3 class="block-title">
-        {{ trans('page.roles.index') }}
+        {{ trans('page.schedules.index') }}
       </h3>
     </div>
     <div class="block-content">
 
-      @can('roles.create')
+      @can('schedules.create')
         <div class="mb-3">
-          <a href="{{ route('roles.create') }}" class="btn btn-primary"><i class="fa fa-plus fa-xs me-2"></i>{{ trans('page.roles.create') }}</a>
+          <a href="{{ route('schedules.create') }}" class="btn btn-primary"><i class="fa fa-plus fa-xs me-2"></i>{{ trans('page.schedules.create') }}</a>
         </div>
       @endcan
+
+      <div class="row">
+        <div class="col-md-4">
+          <div class="mb-3">
+            <label for="status" class="form-label">{{ trans('Filter Status') }}</label>
+            <select type="text" class="form-select" name="status" id="status">
+              <option value="{{ Constant::ALL }}">{{ Constant::ALL }}</option>
+              <option value="{{ Constant::OPEN }}">{{ trans('Dibuka') }}</option>
+              <option value="{{ Constant::CLOSE }}">{{ trans('Ditutup') }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
 
       <div class="my-3">
         {{ $dataTable->table() }}
@@ -39,9 +52,14 @@
 
     $(function () {
       table = $('.table').DataTable()
+
+      $('#status').on('change', function (e) {
+        table.draw()
+        e.preventDefault()
+      })
     })
 
-    function deleteRole(url) {
+    function deleteSchedule(url) {
       Swal.fire({
         icon: 'warning',
         title: "Apakah Anda Yakin?",

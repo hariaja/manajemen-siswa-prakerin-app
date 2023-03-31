@@ -16,6 +16,7 @@ class PermissionCategorySeeder extends Seeder
     $items = [
       'users.name',
       'roles.name',
+      'schedules.name',
     ];
 
     foreach ($items as $name) {
