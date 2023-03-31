@@ -10,4 +10,12 @@ use Spatie\Permission\Models\Role as ModelRole;
 class Role extends ModelRole
 {
   use HasFactory, Uuid;
+
+  /**
+   * Get the route key for the model.
+   */
+  public function getRouteKeyName(): string
+  {
+    return 'uuid';
+  }
 }
