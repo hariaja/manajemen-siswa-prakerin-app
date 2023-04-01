@@ -21,7 +21,7 @@ class LeaderService
     DB::beginTransaction();
     try {
       if ($request->file('avatar')) :
-        $avatar = Storage::putFile('public/images/users', $request->file('avatar'));
+        $avatar = Storage::putFile('public/images/leaders', $request->file('avatar'));
       else :
         $avatar = null;
       endif;
@@ -45,7 +45,7 @@ class LeaderService
         if ($request->old_avatar) :
           Storage::delete($data->user->avatar);
         endif;
-        $avatar = Storage::putFile('public/images/users', $request->file('avatar'));
+        $avatar = Storage::putFile('public/images/leaders', $request->file('avatar'));
       else :
         $avatar = $data->user->avatar;
       endif;
