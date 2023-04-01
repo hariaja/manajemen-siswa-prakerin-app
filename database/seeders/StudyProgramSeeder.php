@@ -36,7 +36,7 @@ class StudyProgramSeeder extends Seeder
         'name' => 'Teknik Sipil',
         'created_at' => now(),
         'updated_at' => now(),
-        'status' => 0,
+        'status' => 1,
       ],
     ];
 
