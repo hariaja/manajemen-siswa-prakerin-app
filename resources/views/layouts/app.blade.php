@@ -179,7 +179,7 @@
     <script src="{{ asset('assets/src/js/pages/be_tables_datatables.min.js') }}"></script>
     <script src="{{ asset('assets/src/js/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <script>
-      Dashmix.helpersOnLoad([
+      One.helpersOnLoad([
         'jq-select2',
         'jq-magnific-popup',
         'jq-datepicker',

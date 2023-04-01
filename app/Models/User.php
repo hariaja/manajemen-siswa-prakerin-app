@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -62,6 +63,9 @@ class User extends Authenticatable implements MustVerifyEmail
   //   return Storage::url($this->attributes['avatar']);
   // }
 
+  /**
+   * Return default avatar user.
+   */
   public function getAvatar()
   {
     if (!$this->avatar) :
@@ -69,5 +73,13 @@ class User extends Authenticatable implements MustVerifyEmail
     else :
       return Storage::url($this->avatar);
     endif;
+  }
+
+  /**
+   * Relationship to leader model.
+   */
+  public function leader(): HasMany
+  {
+    return $this->hasMany(Leader::class, 'user_id');
   }
 }

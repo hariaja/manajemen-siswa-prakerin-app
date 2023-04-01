@@ -18,12 +18,13 @@ class PermissionCategorySeeder extends Seeder
       'roles.name',
       'schedules.name',
       'study-programs.name',
+      'leaders.name',
     ];
 
-    foreach ($items as $name) {
+    foreach ($items as $name) :
       PermissionCategory::create([
         'name' => $name
       ]);
-    }
+    endforeach;
   }
 }

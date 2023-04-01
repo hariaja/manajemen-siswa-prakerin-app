@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Master\LeaderController;
 use App\Http\Controllers\Master\StudyProgramController;
 use App\Http\Controllers\Registrations\ScheduleController;
 use App\Http\Controllers\Settings\RoleController;
@@ -48,5 +49,8 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
         'study-programs' => 'studyProgram',
       ])
       ->except('show');
+
+    # Kaprodi management
+    Route::resource('leaders', LeaderController::class);
   });
 });

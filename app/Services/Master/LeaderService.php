@@ -6,34 +6,24 @@ use Exception;
 use InvalidArgumentException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use App\Repositories\Master\StudyProgramRepository;
+use Illuminate\Support\Facades\Storage;
+use App\Repositories\Master\LeaderRepository;
 
-class StudyProgramService
+class LeaderService
 {
-  public function __construct(protected StudyProgramRepository $repository)
+  public function __construct(protected LeaderRepository $repository)
   {
     # code...
-  }
-
-  public function all()
-  {
-    DB::beginTransaction();
-    try {
-      $execute = $this->repository->all();
-    } catch (Exception $e) {
-      DB::rollBack();
-      Log::info($e->getMessage());
-      throw new InvalidArgumentException(trans('state.log.error'));
-    }
-    DB::commit();
-    return $execute;
   }
 
   public function save($request)
   {
     DB::beginTransaction();
     try {
-      $execute = $this->repository->save($request);
+      if ($request->file('avatar')) :
+        $avatar = Storage::putFile('public/images/users', $request->file('avatar'));
+      endif;
+      $execute = $this->repository->save($request, $avatar);
     } catch (Exception $e) {
       DB::rollBack();
       Log::info($e->getMessage());
@@ -47,7 +37,18 @@ class StudyProgramService
   {
     DB::beginTransaction();
     try {
-      $execute = $this->repository->edit($data->id, $request);
+
+      // Image management
+      if ($request->file('avatar')) :
+        if ($request->old_avatar) :
+          Storage::delete($data->user->avatar);
+        endif;
+        $avatar = Storage::putFile('public/images/users', $request->file('avatar'));
+      else :
+        $avatar = $data->user->avatar;
+      endif;
+
+      $execute = $this->repository->edit($data->id, $request, $avatar);
     } catch (Exception $e) {
       DB::rollBack();
       Log::info($e->getMessage());
@@ -61,6 +62,9 @@ class StudyProgramService
   {
     DB::beginTransaction();
     try {
+      if ($data->user->avatar) :
+        Storage::delete($data->user->avatar);
+      endif;
       $execute = $this->repository->delete($data->id);
     } catch (Exception $e) {
       DB::rollBack();

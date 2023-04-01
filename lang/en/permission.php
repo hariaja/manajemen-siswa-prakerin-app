@@ -40,4 +40,15 @@ return [
     'update' => 'Akses Memperbaharui Prodi',
     'destroy' => 'Menghapus Prodi',
   ],
+
+  'leaders' => [
+    'name' => 'Management Kaprodi',
+    'index' => 'Melihat Daftar Kaprodi',
+    'create' => 'Akses Formulir Tambah Kaprodi',
+    'store' => 'Akses Menambahkan Kaprodi',
+    'show' => 'Melihat Detail Data Kaprodi',
+    'edit' => 'Akses Formulir Ubah Kaprodi',
+    'update' => 'Akses Memperbaharui Kaprodi',
+    'destroy' => 'Menghapus Kaprodi',
+  ],
 ];

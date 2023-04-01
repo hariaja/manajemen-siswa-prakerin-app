@@ -193,9 +193,62 @@ class PermissionSeeder extends Seeder
         'created_at' => now(),
         'updated_at' => now()
       ],
+
+      // Leaders
+      [
+        'name' => 'leaders.index',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'leaders.create',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'leaders.store',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'leaders.show',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'leaders.edit',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'leaders.update',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'leaders.destroy',
+        'permission_category_id' => 5,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
     ];
 
-    // Create Permissions
-    Permission::insert($permissions);
+    $collects = collect($permissions);
+    foreach ($collects as $key => $value) :
+      Permission::firstOrCreate($value);
+    endforeach;
   }
 }

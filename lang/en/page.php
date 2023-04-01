@@ -42,4 +42,12 @@ return [
     'edit' => 'Ubah Data Program Studi',
     'show' => 'Detail Data Program Studi',
   ],
+
+  'leaders' => [
+    'title' => 'Halaman Kaprodi',
+    'index' => 'Tabel Data Kaprodi',
+    'create' => 'Tambah Data Kaprodi',
+    'edit' => 'Ubah Data Kaprodi',
+    'show' => 'Detail Data Kaprodi',
+  ],
 ];

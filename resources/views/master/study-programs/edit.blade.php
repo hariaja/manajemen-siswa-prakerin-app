@@ -49,7 +49,10 @@
             </div>
 
             <div class="mb-4">
-              <button type="submit" class="btn btn-primary w-100">{{ trans('page.edit') }}</button>
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="fa fa-fw fa-circle-check opacity-50 me-1"></i>
+                {{ trans('page.edit') }}
+              </button>
             </div>
 
           </div>

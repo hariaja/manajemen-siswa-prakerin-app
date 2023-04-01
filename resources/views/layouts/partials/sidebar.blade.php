@@ -51,7 +51,7 @@
           </li>
         @endcan
         
-        @canany(['study-programs.index'])
+        @canany(['study-programs.index', 'leaders.index'])
           <li class="nav-main-heading">{{ trans('Management') }}</li>
           <li class="nav-main-item {{ Request::is('prodi*') ? 'open' : '' }}">
             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="{{ Request::is('prodi*') ? 'true' : 'false' }}" href="#">
@@ -59,13 +59,13 @@
               <span class="nav-main-link-name">{{ trans('Master Data') }}</span>
             </a>
             <ul class="nav-main-submenu">
-              {{-- @can('users.index')
+              @can('leaders.index')
               <li class="nav-main-item">
-                <a class="nav-main-link {{ Request::is('prodi/users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
-                  <span class="nav-main-link-name">{{ trans('Pengguna') }}</span>
+                <a class="nav-main-link {{ Request::is('prodi/leaders*') ? 'active' : '' }}" href="{{ route('leaders.index') }}">
+                  <span class="nav-main-link-name">{{ trans('Kaprodi') }}</span>
                 </a>
               </li>
-              @endcan --}}
+              @endcan
               @can('study-programs.index')
               <li class="nav-main-item">
                 <a class="nav-main-link {{ Request::is('prodi/study-programs*') ? 'active' : '' }}" href="{{ route('study-programs.index') }}">

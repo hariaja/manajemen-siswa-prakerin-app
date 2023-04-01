@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repositories\MAster;
+namespace App\Repositories\Master;
 
 use App\Models\StudyProgram;
 use Illuminate\Database\Eloquent\Model;
@@ -10,6 +10,11 @@ class StudyProgramRepository
   public function __construct(protected StudyProgram $studyProgram)
   {
     // 
+  }
+
+  public function all()
+  {
+    return $this->studyProgram->orderBy('name', 'ASC')->active()->get();
   }
 
   public function save($request)
