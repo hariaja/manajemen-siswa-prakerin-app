@@ -21,6 +21,7 @@ class PermissionCategorySeeder extends Seeder
       'leaders.name',
       'mentors.name',
       'schools.name',
+      'teachers.name',
     ];
 
     foreach ($items as $name) :

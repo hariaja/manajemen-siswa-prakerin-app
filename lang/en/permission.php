@@ -73,4 +73,15 @@ return [
     'update' => 'Akses Memperbaharui Sekolah',
     'destroy' => 'Menghapus Sekolah',
   ],
+
+  'teachers' => [
+    'name' => 'Management Guru',
+    'index' => 'Melihat Daftar Guru',
+    'create' => 'Akses Formulir Tambah Guru',
+    'store' => 'Akses Menambahkan Guru',
+    'show' => 'Melihat Detail Data Guru',
+    'edit' => 'Akses Formulir Ubah Guru',
+    'update' => 'Akses Memperbaharui Guru',
+    'destroy' => 'Menghapus Guru',
+  ],
 ];

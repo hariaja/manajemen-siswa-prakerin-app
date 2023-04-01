@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Helpers\Global\Constant;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -109,7 +108,7 @@ class User extends Authenticatable implements MustVerifyEmail
   /**
    * Relationship to leader model.
    */
-  public function leader(): HasMany
+  public function leaders(): HasMany
   {
     return $this->hasMany(Leader::class, 'user_id');
   }
@@ -117,8 +116,16 @@ class User extends Authenticatable implements MustVerifyEmail
   /**
    * Relationship to mentor model.
    */
-  public function mentor(): HasMany
+  public function mentors(): HasMany
   {
     return $this->hasMany(Mentor::class, 'user_id');
+  }
+
+  /**
+   * Relationship to teachers model.
+   */
+  public function teachers(): HasMany
+  {
+    return $this->hasMany(Teacher::class, 'user_id');
   }
 }

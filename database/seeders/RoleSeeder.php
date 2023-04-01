@@ -23,17 +23,17 @@ class RoleSeeder extends Seeder
     $datas = [
       'Administrator',
       'Leader',
-      'Teacher',
       'Mentor',
+      'Teacher',
       'Student',
     ];
 
-    foreach ($datas as $data) {
+    foreach ($datas as $data) :
       $roles = Role::create([
         'name' => $data,
         'guard_name' => 'web'
       ]);
-    }
+    endforeach;
 
     $leader = $roles->where('name', Constant::LEADER)->first();
     $leader->syncPermissions(
@@ -42,22 +42,8 @@ class RoleSeeder extends Seeder
         ->get()
     );
 
-    $teacher = $roles->where('name', Constant::TEACHER)->first();
-    $teacher->syncPermissions(
-      Permission::where('name', 'LIKE', 'users.show')
-        ->orWhere('name', 'LIKE', 'users.update')
-        ->get()
-    );
-
     $mentor = $roles->where('name', Constant::MENTOR)->first();
     $mentor->syncPermissions(
-      Permission::where('name', 'LIKE', 'users.show')
-        ->orWhere('name', 'LIKE', 'users.update')
-        ->get()
-    );
-
-    $student = $roles->where('name', Constant::STUDENT)->first();
-    $student->syncPermissions(
       Permission::where('name', 'LIKE', 'users.show')
         ->orWhere('name', 'LIKE', 'users.update')
         ->get()

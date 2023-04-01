@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\Educations\SchoolController;
+use App\Http\Controllers\Education\TeacherController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Master\LeaderController;
 use App\Http\Controllers\Master\MentorController;
-use App\Http\Controllers\Master\StudyProgramController;
-use App\Http\Controllers\Registrations\ScheduleController;
 use App\Http\Controllers\Settings\RoleController;
 use App\Http\Controllers\Settings\UserController;
+use App\Http\Controllers\Educations\SchoolController;
+use App\Http\Controllers\Master\StudyProgramController;
+use App\Http\Controllers\Registrations\ScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +61,10 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
   });
 
   Route::prefix('educations')->group(function () {
-    # Schools management
+    # School management
     Route::resource('schools', SchoolController::class)->except('show');
+
+    # Teacher management
+    Route::resource('teachers', TeacherController::class);
   });
 });

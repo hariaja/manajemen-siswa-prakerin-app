@@ -66,4 +66,12 @@ return [
     'edit' => 'Ubah Data Sekolah',
     'show' => 'Detail Data Sekolah',
   ],
+
+  'teachers' => [
+    'title' => 'Halaman Guru',
+    'index' => 'Tabel Data Guru',
+    'create' => 'Tambah Data Guru',
+    'edit' => 'Ubah Data Guru',
+    'show' => 'Detail Data Guru',
+  ],
 ];

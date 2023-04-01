@@ -6,6 +6,7 @@ use App\Traits\Uuid;
 use App\Helpers\Global\Constant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class School extends Model
 {
@@ -43,5 +44,13 @@ class School extends Model
     else :
       return '<span class="badge text-secondary">' . Constant::SWASTA . '</span>';
     endif;
+  }
+
+  /**
+   * Relationship to teacher model.
+   */
+  public function teachers(): HasMany
+  {
+    return $this->hasMany(Teacher::class, 'school_id');
   }
 }
