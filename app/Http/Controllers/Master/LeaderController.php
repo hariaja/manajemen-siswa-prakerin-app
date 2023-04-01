@@ -55,7 +55,8 @@ class LeaderController extends Controller
    */
   public function show(Leader $leader)
   {
-    // dd($leader->studyProgram);
+    // dd($leader->user->hasVerifiedEmail());
+    return view('master.leaders.show', compact('leader'));
   }
 
   /**

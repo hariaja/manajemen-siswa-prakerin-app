@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StudyProgram extends Model
 {
@@ -46,14 +47,6 @@ class StudyProgram extends Model
   }
 
   /**
-   * Relationship to leader model.
-   */
-  public function leader(): HasOne
-  {
-    return $this->hasOne(Leader::class, 'study_program_id');
-  }
-
-  /**
    * Scope a query to only include active prodi.
    */
   public function scopeActive($data)
@@ -64,5 +57,21 @@ class StudyProgram extends Model
   public function getActive(): Collection
   {
     return $this->active()->get();
+  }
+
+  /**
+   * Relationship to leader model.
+   */
+  public function leader(): HasOne
+  {
+    return $this->hasOne(Leader::class, 'study_program_id');
+  }
+
+  /**
+   * Relationship to mentor model.
+   */
+  public function mentor(): HasMany
+  {
+    return $this->hasMany(Mentor::class, 'study_program_id');
   }
 }

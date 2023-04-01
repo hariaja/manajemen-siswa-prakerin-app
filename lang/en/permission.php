@@ -51,4 +51,15 @@ return [
     'update' => 'Akses Memperbaharui Kaprodi',
     'destroy' => 'Menghapus Kaprodi',
   ],
+
+  'mentors' => [
+    'name' => 'Management Pembimbing',
+    'index' => 'Melihat Daftar Pembimbing',
+    'create' => 'Akses Formulir Tambah Pembimbing',
+    'store' => 'Akses Menambahkan Pembimbing',
+    'show' => 'Melihat Detail Data Pembimbing',
+    'edit' => 'Akses Formulir Ubah Pembimbing',
+    'update' => 'Akses Memperbaharui Pembimbing',
+    'destroy' => 'Menghapus Pembimbing',
+  ],
 ];

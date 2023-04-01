@@ -28,4 +28,15 @@ class Constant
   public const APPROVED = 'Approved';
   public const REJECTED = 'Rejected';
   public const ALL = 'Semua Status';
+
+  // Method
+  public const GET = 'GET';
+  public const POST = 'POST';
+  public const PATCH = 'PATCH';
+  public const PUT = 'PUT';
+  public const DELETE = 'DELETE';
+
+  // State Verified
+  public const VERIFIED = 'Sudah Verifikasi Email';
+  public const UNVERIFIED = 'Belum Verifikasi Email';
 }

@@ -17,7 +17,7 @@
       </h3>
       <div class="block-options">
         <a href="{{ route('study-programs.index') }}" class="btn btn-sm btn-block-option">
-          <i class="fa fa-chevron-left me-2"></i>
+          <i class="fa fa-sm fa-chevron-left me-1"></i>
           {{ trans('page.back') }}
         </a>
       </div>

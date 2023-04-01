@@ -22,6 +22,8 @@ class LeaderService
     try {
       if ($request->file('avatar')) :
         $avatar = Storage::putFile('public/images/users', $request->file('avatar'));
+      else :
+        $avatar = null;
       endif;
       $execute = $this->repository->save($request, $avatar);
     } catch (Exception $e) {

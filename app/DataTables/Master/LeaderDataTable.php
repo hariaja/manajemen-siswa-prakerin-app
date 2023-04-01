@@ -2,6 +2,7 @@
 
 namespace App\DataTables\Master;
 
+use App\Helpers\Global\Constant;
 use App\Models\Leader;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -37,7 +38,7 @@ class LeaderDataTable extends DataTable
    */
   public function query(Leader $model): QueryBuilder
   {
-    return $model->newQuery()->orderBy('id', 'ASC');
+    return $model->newQuery()->join('users', 'leaders.user_id', '=', 'users.id')->orderBy('name', 'ASC')->select('leaders.*');
   }
 
   /**
@@ -90,6 +91,7 @@ class LeaderDataTable extends DataTable
         ->exportable(false)
         ->printable(false)
         ->width('15%')
+        ->visible(isRoleName() == Constant::ADMIN ? true : false) // Only admin can view action column
         ->addClass('text-center'),
     ];
   }

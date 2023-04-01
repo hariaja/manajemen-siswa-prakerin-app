@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Master;
 
+use App\Helpers\Global\Constant;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -26,11 +27,11 @@ class LeaderRequest extends FormRequest
       'name' => 'required|string|max:50',
       'email' => [
         'required', 'email:dns',
-        Rule::unique('users', 'email')->ignore($this->leader->user_id)
+        $this->method() == Constant::POST ? Rule::unique('users', 'email') : Rule::unique('users', 'email')->ignore($this->leader->user_id)
       ],
       'phone' => [
         'required', 'numeric', 'min:12',
-        Rule::unique('users', 'phone')->ignore($this->leader->user_id)
+        $this->method() == Constant::POST ? Rule::unique('users', 'phone') : Rule::unique('users', 'phone')->ignore($this->leader->user_id)
       ],
       'study_program_id' => [
         'required', 'string', 'max:50',
@@ -41,7 +42,7 @@ class LeaderRequest extends FormRequest
         Rule::unique('leaders', 'nidn')->ignore($this->leader)
       ],
       'gender' => 'required|string',
-      'avatar' => 'image|mimes:jpg,png|max:3048',
+      'avatar' => 'nullable|mimes:jpg,png|max:3048',
     ];
   }
 
@@ -54,7 +55,7 @@ class LeaderRequest extends FormRequest
     return [
       'study_program_id.required' => ':attribute tidak boleh dikosongkan',
       'study_program_id.string' => ':attribute tidak valid, masukkan yang benar',
-      'study_program_id.unique' => ':attribute sudah digunakan, silahkan pilih yang lain',
+      'study_program_id.unique' => ':attribute sudah memiliki Kaprodi, silahkan pilih yang lain',
 
       'name.required' => ':attribute tidak boleh dikosongkan',
       'name.string' => ':attribute tidak valid, masukkan yang benar',

@@ -17,7 +17,7 @@
       </h3>
       <div class="block-options">
         <a href="{{ route('leaders.index') }}" class="btn btn-block-option">
-          <i class="fa fa-chevron-left"></i>
+          <i class="fa fa-xs fa-chevron-left me-1"></i>
           {{ trans('page.back') }}
         </a>
       </div>
@@ -75,11 +75,11 @@
             </div>
 
             <div class="mb-4">
-              <label for="study_program_id" class="form-label">{{ trans('Program Study') }}</label>
-              <select name="study_program_id" id="study_program_id" class="js-select2 form-select @error('study_program_id') is-invalid @enderror" data-placeholder="{{ trans('Pilih Golongan Darah') }}" style="width: 100%;">
+              <label for="study_program_id" class="form-label">{{ trans('Program Studi') }}</label>
+              <select name="study_program_id" id="study_program_id" class="js-select2 form-select @error('study_program_id') is-invalid @enderror" data-placeholder="{{ trans('Pilih Program Studi') }}" style="width: 100%;">
                 <option></option>
                 @foreach ($studyPrograms as $item)
-                  @if (old('study_program_id'))
+                  @if (old('study_program_id') == $item->id)
                     <option value="{{ $item->id }}" selected>{{ $item->name }}</option>
                   @else
                     <option value="{{ $item->id }}">{{ $item->name }}</option>

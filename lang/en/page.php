@@ -50,4 +50,12 @@ return [
     'edit' => 'Ubah Data Kaprodi',
     'show' => 'Detail Data Kaprodi',
   ],
+
+  'mentors' => [
+    'title' => 'Halaman Pembimbing',
+    'index' => 'Tabel Data Pembimbing',
+    'create' => 'Tambah Data Pembimbing',
+    'edit' => 'Ubah Data Pembimbing',
+    'show' => 'Detail Data Pembimbing',
+  ],
 ];
