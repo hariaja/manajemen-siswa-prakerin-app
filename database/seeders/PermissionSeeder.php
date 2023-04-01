@@ -295,6 +295,50 @@ class PermissionSeeder extends Seeder
         'created_at' => now(),
         'updated_at' => now()
       ],
+
+      // Schools
+      [
+        'name' => 'schools.index',
+        'permission_category_id' => 7,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'schools.create',
+        'permission_category_id' => 7,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'schools.store',
+        'permission_category_id' => 7,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'schools.edit',
+        'permission_category_id' => 7,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'schools.update',
+        'permission_category_id' => 7,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'schools.destroy',
+        'permission_category_id' => 7,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
     ];
 
     $collects = collect($permissions);

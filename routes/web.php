@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Educations\SchoolController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -56,5 +57,10 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
 
     # Pembimbing management
     Route::resource('mentors', MentorController::class);
+  });
+
+  Route::prefix('educations')->group(function () {
+    # Schools management
+    Route::resource('schools', SchoolController::class)->except('show');
   });
 });

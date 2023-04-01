@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
       UserSeeder::class,
       ScheduleSeeder::class,
       StudyProgramSeeder::class,
+      SchoolSeeder::class,
     ]);
   }
 }

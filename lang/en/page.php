@@ -58,4 +58,12 @@ return [
     'edit' => 'Ubah Data Pembimbing',
     'show' => 'Detail Data Pembimbing',
   ],
+
+  'schools' => [
+    'title' => 'Halaman Sekolah',
+    'index' => 'Tabel Data Sekolah',
+    'create' => 'Tambah Data Sekolah',
+    'edit' => 'Ubah Data Sekolah',
+    'show' => 'Detail Data Sekolah',
+  ],
 ];

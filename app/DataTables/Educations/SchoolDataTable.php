@@ -1,8 +1,9 @@
 <?php
 
-namespace App\DataTables\Registrations;
+namespace App\DataTables\Educations;
 
-use App\Models\Schedule;
+use App\Helpers\Global\Constant;
+use App\Models\School;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +13,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class ScheduleDataTable extends DataTable
+class SchoolDataTable extends DataTable
 {
   /**
    * Build the DataTable class.
@@ -26,22 +27,16 @@ class ScheduleDataTable extends DataTable
       ->editColumn('status', function ($row) {
         return $row->isStatus();
       })
-      ->editColumn('start', function ($row) {
-        return customDate($row->start, true);
-      })
-      ->editColumn('end', function ($row) {
-        return customDate($row->end, true);
-      })
-      ->addColumn('action', 'registrations.schedules.action')
+      ->addColumn('action', 'educations.schools.action')
       ->rawColumns(['status', 'action']);
   }
 
   /**
    * Get the query source of dataTable.
    */
-  public function query(Schedule $model): QueryBuilder
+  public function query(School $model): QueryBuilder
   {
-    return $model->newQuery()->orderBy('id', 'ASC');
+    return $model->newQuery()->orderBy('npsn', 'ASC');
   }
 
   /**
@@ -50,10 +45,10 @@ class ScheduleDataTable extends DataTable
   public function html(): HtmlBuilder
   {
     return $this->builder()
-      ->setTableId('schedule-table')
+      ->setTableId('school-table')
       ->columns($this->getColumns())
       ->ajax([
-        'url' => route('schedules.index'),
+        'url' => route('schools.index'),
         'type' => 'GET',
         'data' => "
           function(data) {
@@ -90,22 +85,23 @@ class ScheduleDataTable extends DataTable
         ->searchable(false)
         ->width('10%')
         ->addClass('text-center'),
-      Column::make('title')
-        ->title(trans('Batch'))
+      Column::make('npsn')
+        ->title(trans('Npsn'))
         ->addClass('text-center'),
-      Column::make('start')
-        ->title(trans('Dibuka Pada'))
+      Column::make('name')
+        ->title(trans('Nama'))
         ->addClass('text-center'),
-      Column::make('end')
-        ->title(trans('Ditutup Pada'))
+      Column::make('education')
+        ->title(trans('Pendidikan'))
         ->addClass('text-center'),
       Column::make('status')
-        ->title(trans('Status Pendaftaran'))
+        ->title(trans('Status'))
         ->addClass('text-center'),
       Column::computed('action')
         ->exportable(false)
         ->printable(false)
         ->width('15%')
+        ->visible(isRoleName() == Constant::ADMIN ? true : false)
         ->addClass('text-center'),
     ];
   }
@@ -115,6 +111,6 @@ class ScheduleDataTable extends DataTable
    */
   protected function filename(): string
   {
-    return 'Schedule_' . date('YmdHis');
+    return 'School_' . date('YmdHis');
   }
 }

@@ -62,4 +62,15 @@ return [
     'update' => 'Akses Memperbaharui Pembimbing',
     'destroy' => 'Menghapus Pembimbing',
   ],
+
+  'schools' => [
+    'name' => 'Management Sekolah',
+    'index' => 'Melihat Daftar Sekolah',
+    'create' => 'Akses Formulir Tambah Sekolah',
+    'store' => 'Akses Menambahkan Sekolah',
+    'show' => 'Melihat Detail Data Sekolah',
+    'edit' => 'Akses Formulir Ubah Sekolah',
+    'update' => 'Akses Memperbaharui Sekolah',
+    'destroy' => 'Menghapus Sekolah',
+  ],
 ];

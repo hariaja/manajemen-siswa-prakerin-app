@@ -39,4 +39,11 @@ class Constant
   // State Verified
   public const VERIFIED = 'Sudah Verifikasi Email';
   public const UNVERIFIED = 'Belum Verifikasi Email';
+
+  // School Status
+  public const NEGERI = 'Negeri';
+  public const SWASTA = 'Swasta';
+  public const SMK = 'SMK';
+  public const SMA = 'SMA';
+  public const STM = 'STM';
 }

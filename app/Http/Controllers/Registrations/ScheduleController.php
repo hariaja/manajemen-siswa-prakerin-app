@@ -44,7 +44,7 @@ class ScheduleController extends Controller
   public function store(ScheduleRequest $request)
   {
     $this->service->save($request);
-    return redirect()->route('schedules.index')->with('success', trans('session.create'));
+    return redirect()->route('schedules.index')->withSuccess(trans('session.create'));
   }
 
   /**
@@ -61,7 +61,7 @@ class ScheduleController extends Controller
   public function update(ScheduleRequest $request, Schedule $schedule)
   {
     $this->service->edit($schedule, $request);
-    return redirect()->route('schedules.index')->with('success', trans('session.create'));
+    return redirect()->route('schedules.index')->withSuccess(trans('session.create'));
   }
 
   /**
