@@ -23,17 +23,19 @@ class StatusFilter implements DataTableScope
   {
     $filters = ['status'];
 
-    foreach ($filters as $field) {
-      if ($this->request->has($field)) {
-        if ($this->request->get($field) !== null) {
-          if ($this->request->get($field) == Constant::ALL) {
-            // 
-          } else {
+    foreach ($filters as $field) :
+      if ($this->request->has($field)) :
+        if ($this->request->get($field) !== null) :
+          if ($this->request->get($field) == Constant::ALL) :
+          // 
+          else :
             $query->where($field, $this->request->get($field));
-          }
-        }
-      }
-    }
+          endif;
+        endif;
+      endif;
+    endforeach;
+
+
 
     return $query;
   }
