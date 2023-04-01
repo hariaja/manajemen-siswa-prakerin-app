@@ -1,10 +1,10 @@
 @extends('layouts.app')
-@section('title') {{ trans('page.schedules.title') }} @endsection
+@section('title') {{ trans('page.study-programs.title') }} @endsection
 @section('hero')
 <div class="bg-body-light">
   <div class="content content-full">
     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-      <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ trans('page.schedules.title') }}</h1>
+      <h1 class="flex-grow-1 fs-3 fw-semibold my-2 my-sm-3">{{ trans('page.study-programs.title') }}</h1>
     </div>
   </div>
 </div>
@@ -13,7 +13,7 @@
   <div class="block block-rounded">
     <div class="block-header block-header-default">
       <h3 class="block-title">
-        {{ trans('page.schedules.index') }}
+        {{ trans('page.study-programs.index') }}
       </h3>
     </div>
     <div class="block-content">
@@ -24,16 +24,16 @@
             <label for="status" class="form-label">{{ trans('Filter Status') }}</label>
             <select type="text" class="form-select" name="status" id="status">
               <option value="{{ Constant::ALL }}">{{ Constant::ALL }}</option>
-              <option value="{{ Constant::OPEN }}">{{ trans('Dibuka') }}</option>
-              <option value="{{ Constant::CLOSE }}">{{ trans('Ditutup') }}</option>
+              <option value="{{ Constant::ACTIVE }}">{{ trans('Active') }}</option>
+              <option value="{{ Constant::INACTIVE }}">{{ trans('Inactive') }}</option>
             </select>
           </div>
         </div>
       </div>
 
-      @can('schedules.create')
+      @can('study-programs.create')
         <div class="mb-4">
-          <a href="{{ route('schedules.create') }}" class="btn btn-primary"><i class="fa fa-plus fa-xs me-2"></i>{{ trans('page.schedules.create') }}</a>
+          <a href="{{ route('study-programs.create') }}" class="btn btn-primary"><i class="fa fa-plus fa-xs me-2"></i>{{ trans('page.study-programs.create') }}</a>
         </div>
       @endcan
 
@@ -59,7 +59,7 @@
       })
     })
 
-    function deleteSchedule(url) {
+    function deleteStudyProgram(url) {
       Swal.fire({
         icon: 'warning',
         title: "Apakah Anda Yakin?",

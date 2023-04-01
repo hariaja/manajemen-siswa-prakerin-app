@@ -83,7 +83,7 @@
         <div class="row justify-content-center">
           <div class="col-md-6">
             <div class="mb-3">
-              <button type="submit" class="btn btn-primary btn-hero w-100">
+              <button type="submit" class="btn btn-primary w-100">
                 <i class="fa fa-fw fa-circle-check opacity-50 me-1"></i>
                 {{ trans('page.create') }}
               </button>

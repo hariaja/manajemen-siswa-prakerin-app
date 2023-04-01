@@ -56,15 +56,15 @@
             </div>
 
             <div class="mb-4">
-              <label for="status" class="form-label">{{ trans('Filter Status') }}</label>
+              <label for="status" class="form-label">{{ trans('Status Jadwal') }}</label>
               <select type="text" class="form-select" name="status" id="status">
-                <option value="{{ Constant::OPEN }}" {{ old('status') == Constant::OPEN ? 'selected' : '' }}>{{ trans('Dibuka') }}</option>
-                <option value="{{ Constant::CLOSE }}" {{ old('status') == Constant::CLOSE ? 'selected' : '' }}>{{ trans('Ditutup') }}</option>
+                <option value="{{ Constant::OPEN }}" {{ old('status', $schedule->status) == Constant::OPEN ? 'selected' : '' }}>{{ trans('Dibuka') }}</option>
+                <option value="{{ Constant::CLOSE }}" {{ old('status', $schedule->status) == Constant::CLOSE ? 'selected' : '' }}>{{ trans('Ditutup') }}</option>
               </select>
             </div>
 
             <div class="mb-4">
-              <button type="submit" class="btn btn-primary btn-hero w-100">{{ trans('page.edit') }}</button>
+              <button type="submit" class="btn btn-primary w-100">{{ trans('page.edit') }}</button>
             </div>
 
           </div>

@@ -149,6 +149,50 @@ class PermissionSeeder extends Seeder
         'created_at' => now(),
         'updated_at' => now()
       ],
+
+      // Study Programs
+      [
+        'name' => 'study-programs.index',
+        'permission_category_id' => 4,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'study-programs.create',
+        'permission_category_id' => 4,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'study-programs.store',
+        'permission_category_id' => 4,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'study-programs.edit',
+        'permission_category_id' => 4,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'study-programs.update',
+        'permission_category_id' => 4,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
+        'name' => 'study-programs.destroy',
+        'permission_category_id' => 4,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
     ];
 
     // Create Permissions

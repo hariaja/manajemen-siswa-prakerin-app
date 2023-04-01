@@ -34,4 +34,12 @@ return [
     'edit' => 'Ubah Data Jadwal Pendaftaran',
     'show' => 'Detail Data Jadwal Pendaftaran',
   ],
+
+  'study-programs' => [
+    'title' => 'Halaman Program Studi',
+    'index' => 'Tabel Data Program Studi',
+    'create' => 'Tambah Data Program Studi',
+    'edit' => 'Ubah Data Program Studi',
+    'show' => 'Detail Data Program Studi',
+  ],
 ];

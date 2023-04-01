@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Master\StudyProgramController;
 use App\Http\Controllers\Registrations\ScheduleController;
 use App\Http\Controllers\Settings\RoleController;
 use App\Http\Controllers\Settings\UserController;
@@ -39,4 +40,13 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
 
   # Schedule management
   Route::resource('schedules', ScheduleController::class)->except('show');
+
+  Route::prefix('prodi')->group(function () {
+    # Prodi management
+    Route::resource('study-programs', StudyProgramController::class)
+      ->parameters([
+        'study-programs' => 'studyProgram',
+      ])
+      ->except('show');
+  });
 });

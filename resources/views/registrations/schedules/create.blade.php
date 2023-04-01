@@ -55,7 +55,7 @@
             </div>
 
             <div class="mb-4">
-              <button type="submit" class="btn btn-primary btn-hero w-100">{{ trans('page.create') }}</button>
+              <button type="submit" class="btn btn-primary w-100">{{ trans('page.create') }}</button>
             </div>
 
           </div>
