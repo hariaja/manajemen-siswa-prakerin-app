@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\Global\Dashboard;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,7 @@ class HomeController extends Controller
    */
   public function __construct()
   {
-    $this->middleware('auth');
+    $this->middleware(['auth', 'verified']);
   }
 
   /**
@@ -23,6 +24,8 @@ class HomeController extends Controller
    */
   public function index(Request $request)
   {
-    return view('home');
+    $data = array();
+    $data['dashboard'] = new Dashboard;
+    return view('home', $data);
   }
 }

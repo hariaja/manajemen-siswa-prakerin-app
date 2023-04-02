@@ -124,8 +124,9 @@ class UserDataTable extends DataTable
         ->width('10%')
         ->addClass('text-center'),
       Column::make('edit_status')
-        ->title(trans('Change'))
+        ->title(trans('Ubah Status'))
         ->width('20%')
+        ->visible(isRoleName() == Constant::ADMIN ? true : false)
         ->addClass('text-center'),
     ];
   }

@@ -30,7 +30,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <div class="mb-4">
+          <div class="mb-1">
             <label for="roles" class="form-label">{{ trans('Filter Peran') }}</label>
             <select type="text" class="form-select" name="roles" id="roles">
               <option value="{{ Constant::ROLES }}">{{ Constant::ROLES }}</option>
@@ -39,6 +39,9 @@
               <option value="{{ Constant::TEACHER }}">{{ Constant::TEACHER }}</option>
               <option value="{{ Constant::STUDENT }}">{{ Constant::STUDENT }}</option>
             </select>
+          </div>
+          <div class="mb-4">
+            <span class="fw-semibold text-muted">{{ trans('Anda bisa melihat detailnya dimasing-masing halaman') }}</span>
           </div>
         </div>
       </div>
