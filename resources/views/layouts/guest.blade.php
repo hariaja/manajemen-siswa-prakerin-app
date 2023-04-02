@@ -10,14 +10,33 @@
     <title>@yield('title') | {{ config('app.name') }}</title>
 
     <!-- Icons -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/blood.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/blood.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/blood.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/polikami.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/polikami.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/polikami.png') }}">
     <!-- END Icons -->
 
     <!-- Dashmix framework -->
+    <link rel="stylesheet" href="{{ asset('assets/src/js/plugins/select2/css/select2.min.css') }}">
+    <script src="{{ asset('assets/custom/css/custom.css') }}"></script>
     <link rel="stylesheet" id="css-main" href="{{ asset('assets/src/css/oneui.min.css') }}">
     <!-- END Stylesheets -->
+
+    <style>
+      .img-center {
+        display: block !important;
+        margin-left: auto;
+        margin-right: auto;
+        width: 30%;
+        border-radius: 50%;
+      }
+
+      .img-placholder-center {
+        display: block !important;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+      }
+    </style>
 
   </head>
 
@@ -30,12 +49,22 @@
     </div>
 
     <script src="{{ asset('assets/src/js/oneui.app.min.js') }}"></script>
+    <script src="{{ asset('assets/custom/js/custom.js') }}"></script>
 
     <!-- jQuery (required for jQuery Validation plugin) -->
     <script src="{{ asset('assets/src/js/lib/jquery.min.js') }}"></script>
 
+    <!-- Plugin JS -->
+    <script src="{{ asset('assets/src/js/plugins/select2/js/select2.full.min.js') }}"></script>
+
     <!-- Page JS Code -->
     <script src="{{ asset('assets/src/js/pages/op_auth_signin.min.js') }}"></script>
+
+    <script>
+      One.helpersOnLoad([
+        'jq-select2',
+      ])
+    </script>
 
     @include('sweetalert::alert')
     @include('layouts.components.alert')

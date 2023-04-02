@@ -91,9 +91,9 @@
     <title>@yield('title') | {{ config('app.name') }}</title>
 
     <!-- Icons -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/blood.png') }}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/blood.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/blood.png') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/polikami.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('assets/images/polikami.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('assets/images/polikami.png') }}">
     <!-- END Icons -->
 
     <!-- Fonts -->

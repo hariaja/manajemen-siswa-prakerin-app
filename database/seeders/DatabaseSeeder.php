@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
       ScheduleSeeder::class,
       StudyProgramSeeder::class,
       SchoolSeeder::class,
+      LeaderSeeder::class,
+      MentorSeeder::class,
+      TeacherSeeder::class,
     ]);
   }
 }

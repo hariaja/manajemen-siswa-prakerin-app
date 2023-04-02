@@ -31,7 +31,7 @@
           <div class="col-md-6">
 
             <div class="mb-4">
-              <label for="name" class="form-label">{{ trans('Nama Program Studi') }}</label>
+              <label for="name" class="form-label">{{ trans('Nama') }}</label>
               <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="{{ trans('Input Nama') }}" onkeypress="return hanyaHuruf(event)">
               @error('name')
                 <div class="invalid-feedback">{{ $message }}</div>

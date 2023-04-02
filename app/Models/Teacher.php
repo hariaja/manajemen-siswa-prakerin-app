@@ -24,6 +24,14 @@ class Teacher extends Model
   ];
 
   /**
+   * Get the route key for the model.
+   */
+  public function getRouteKeyName(): string
+  {
+    return 'uuid';
+  }
+
+  /**
    * Relationship to user model.
    */
   public function user(): BelongsTo

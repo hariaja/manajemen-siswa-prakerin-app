@@ -12,6 +12,11 @@ class SchoolRepository
     # code...
   }
 
+  public function getSchools()
+  {
+    return $this->school->orderBy('id', 'ASC')->get();
+  }
+
   public function save($request)
   {
     return $this->school->firstOrCreate([

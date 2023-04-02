@@ -84,7 +84,7 @@
           </li>
         @endcan
 
-        @canany(['schools.index'])
+        @canany(['schools.index', 'teachers.index'])
         <li class="nav-main-heading">{{ trans('Management') }}</li>
         <li class="nav-main-item {{ Request::is('educations*') ? 'open' : '' }}">
           <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="{{ Request::is('educations*') ? 'true' : 'false' }}" href="#">
@@ -92,6 +92,13 @@
             <span class="nav-main-link-name">{{ trans('Education Data') }}</span>
           </a>
           <ul class="nav-main-submenu">
+            @can('teachers.index')
+            <li class="nav-main-item">
+              <a class="nav-main-link {{ Request::is('educations/teachers*') ? 'active' : '' }}" href="{{ route('teachers.index') }}">
+                <span class="nav-main-link-name">{{ trans('Guru') }}</span>
+              </a>
+            </li>
+            @endcan
             @can('schools.index')
             <li class="nav-main-item">
               <a class="nav-main-link {{ Request::is('educations/schools*') ? 'active' : '' }}" href="{{ route('schools.index') }}">
@@ -111,13 +118,6 @@
               <span class="nav-main-link-name">{{ trans('Settings') }}</span>
             </a>
             <ul class="nav-main-submenu">
-              {{-- @can('users.index')
-              <li class="nav-main-item">
-                <a class="nav-main-link {{ Request::is('settings/users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
-                  <span class="nav-main-link-name">{{ trans('Pengguna') }}</span>
-                </a>
-              </li>
-              @endcan --}}
               @can('roles.index')
               <li class="nav-main-item">
                 <a class="nav-main-link {{ Request::is('settings/roles*') ? 'active' : '' }}" href="{{ route('roles.index') }}">

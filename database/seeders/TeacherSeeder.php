@@ -6,10 +6,10 @@ use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use App\Helpers\Global\Constant;
-use App\Models\Leader;
+use App\Models\Teacher;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class LeaderSeeder extends Seeder
+class TeacherSeeder extends Seeder
 {
   /**
    * Run the database seeds.
@@ -17,21 +17,21 @@ class LeaderSeeder extends Seeder
   public function run(): void
   {
     $user = User::factory()->create([
-      'name' => 'Saya Adalah Kaprodi',
-      'email' => 'leader@gmail.com',
-      'phone' => '085890000833',
+      'name' => 'Saya Adalah Guru',
+      'email' => 'teacher@gmail.com',
+      'phone' => '085797777833',
       'password' => bcrypt('password'),
       'email_verified_at' => now(),
       'remember_token' => Str::random(60),
       'status' => Constant::ACTIVE,
     ]);
-    $user->assignRole(Constant::LEADER);
+    $user->assignRole(Constant::TEACHER);
 
-    Leader::create([
+    Teacher::create([
       'user_id' => $user->id,
-      'study_program_id' => 2,
-      'nidn' => '312020000',
+      'school_id' => 14,
       'gender' => Constant::FEMALE,
+      'address' => 'Planet Saturnus',
     ]);
   }
 }
