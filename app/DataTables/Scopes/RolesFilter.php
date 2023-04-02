@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Helpers\Global\Constant;
 use Yajra\DataTables\Contracts\DataTableScope;
 
-class StatusFilter implements DataTableScope
+class RolesFilter implements DataTableScope
 {
   public function __construct(protected Request $request)
   {
@@ -21,15 +21,19 @@ class StatusFilter implements DataTableScope
    */
   public function apply($query)
   {
-    $filters = ['status'];
+    // return $query->where('id', 1);
+
+    $filters = ['roles'];
 
     foreach ($filters as $field) :
       if ($this->request->has($field)) :
         if ($this->request->get($field) !== null) :
-          if ($this->request->get($field) == Constant::ALL) :
+          if ($this->request->get($field) == Constant::ROLES) :
           // 
           else :
-            $query->where($field, $this->request->get($field));
+            $query->whereHas('roles', function ($query) use ($field) {
+              $query->where('name', $this->request->get($field));
+            });
           endif;
         endif;
       endif;

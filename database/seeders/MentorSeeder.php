@@ -17,13 +17,13 @@ class MentorSeeder extends Seeder
   public function run(): void
   {
     $user = User::factory()->create([
-      'name' => 'Saya Adalah Pembimbing',
-      'email' => 'mentor@gmail.com',
+      'name' => 'Risnawati',
+      'email' => 'risnawati@gmail.com',
       'phone' => '085890000800',
       'password' => bcrypt('password'),
       'email_verified_at' => now(),
       'remember_token' => Str::random(60),
-      'status' => Constant::ACTIVE,
+      'status' => Constant::INACTIVE,
     ]);
     $user->assignRole(Constant::MENTOR);
 

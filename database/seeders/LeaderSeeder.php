@@ -17,8 +17,8 @@ class LeaderSeeder extends Seeder
   public function run(): void
   {
     $user = User::factory()->create([
-      'name' => 'Saya Adalah Kaprodi',
-      'email' => 'leader@gmail.com',
+      'name' => 'Anita Rahayu',
+      'email' => 'anita@gmail.com',
       'phone' => '085890000833',
       'password' => bcrypt('password'),
       'email_verified_at' => now(),

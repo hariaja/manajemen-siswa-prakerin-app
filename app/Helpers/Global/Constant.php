@@ -28,6 +28,7 @@ class Constant
   public const APPROVED = 'Approved';
   public const REJECTED = 'Rejected';
   public const ALL = 'Semua Status';
+  public const ROLES = 'Semua Peran';
 
   // Method
   public const GET = 'GET';

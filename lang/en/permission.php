@@ -2,13 +2,13 @@
 
 return [
   'users' => [
-    'name' => 'Management User',
-    'index' => 'Melihat Daftar User',
-    'show' => 'Melihat Detail Data Diri',
-    'edit' => 'Akses Formulir Ubah User',
-    'update' => 'Akses Memperbaharui Data Diri',
-    'destroy' => 'Menghapus User',
-    'password' => 'Merubah Password User'
+    'name' => 'Management Pengguna',
+    'index' => 'Melihat Daftar Pengguna',
+    'show' => 'Melihat Detail Pengguna',
+    'edit' => 'Akses Formulir Ubah Pengguna',
+    'status' => 'Akses Mengubah Status Akun',
+    'destroy' => 'Menghapus Pengguna',
+    'password' => 'Merubah Password Pengguna'
   ],
 
   'roles' => [

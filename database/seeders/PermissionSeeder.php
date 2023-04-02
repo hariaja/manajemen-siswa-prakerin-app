@@ -34,14 +34,7 @@ class PermissionSeeder extends Seeder
         'updated_at' => now()
       ],
       [
-        'name' => 'users.edit',
-        'permission_category_id' => 1,
-        'guard_name' => 'web',
-        'created_at' => now(),
-        'updated_at' => now()
-      ],
-      [
-        'name' => 'users.update',
+        'name' => 'users.status',
         'permission_category_id' => 1,
         'guard_name' => 'web',
         'created_at' => now(),
@@ -49,13 +42,6 @@ class PermissionSeeder extends Seeder
       ],
       [
         'name' => 'users.password',
-        'permission_category_id' => 1,
-        'guard_name' => 'web',
-        'created_at' => now(),
-        'updated_at' => now()
-      ],
-      [
-        'name' => 'users.destroy',
         'permission_category_id' => 1,
         'guard_name' => 'web',
         'created_at' => now(),

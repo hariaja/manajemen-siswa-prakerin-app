@@ -39,7 +39,8 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
 
     # User management
     Route::post('users/password', [UserController::class, 'password'])->name('users.password');
-    Route::resource('users', UserController::class)->except('create', 'store');
+    Route::patch('users/status/{user}', [UserController::class, 'status'])->name('users.status');
+    Route::resource('users', UserController::class)->only('index', 'show');
   });
 
   # Schedule management

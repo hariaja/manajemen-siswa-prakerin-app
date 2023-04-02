@@ -2,34 +2,34 @@
 
 namespace App\Http\Controllers\Settings;
 
-use App\Http\Controllers\Controller;
+use App\DataTables\Scopes\RolesFilter;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Services\Settings\UserService;
+use App\DataTables\Scopes\StatusFilter;
+use App\DataTables\Settings\UserDataTable;
 
 class UserController extends Controller
 {
   /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct(protected UserService $service)
+  {
+    # code...
+  }
+
+  /**
    * Display a listing of the resource.
    */
-  public function index()
+  public function index(UserDataTable $userDataTable, Request $request)
   {
-    //
-  }
-
-  /**
-   * Show the form for creating a new resource.
-   */
-  public function create()
-  {
-    //
-  }
-
-  /**
-   * Store a newly created resource in storage.
-   */
-  public function store(Request $request)
-  {
-    //
+    return $userDataTable->addScope(new StatusFilter($request))
+      ->addScope(new RolesFilter($request))
+      ->render('settings.users.index');
   }
 
   /**
@@ -41,26 +41,13 @@ class UserController extends Controller
   }
 
   /**
-   * Show the form for editing the specified resource.
+   * Update the specified status user resource in storage.
    */
-  public function edit(User $user)
+  public function status(User $user)
   {
-    //
-  }
-
-  /**
-   * Update the specified resource in storage.
-   */
-  public function update(Request $request, User $user)
-  {
-    //
-  }
-
-  /**
-   * Remove the specified resource from storage.
-   */
-  public function destroy(User $user)
-  {
-    //
+    $this->service->status($user);
+    return response()->json([
+      'message' => trans('session.status')
+    ], 200);
   }
 }

@@ -118,6 +118,13 @@
               <span class="nav-main-link-name">{{ trans('Settings') }}</span>
             </a>
             <ul class="nav-main-submenu">
+              @can('users.index')
+              <li class="nav-main-item">
+                <a class="nav-main-link {{ Request::is('settings/users*') ? 'active' : '' }}" href="{{ route('users.index') }}">
+                  <span class="nav-main-link-name">{{ trans('Pengguna') }}</span>
+                </a>
+              </li>
+              @endcan
               @can('roles.index')
               <li class="nav-main-item">
                 <a class="nav-main-link {{ Request::is('settings/roles*') ? 'active' : '' }}" href="{{ route('roles.index') }}">

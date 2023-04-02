@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Settings;
 
+use App\Helpers\Global\Constant;
 use App\Models\User;
 
 class UserRepository
@@ -11,10 +12,25 @@ class UserRepository
     # code...
   }
 
-  public function save()
+  public function getDataById($id)
   {
-    return $this->user->firstOrCreate([
-      // 
-    ]);
+    return $this->user->findOrFail($id);
+  }
+
+  public function status($id)
+  {
+    $user = $this->getDataById($id);
+
+    if ($user->status == Constant::ACTIVE) :
+      $user->updateOrFail([
+        'status' => Constant::INACTIVE,
+      ]);
+    else :
+      $user->updateOrFail([
+        'status' => Constant::ACTIVE,
+      ]);
+    endif;
+
+    return $user;
   }
 }

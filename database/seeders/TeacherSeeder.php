@@ -17,8 +17,8 @@ class TeacherSeeder extends Seeder
   public function run(): void
   {
     $user = User::factory()->create([
-      'name' => 'Saya Adalah Guru',
-      'email' => 'teacher@gmail.com',
+      'name' => 'Nisrina Amalina',
+      'email' => 'nisrina@gmail.com',
       'phone' => '085797777833',
       'password' => bcrypt('password'),
       'email_verified_at' => now(),
