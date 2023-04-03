@@ -39,6 +39,7 @@ class RoleSeeder extends Seeder
     $leader->syncPermissions(
       Permission::where('name', 'LIKE', 'users.show')
         ->orWhere('name', 'LIKE', 'users.update')
+        ->orWhere('name', 'LIKE', 'users.password')
         ->get()
     );
 
@@ -46,6 +47,7 @@ class RoleSeeder extends Seeder
     $mentor->syncPermissions(
       Permission::where('name', 'LIKE', 'users.show')
         ->orWhere('name', 'LIKE', 'users.update')
+        ->orWhere('name', 'LIKE', 'users.password')
         ->get()
     );
   }

@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Services\Settings\UserService;
 use App\DataTables\Scopes\StatusFilter;
 use App\DataTables\Settings\UserDataTable;
+use App\Helpers\Global\Constant;
+use App\Http\Requests\Settings\UserRequest;
 
 class UserController extends Controller
 {
@@ -37,7 +39,18 @@ class UserController extends Controller
    */
   public function show(User $user)
   {
-    //
+    if (isRoleName() == Constant::ADMIN) :
+      return view('profile.admin', compact('user'));
+    endif;
+  }
+
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(UserRequest $request, User $user)
+  {
+    $this->service->edit($user, $request);
+    return redirect()->route('home')->withSuccess(trans('session.update'));
   }
 
   /**

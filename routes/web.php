@@ -11,6 +11,7 @@ use App\Http\Controllers\Educations\SchoolController;
 use App\Http\Controllers\Educations\TeacherController;
 use App\Http\Controllers\Master\StudyProgramController;
 use App\Http\Controllers\Registrations\ScheduleController;
+use App\Http\Controllers\Settings\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,10 @@ Route::get('/', function () {
   return view('welcome');
 });
 
+Route::get('certificate', function () {
+  return view('certificate');
+});
+
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -37,10 +42,13 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
     # Role & permission
     Route::resource('roles', RoleController::class)->except('show');
 
+    # User management password
+    Route::get('users/password/{user}', [PasswordController::class, 'showChangePasswordForm'])->name('users.password');
+    Route::post('users/password', [PasswordController::class, 'store']);
+
     # User management
-    Route::post('users/password', [UserController::class, 'password'])->name('users.password');
     Route::patch('users/status/{user}', [UserController::class, 'status'])->name('users.status');
-    Route::resource('users', UserController::class)->only('index', 'show');
+    Route::resource('users', UserController::class)->only('index', 'show', 'update');
   });
 
   # Schedule management

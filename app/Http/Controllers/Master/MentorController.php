@@ -47,7 +47,7 @@ class MentorController extends Controller
   public function store(MentorRequest $request)
   {
     $this->mentorService->save($request);
-    return redirect()->route('mentors.store')->withSuccess(trans('session.create'));
+    return redirect()->route('mentors.index')->withSuccess(trans('session.create'));
   }
 
   /**
@@ -73,7 +73,7 @@ class MentorController extends Controller
   public function update(MentorRequest $request, Mentor $mentor)
   {
     $this->mentorService->edit($mentor, $request);
-    return redirect()->route('mentors.store')->withSuccess(trans('session.update'));
+    return redirect()->route('mentors.index')->withSuccess(trans('session.update'));
   }
 
   /**

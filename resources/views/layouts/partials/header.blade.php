@@ -40,10 +40,10 @@
             <p class="mb-0 text-muted fs-sm fw-medium">{{ isRoleName() }}</p>
           </div>
           <div class="p-2">
-            <a class="dropdown-item d-flex align-items-center justify-content-between" href="{{ route('users.show', me()->uuid) }}">
+            <a class="dropdown-item d-flex align-items-center justify-content-between {{ Request::is('settings/users/*') ? 'active' : '' }}" href="{{ route('users.show', me()->uuid) }}">
               <span class="fs-sm fw-medium">{{ trans('Profile') }}</span>
             </a>
-            <a class="dropdown-item d-flex align-items-center justify-content-between" href="javascript:void(0)">
+            <a class="dropdown-item d-flex align-items-center justify-content-between {{ Request::is('settings/users/password*') ? 'active' : '' }}" href="{{ route('users.password', me()->uuid) }}">
               <span class="fs-sm fw-medium">{{ trans('Ubah Kata Sandi') }}</span>
             </a>
           </div>

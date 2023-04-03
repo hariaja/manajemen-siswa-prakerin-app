@@ -34,6 +34,13 @@ class PermissionSeeder extends Seeder
         'updated_at' => now()
       ],
       [
+        'name' => 'users.update',
+        'permission_category_id' => 1,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now()
+      ],
+      [
         'name' => 'users.status',
         'permission_category_id' => 1,
         'guard_name' => 'web',

@@ -47,7 +47,7 @@ class LeaderController extends Controller
   public function store(LeaderRequest $request)
   {
     $this->leaderService->save($request);
-    return redirect()->route('leaders.store')->withSuccess(trans('session.create'));
+    return redirect()->route('leaders.index')->withSuccess(trans('session.create'));
   }
 
   /**
@@ -74,7 +74,7 @@ class LeaderController extends Controller
   public function update(LeaderRequest $request, Leader $leader)
   {
     $this->leaderService->edit($leader, $request);
-    return redirect()->route('leaders.store')->withSuccess(trans('session.update'));
+    return redirect()->route('leaders.index')->withSuccess(trans('session.update'));
   }
 
   /**

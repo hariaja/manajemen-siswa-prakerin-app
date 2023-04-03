@@ -2,8 +2,10 @@
 
 namespace App\Repositories\Settings;
 
-use App\Helpers\Global\Constant;
 use App\Models\User;
+use App\Helpers\Global\Constant;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
 
 class UserRepository
 {
@@ -12,7 +14,7 @@ class UserRepository
     # code...
   }
 
-  public function getDataById($id)
+  public function getDataById($id): Model
   {
     return $this->user->findOrFail($id);
   }
@@ -30,6 +32,19 @@ class UserRepository
         'status' => Constant::ACTIVE,
       ]);
     endif;
+
+    return $user;
+  }
+
+  public function edit($id, $request, $avatar)
+  {
+    $user = $this->getDataById($id);
+    $user->updateOrFail([
+      'name' => $request->name,
+      'email' => $request->email,
+      'phone' => $request->phone,
+      'avatar' => $avatar,
+    ]);
 
     return $user;
   }
