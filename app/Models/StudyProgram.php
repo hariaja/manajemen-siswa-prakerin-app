@@ -86,4 +86,12 @@ class StudyProgram extends Model
       'study_program_id'
     );
   }
+
+  /**
+   * Relationship to holiday model.
+   */
+  public function holiday(): HasMany
+  {
+    return $this->hasMany(Holiday::class, 'study_program_id');
+  }
 }

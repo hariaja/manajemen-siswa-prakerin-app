@@ -90,4 +90,12 @@ return [
     'edit' => 'Ubah Data Siswa',
     'show' => 'Detail Data Siswa',
   ],
+
+  'holidays' => [
+    'title' => 'Halaman Hari Libur',
+    'index' => 'Tabel Data Hari Libur',
+    'create' => 'Tambah Data Hari Libur',
+    'edit' => 'Ubah Data Hari Libur',
+    'show' => 'Detail Data Hari Libur',
+  ],
 ];

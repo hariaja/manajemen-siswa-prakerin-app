@@ -108,4 +108,15 @@ return [
     'update' => 'Akses Memperbaharui Pendaftaran',
     'destroy' => 'Menghapus Pendaftaran',
   ],
+
+  'holidays' => [
+    'name' => 'Management Hari Libur',
+    'index' => 'Melihat Daftar Hari Libur',
+    'create' => 'Akses Formulir Tambah Hari Libur',
+    'store' => 'Akses Menambahkan Hari Libur',
+    'show' => 'Melihat Detail Data Hari Libur',
+    'edit' => 'Akses Formulir Ubah Hari Libur',
+    'update' => 'Akses Memperbaharui Hari Libur',
+    'destroy' => 'Menghapus Hari Libur',
+  ],
 ];

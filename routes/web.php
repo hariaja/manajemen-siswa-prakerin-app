@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Activities\HolidayController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -85,5 +86,10 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
 
     # Prakerin register
     Route::resource('registrations', RegistrationController::class)->except('edit');
+  });
+
+  Route::prefix('activities')->group(function () {
+    # Holiday management
+    Route::resource('holidays', HolidayController::class)->except('show');
   });
 });

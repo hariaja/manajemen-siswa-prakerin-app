@@ -2,13 +2,14 @@
 
 namespace App\DataTables\Registrations;
 
-use App\Helpers\Global\Constant;
+use App\Models\Teacher;
 use App\Models\Registration;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use App\Helpers\Global\Constant;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class RegistrationDataTable extends DataTable
 {
@@ -43,6 +44,15 @@ class RegistrationDataTable extends DataTable
    */
   public function query(Registration $model): QueryBuilder
   {
+
+    if (isRoleName() == Constant::TEACHER) :
+      $teacher = Teacher::where('user_id', me()->id)->first();
+      return $model->newQuery()
+        ->join('teachers', 'registrations.teacher_id', '=', 'teachers.id')
+        ->where('teacher_id', '=', $teacher->id)
+        ->select('registrations.*');
+    endif;
+
     return $model->newQuery();
   }
 

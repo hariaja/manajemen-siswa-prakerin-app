@@ -485,6 +485,50 @@ class PermissionSeeder extends Seeder
         'created_at' => now(),
         'updated_at' => now(),
       ],
+
+      // Holidays
+      [
+        'name' => 'holidays.index',
+        'permission_category_id' => 11,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'holidays.create',
+        'permission_category_id' => 11,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'holidays.store',
+        'permission_category_id' => 11,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'holidays.edit',
+        'permission_category_id' => 11,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'holidays.update',
+        'permission_category_id' => 11,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'holidays.destroy',
+        'permission_category_id' => 11,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
     ];
 
     $collects = collect($permissions);
