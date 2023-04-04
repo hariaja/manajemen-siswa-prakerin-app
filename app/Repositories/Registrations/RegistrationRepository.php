@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Registration;
 use App\Helpers\Global\Constant;
 use App\Models\Student;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class RegistrationRepository
@@ -19,39 +21,58 @@ class RegistrationRepository
   {
     // Add to registrations models
     $registration = $this->registration->firstOrCreate([
-      'code' => AutoNumber('registrations', 'code', 'PG' . date('Ym'), 3, 9),
+      'code' => AutoNumber('registrations', 'code', 'PG' . date('Ym'), 3, 5),
       'teacher_id' => $request->teacher_id,
       'schedule_id' => $request->schedule_id,
       'note' => $file,
-      'date' => $request->date,
+      'register_date' => $request->date,
       'status' => Constant::PENDING,
     ]);
 
-    // Add to users tables
-    foreach ($request->name as $key => $value) :
-      $user = User::firstOrCreate([
-        'name' => $value,
-        'email' => $request->email[$key],
-        'phone' => $request->phone[$key],
-        'password' => Hash::make('password'),
-        'status' => Constant::INACTIVE,
-      ]);
+    $registration->students()->attach($request->student);
+  }
 
-      $user->assignRole(Constant::STUDENT);
+  public function getDataById($id): Model
+  {
+    return $this->registration->findOrFail($id);
+  }
 
-      Student::firstOrCreate([
-        'user_id' => $user->id,
-        'school_id' => $request->school_id,
-        'registration_id' => $registration->id,
-        'nisn' => $request->nisn[$key],
-        'class' => $request->class[$key],
-        'date_birth' => $request->date_birth[$key],
-        // 'address' => $request->address[$key],
-        'gender' => $request->gender[$key],
-        'address' => 'Ini Test',
-      ]);
-    endforeach;
+  public function detailRegistration($id)
+  {
+    $registration = $this->getDataById($id);
+    $datas = $registration->students;
 
-    return $registration;
+    return datatables()->of($datas)
+      ->addIndexColumn()
+      ->addColumn('name', function ($row) {
+        return $row->user->name;
+      })
+      ->addColumn('account', function ($row) {
+        return $row->user->isStatus();
+      })
+      ->addColumn('school', function ($row) {
+        return $row->school->name;
+      })
+      ->addColumn('major', function ($row) {
+        return $row->major;
+      })
+      ->rawColumns(['account'])
+      ->make(true);
+  }
+
+  public function editStatus($id, $request)
+  {
+    $registration = $this->getDataById($id);
+    return $registration->updateOrFail([
+      'status' => $request->status,
+    ]);
+  }
+
+  public function delete($id)
+  {
+    $registration = $this->getDataById($id);
+    $student_id = $registration->students->pluck('id', 'id')->toArray();
+    $registration->students()->detach($student_id);
+    return $registration->delete();
   }
 }

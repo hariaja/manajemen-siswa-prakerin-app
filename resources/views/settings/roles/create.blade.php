@@ -70,8 +70,8 @@
                       @foreach ($data->permissions as $item)
                         <div class="space-y-2">
                           <div class="form-check">
-                            <input class="permission form-check-input @error('permission') is-invalid @enderror" name="permission[{{ $item->name }}]" id="permission" type="checkbox" value="{{ $item->name }}">
-                            <label class="form-check-label" for="permission">{{ trans('permission.' . $item->name) }}</label>
+                            <input class="permission form-check-input @error('permission') is-invalid @enderror" name="permission[{{ $item->name }}]" id="permission-{{ $item->name }}" type="checkbox" value="{{ $item->name }}">
+                            <label class="form-check-label" for="permission-{{ $item->name }}">{{ trans('permission.' . $item->name) }}</label>
                           </div>
                         </div>
                       @endforeach

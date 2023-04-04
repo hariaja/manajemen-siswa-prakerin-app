@@ -35,6 +35,20 @@ class StudentService
     return $execute;
   }
 
+  public function checkIfStudentRegistered()
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->studentRepository->checkIfStudentRegistered();
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
   public function getSchools()
   {
     DB::beginTransaction();

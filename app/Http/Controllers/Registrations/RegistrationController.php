@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Registrations;
 
-use App\DataTables\Registrations\RegistrationDataTable;
-use App\DataTables\Scopes\StatusFilter;
+use App\Models\Teacher;
+use App\Models\Registration;
+use Illuminate\Http\Request;
 use App\Helpers\Global\Constant;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Registrations\RegistrationRequest;
-use App\Models\Registration;
-use App\Services\Registrations\RegistrationService;
+use App\DataTables\Scopes\StatusFilter;
 use App\Services\Registrations\StudentService;
-use Illuminate\Http\Request;
+use App\Services\Registrations\RegistrationService;
+use App\DataTables\Registrations\RegistrationDataTable;
+use App\Http\Requests\Registrations\RegistrationRequest;
+use Illuminate\Support\Facades\DB;
 
 class RegistrationController extends Controller
 {
@@ -52,28 +54,23 @@ class RegistrationController extends Controller
     endif;
 
     $schedules = $this->registrationService->scheduleOpen();
-    return view('registrations.registrations.create', compact('schedules'));
+    $teacher = $this->studentService->getTeacherByUserId(me()->id);
+    $students = $this->studentService->checkIfStudentRegistered();
+
+    return view('registrations.registrations.create', compact('schedules', 'teacher', 'students'));
   }
 
   /**
    * Store a newly created resource in storage.
    */
-  public function store(Request $request)
+  public function store(RegistrationRequest $request)
   {
+    // Validasi id sekolah dan nama sekolah
+    $teacher = $this->studentService->getTeacherByUserId(me()->id);
 
-    $request->validate([
-      'date' => 'required|date',
-      'schedule_id' => 'required',
-      'name' => 'required|string',
-      'email' => 'required|unique:users,email|email',
-      'phone' => 'required|unique:users,phone|numeric',
-      'birth_date' => 'required|date',
-      'gender' => 'required|string',
-      'class' => 'required|string',
-      'note' => 'required|mimes:pdf|max:10240',
-    ]);
-
-    dd($request->all());
+    if ($request->teacher_id != $teacher->id) :
+      return back()->with('error', trans('Data tidak valid'))->withInput();
+    endif;
 
     $this->registrationService->save($request);
     return redirect()->route('registrations.index')->withSuccess(trans('session.create'));
@@ -82,25 +79,21 @@ class RegistrationController extends Controller
   /**
    * Display the specified resource.
    */
-  public function show(Registration $registration)
+  public function show(Registration $registration, Request $request)
   {
-    //
+
+    if ($request->ajax()) :
+      return $this->registrationService->details($registration);
+    endif;
+
+    $teacher = $registration->teacher;
+    return view('registrations.registrations.show', compact('registration', 'teacher'));
   }
 
-  /**
-   * Show the form for editing the specified resource.
-   */
-  public function edit(Registration $registration)
-  {
-    //
-  }
-
-  /**
-   * Update the specified resource in storage.
-   */
   public function update(Request $request, Registration $registration)
   {
-    //
+    $this->registrationService->editStatus($registration, $request);
+    return redirect()->route('registrations.show', $registration->uuid)->withSuccess(trans('session.create'));
   }
 
   /**
@@ -109,5 +102,19 @@ class RegistrationController extends Controller
   public function destroy(Registration $registration)
   {
     //
+  }
+
+  /**
+   * Check user before update data.
+   */
+  protected function checkUser($student)
+  {
+    if (isRoleName() == Constant::TEACHER) :
+      $teacher = $this->studentService->getTeacherByUserId(me()->id);
+    else :
+      $teacher = Teacher::where('school_id', $student->school->id)->first();
+    endif;
+
+    return $teacher;
   }
 }

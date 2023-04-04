@@ -31,11 +31,11 @@ class StudentRequest extends FormRequest
       'name' => 'required|string|max:50',
       'email' => [
         'required', 'email:dns',
-        $this->method() == Constant::POST ? Rule::unique('users', 'email') : Rule::unique('users', 'email')->ignore($this->student->user_id)
+        $this->method() == Constant::POST ? Rule::unique('users', 'email') : Rule::unique('users', 'email')->ignore($this->student->user_id),
       ],
       'phone' => [
         'required', 'numeric', 'min:12',
-        $this->method() == Constant::POST ? Rule::unique('users', 'phone') : Rule::unique('users', 'phone')->ignore($this->student->user_id)
+        $this->method() == Constant::POST ? Rule::unique('users', 'phone') : Rule::unique('users', 'phone')->ignore($this->student->user_id),
       ],
       'date_birth' => 'required|date',
       'gender' => 'required|string',

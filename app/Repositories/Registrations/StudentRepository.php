@@ -6,8 +6,9 @@ use App\Models\User;
 use App\Models\Student;
 use App\Models\Teacher;
 use App\Helpers\Global\Constant;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
 
 class StudentRepository
 {
@@ -21,11 +22,14 @@ class StudentRepository
     $user = me();
     $teacher = Teacher::where('user_id', $user->id)->first();
 
-    // return $this->student->whereHas('registrations', function ($query) use ($teacher) {
-    //   $query->where('teacher_id', $teacher->id);
-    // })->get();
-
     return $this->student->where('school_id', $teacher->school_id)->get();
+  }
+
+  public function checkIfStudentRegistered()
+  {
+    return $this->student->whereNotIn('id', function ($query) {
+      $query->select('student_id')->from('student_has_registrations');
+    })->paginate(5);
   }
 
   public function save($request, $avatar)

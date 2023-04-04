@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
       LeaderSeeder::class,
       MentorSeeder::class,
       TeacherSeeder::class,
+      StudentSeeder::class,
     ]);
   }
 }

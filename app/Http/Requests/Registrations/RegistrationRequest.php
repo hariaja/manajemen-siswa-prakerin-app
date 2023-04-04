@@ -24,18 +24,10 @@ class RegistrationRequest extends FormRequest
   public function rules(): array
   {
     return [
-      'date' => 'required|unique:registrations,date,' . $this->registration . ',id',
-      'name.*' => 'required',
-      'email.*' => [
-        'required', 'email:dns',
-        Rule::unique('users', 'email')
-      ],
-      'phone.*' => [
-        'required', 'numeric', 'min:12',
-        Rule::unique('users', 'phone')
-      ],
-      'gender.*' => 'required|string',
-      'address.*' => 'required|string',
+      'schedule_id' => 'required|numeric',
+      'student' => 'required',
+      'date' => 'required|date',
+      'note' => 'required|mimes:pdf|max:3048',
     ];
   }
 }

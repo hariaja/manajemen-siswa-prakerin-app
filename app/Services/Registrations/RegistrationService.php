@@ -54,4 +54,49 @@ class RegistrationService
     DB::commit();
     return $execute;
   }
+
+  public function editStatus($data, $request)
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->registrationRepository->editStatus($data->id, $request);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
+  public function details($data)
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->registrationRepository->detailRegistration($data->id);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
+  public function delete($data)
+  {
+    DB::beginTransaction();
+    try {
+      if ($data->note) :
+        Storage::delete($data->note);
+      endif;
+      $execute = $this->registrationRepository->delete($data->id);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
 }

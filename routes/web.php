@@ -80,10 +80,10 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
   });
 
   Route::prefix('regsitrations')->group(function () {
-    # Prakerin register
-    Route::resource('registrations', RegistrationController::class);
-
     # Student management
     Route::resource('students', StudentController::class);
+
+    # Prakerin register
+    Route::resource('registrations', RegistrationController::class)->except('edit');
   });
 });

@@ -2,6 +2,7 @@
 
 namespace App\DataTables\Registrations;
 
+use App\Helpers\Global\Constant;
 use App\Models\Registration;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -20,15 +21,21 @@ class RegistrationDataTable extends DataTable
   {
     return (new EloquentDataTable($query))
       ->addIndexColumn()
-      ->editColumn('date', function ($row) {
-        return customDate($row->date);
+      ->editColumn('register_date', function ($row) {
+        return customDate($row->register_date);
       })
       ->addColumn('teacher', function ($row) {
         return $row->teacher->user->name;
       })
+      ->addColumn('students', function ($row) {
+        return $row->students->count();
+      })
       ->editColumn('status', 'registrations.registrations.status')
       ->addColumn('action', 'registrations.registrations.action')
-      ->rawColumns(['status', 'action']);
+      ->rawColumns([
+        'status',
+        'action',
+      ]);
   }
 
   /**
@@ -88,11 +95,14 @@ class RegistrationDataTable extends DataTable
       Column::make('teacher')
         ->title(trans('Nama Pendaftar'))
         ->addClass('text-center'),
-      Column::make('date')
+      Column::make('register_date')
         ->title(trans('Tanggal Daftar'))
         ->addClass('text-center'),
+      Column::make('students')
+        ->title(trans('Jumlah Siswa'))
+        ->addClass('text-center'),
       Column::make('status')
-        ->title(trans('Status Pendaftaran'))
+        ->title(trans('Status'))
         ->addClass('text-center'),
       Column::computed('action')
         ->exportable(false)

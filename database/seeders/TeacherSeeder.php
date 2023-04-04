@@ -49,7 +49,7 @@ class TeacherSeeder extends Seeder
       'user_id' => $user2->id,
       'school_id' => 3,
       'gender' => Constant::MALE,
-      'address' => 'Planet Saturnus',
+      'address' => 'Planet Uranus',
     ]);
   }
 }

@@ -28,12 +28,6 @@
         <h3 class="block-title">
           {{ trans('page.registrations.create') }}
         </h3>
-        <div class="block-options">
-          <a href="#" class="btn btn-sm btn-block-option" onclick="newForms()">
-            <i class="fa fa-xs fa-plus me-1"></i>
-            {{ trans('Tambah Data Siswa') }}
-          </a>
-        </div>
       </div>
       <div class="block-content">
   
@@ -45,17 +39,14 @@
               <input type="text" id="name" value="{{ me()->name }}" class="form-control" readonly>
             </div>
     
-            @foreach (me()->teachers as $data)
-              <div class="mb-4">
-                <label for="school" class="form-label">{{ trans('Asal Sekolah') }}</label>
-                <input type="text" id="school" value="{{ $data->school->name }}" class="form-control" readonly>
-              </div>
-    
-              <div class="mb-4">
-                <input type="hidden" name="teacher_id" id="teacher_id" value="{{ $data->id }}" class="form-control">
-                <input type="hidden" name="school_id" id="school_id" value="{{ $data->school->id }}" class="form-control">
-              </div>
-            @endforeach
+            <div class="mb-4">
+              <label for="school" class="form-label">{{ trans('Asal Sekolah') }}</label>
+              <input type="text" id="school" value="{{ $teacher->school->name }}" class="form-control" readonly>
+            </div>
+  
+            <div class="mb-4">
+              <input type="hidden" name="teacher_id" id="teacher_id" value="{{ $teacher->id }}" class="form-control">
+            </div>
     
             @isset($schedules)
               <div class="mb-4">
@@ -96,184 +87,75 @@
               @enderror
             </div>
 
+            <div class="mb-4">
+              <div class="text-center">
+                <div class="fw-semibold">{{ trans('Pilih Calon Peserta Prakerin') }}</div>
+                <div class="fs-sm text-muted">{!! 'Menampilkan <strong>' . $students->count() . '</strong> Siswa dari <strong>' . $students->total() . '</strong> Siswa yang tersedia' !!}</div>
+                <div class="fs-sm text-muted">
+                  {{ $students->links('pagination::bootstrap-5') }}
+                </div>
+              </div>
+
+            </div>
+
+            @if(count($students) > 0)
+              <div class="mb-4">
+                <div class="space-y-2">
+                  <div class="form-check">
+                    <input type="checkbox" name="all_students" id="all_students" class="form-check-input @error('students') is-invalid @enderror">
+                    <label for="all_students" class="form-check-label">{{ trans('Pilih Semua Siswa') }}</label>
+                    @error('student')
+                      <div class="invalid-feedback">
+                        <strong>{{ $message }}</strong>
+                      </div>
+                    @enderror
+                  </div>
+                </div>
+              </div>
+            @endif
+
+            <div class="mb-4">
+              <div class="row items-push justify-content-center">
+                @forelse ($students as $student)
+                  <div class="col-md-6">
+                    <div class="form-check form-block">
+                      <input class="student form-check-input @error('student') is-invalid @enderror" name="student[{{ $student->id }}]" id="student-{{ $student->id }}" type="checkbox" value="{{ $student->id }}">
+                      <label class="form-check-label" for="student-{{ $student->id }}">
+                        <span class="d-flex align-items-center">
+                          <img class="img-avatar img-avatar48" src="{{ $student->user->getAvatar() }}" alt="">
+                          <span class="ms-2">
+                            <span class="fw-bold">{{ $student->user->name }}</span>
+                            <span class="d-block fs-sm text-muted">{{ $student->nisn }}</span>
+                          </span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+                @empty
+                  <div class="col-md-6">
+                    <div class="border border-1 p-3">
+                      <div class="text-center">
+                        <span class="fw-semibold">
+                          {{ trans('Data siswa tidak tersedia atau anda sudah mendaftarkan semua siswa') }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                @endforelse
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <button type="submit" class="btn btn-primary w-100">
+                <i class="fa fa-fw fa-circle-check opacity-50 me-1"></i>
+                {{ trans('page.create') }}
+              </button>
+            </div>
+
           </div>
         </div>
   
       </div>
-    </div>
-
-    <div class="block block-rounded">
-      <div class="block-header block-header-default">
-        <h3 class="block-title">
-          {{ trans('page.students.create') }}
-        </h3>
-      </div>
-      <div class="block-content">
-
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-
-            <div class="mb-4">
-              <label for="name" class="form-label">{{ trans('Nama Siswa') }}</label>
-              <input type="text" name="name[]" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="{{ trans('Input Nama') }}" onkeypress="return hanyaHuruf(event)">
-              @error('name')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-            </div>
-    
-            <div class="mb-4">
-              <label for="email" class="form-label">{{ trans('Email') }}</label>
-              <input type="email" name="email[]" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="{{ trans('Input Email Siswa') }}">
-              @error('email')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-            </div>
-    
-            <div class="mb-4">
-              <label for="nisn" class="form-label">{{ trans('NISN') }}</label>
-              <input type="text" name="nisn[]" id="nisn" class="form-control @error('nisn') is-invalid @enderror" placeholder="{{ trans('Input Nomor Induk Siswa Nasional') }}" onkeypress="return hanyaAngka(event)">
-              @error('nisn')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-            </div>
-
-            <div class="mb-4">
-              <label for="phone" class="form-label">{{ trans('Nomor Telepon') }}</label>
-              <input type="text" name="phone[]" id="phone" class="form-control @error('phone') is-invalid @enderror" placeholder="{{ trans('Input Nomor Telepon') }}" onkeypress="return hanyaAngka(event)">
-              @error('phone')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-            </div>
-    
-            <div class="mb-4">
-              <label for="gender" class="form-label">{{ trans('Jenis Kelamin') }}</label>
-              <select name="gender[]" id="gender" class="form-select @error('gender') is-invalid @enderror">
-                <option disabled selected>{{ trans('Pilih Jenis Kelamin') }}</option>
-                <option value="{{ Constant::MALE }}">{{ Constant::MALE }}</option>
-                <option value="{{ Constant::FEMALE }}">{{ Constant::FEMALE }}</option>
-              </select>
-              @error('gender')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-            </div>
-
-            <div class="mb-4">
-              <label for="date_birth" class="form-label">{{ trans('Tanggal Lahir') }}</label>
-              <input type="date" name="date_birth[]" id="date_birth" class="form-control @error('date_birth') is-invalid @enderror">
-              @error('date_birth')
-                <div class="invalid-feedback">{{ $message }}</div>
-              @enderror
-            </div>
-
-            {{-- value="{{ old('date_birth') }}" --}}
-
-            <div class="mb-4">
-              <label for="class" class="form-label">{{ trans('Kelas') }}</label>
-              <input type="text" name="class[]" id="class" class="form-control @error('class') is-invalid @enderror" placeholder="Contoh: XII - RPL">
-              @error('class')
-                <div class="invalid-feedback">
-                  {{ $message }}
-                </div>
-              @enderror
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-
-    <div id="new-form">
-      <template id="students-form">
-
-        <div class="block block-rounded">
-          <div class="block-header block-header-default">
-            <h3 class="block-title">
-              {{ trans('page.students.create') }}
-            </h3>
-          </div>
-          <div class="block-content">
-
-            <div class="row justify-content-center">
-              <div class="col-md-6">
-    
-                <div class="mb-4">
-                  <label for="name" class="form-label">{{ trans('Nama Siswa') }}</label>
-                  <input type="text" name="name[]" id="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="{{ trans('Input Nama') }}" onkeypress="return hanyaHuruf(event)">
-                  @error('name')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-        
-                <div class="mb-4">
-                  <label for="email" class="form-label">{{ trans('Email') }}</label>
-                  <input type="email" name="email[]" id="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="{{ trans('Input Email Siswa') }}">
-                  @error('email')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-        
-                <div class="mb-4">
-                  <label for="nisn" class="form-label">{{ trans('NISN') }}</label>
-                  <input type="text" name="nisn[]" id="nisn" value="{{ old('nisn') }}" class="form-control @error('nisn') is-invalid @enderror" placeholder="{{ trans('Input Nomor Induk Siswa Nasional') }}" onkeypress="return hanyaAngka(event)">
-                  @error('nisn')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-    
-                <div class="mb-4">
-                  <label for="phone" class="form-label">{{ trans('Nomor Telepon') }}</label>
-                  <input type="text" name="phone[]" id="phone" value="{{ old('phone') }}" class="form-control @error('phone') is-invalid @enderror" placeholder="{{ trans('Input Nomor Telepon') }}" onkeypress="return hanyaAngka(event)">
-                  @error('phone')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-        
-                <div class="mb-4">
-                  <label for="gender" class="form-label">{{ trans('Jenis Kelamin') }}</label>
-                  <select name="gender[]" id="gender" class="form-select @error('gender') is-invalid @enderror">
-                    <option disabled selected>{{ trans('Pilih Jenis Kelamin') }}</option>
-                    <option value="{{ Constant::MALE }}" {{ old('gender') === Constant::MALE ? 'selected' : '' }}>{{ Constant::MALE }}</option>
-                    <option value="{{ Constant::FEMALE }}" {{ old('gender') === Constant::FEMALE ? 'selected' : '' }}>{{ Constant::FEMALE }}</option>
-                  </select>
-                  @error('gender')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-    
-                <div class="mb-4">
-                  <label for="date_birth" class="form-label">{{ trans('Tanggal Lahir') }}</label>
-                  <input type="date" name="date_birth[]" id="date_birth" value="{{ old('date_birth') }}" class="form-control @error('date_birth') is-invalid @enderror">
-                  @error('date_birth')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                  @enderror
-                </div>
-    
-                <div class="mb-4">
-                  <label for="class" class="form-label">{{ trans('Kelas') }}</label>
-                  <input type="text" name="class[]" id="class" class="form-control @error('class') is-invalid @enderror" placeholder="Contoh: XII - RPL" value="{{ old('class') }}">
-                  @error('class')
-                    <div class="invalid-feedback">
-                      {{ $message }}
-                    </div>
-                  @enderror
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </template>
-    </div>
-
-    <div class="mb-4">
-      <button type="submit" class="btn btn-primary w-100">
-        <i class="fa fa-fw fa-circle-check opacity-50 me-1"></i>
-        {{ trans('page.create') }}
-      </button>
     </div>
 
   </form>
@@ -301,14 +183,19 @@
         }
       })
 
-    })
+      $('[name="all_students"]').on('click', function() {
+        if($(this).is(':checked')) {
+          $.each($('.student'), function() {
+            $(this).prop('checked',true);
+          });
+        } else {
+          $.each($('.student'), function() {
+            $(this).prop('checked', false);
+          });
+        }
+      });
 
-    function newForms() {
-      var newForm = document.getElementById('new-form')
-      var studentsForm = document.getElementById('students-form')
-      var cloneForms = studentsForm.content.cloneNode(true)
-      newForm.appendChild(cloneForms)
-    }
+    })
 
   </script>
 @endpush

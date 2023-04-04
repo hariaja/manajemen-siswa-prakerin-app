@@ -465,21 +465,14 @@ class PermissionSeeder extends Seeder
         'updated_at' => now(),
       ],
       [
-        'name' => 'registrations.show',
-        'permission_category_id' => 10,
-        'guard_name' => 'web',
-        'created_at' => now(),
-        'updated_at' => now(),
-      ],
-      [
-        'name' => 'registrations.edit',
-        'permission_category_id' => 10,
-        'guard_name' => 'web',
-        'created_at' => now(),
-        'updated_at' => now(),
-      ],
-      [
         'name' => 'registrations.update',
+        'permission_category_id' => 10,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'registrations.show',
         'permission_category_id' => 10,
         'guard_name' => 'web',
         'created_at' => now(),
