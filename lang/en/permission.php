@@ -7,6 +7,7 @@ return [
     'show' => 'Melihat Detail Pengguna',
     'edit' => 'Akses Formulir Ubah Pengguna',
     'status' => 'Akses Mengubah Status Akun',
+    'update' => 'Akses Memperbaharui Pengguna',
     'destroy' => 'Menghapus Pengguna',
     'password' => 'Merubah Password Pengguna'
   ],
@@ -26,6 +27,7 @@ return [
     'index' => 'Melihat Daftar Jadwal',
     'create' => 'Akses Formulir Tambah Jadwal',
     'store' => 'Akses Menambahkan Jadwal',
+    'show' => 'Melihat Detail Jadwal',
     'edit' => 'Akses Formulir Ubah Jadwal',
     'update' => 'Akses Memperbaharui Jadwal',
     'destroy' => 'Menghapus Jadwal',
@@ -83,5 +85,27 @@ return [
     'edit' => 'Akses Formulir Ubah Guru',
     'update' => 'Akses Memperbaharui Guru',
     'destroy' => 'Menghapus Guru',
+  ],
+
+  'students' => [
+    'name' => 'Management Siswa',
+    'index' => 'Melihat Daftar Siswa',
+    'create' => 'Akses Formulir Tambah Siswa',
+    'store' => 'Akses Menambahkan Siswa',
+    'show' => 'Melihat Detail Data Siswa',
+    'edit' => 'Akses Formulir Ubah Siswa',
+    'update' => 'Akses Memperbaharui Siswa',
+    'destroy' => 'Menghapus Siswa',
+  ],
+
+  'registrations' => [
+    'name' => 'Management Pendaftaran',
+    'index' => 'Melihat Daftar Pendaftaran',
+    'create' => 'Akses Formulir Tambah Pendaftaran',
+    'store' => 'Akses Menambahkan Pendaftaran',
+    'show' => 'Melihat Detail Data Pendaftaran',
+    'edit' => 'Akses Formulir Ubah Pendaftaran',
+    'update' => 'Akses Memperbaharui Pendaftaran',
+    'destroy' => 'Menghapus Pendaftaran',
   ],
 ];

@@ -9,6 +9,7 @@ use App\DataTables\Scopes\StatusFilter;
 use App\DataTables\Registrations\ScheduleDataTable;
 use App\Http\Requests\Registrations\ScheduleRequest;
 use App\Services\Registrations\ScheduleService;
+use Carbon\Carbon;
 
 class ScheduleController extends Controller
 {
@@ -45,6 +46,18 @@ class ScheduleController extends Controller
   {
     $this->service->save($request);
     return redirect()->route('schedules.index')->withSuccess(trans('session.create'));
+  }
+
+  /**
+   * Display the specified resource.
+   */
+  public function show(Schedule $schedule)
+  {
+    $start = $schedule->start->format('Y-m-d');
+    $end = $schedule->end->format('Y-m-d');
+    $schedule->new_start = customDate($start);
+    $schedule->new_end = customDate($end);
+    return response()->json($schedule);
   }
 
   /**

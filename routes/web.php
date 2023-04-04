@@ -8,10 +8,12 @@ use App\Http\Controllers\Master\MentorController;
 use App\Http\Controllers\Settings\RoleController;
 use App\Http\Controllers\Settings\UserController;
 use App\Http\Controllers\Educations\SchoolController;
+use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Educations\TeacherController;
 use App\Http\Controllers\Master\StudyProgramController;
+use App\Http\Controllers\Registrations\StudentController;
 use App\Http\Controllers\Registrations\ScheduleController;
-use App\Http\Controllers\Settings\PasswordController;
+use App\Http\Controllers\Registrations\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,7 +54,7 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
   });
 
   # Schedule management
-  Route::resource('schedules', ScheduleController::class)->except('show');
+  Route::resource('schedules', ScheduleController::class);
 
   Route::prefix('prodi')->group(function () {
     # Prodi management
@@ -75,5 +77,13 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
 
     # Teacher management
     Route::resource('teachers', TeacherController::class)->except('create', 'store');
+  });
+
+  Route::prefix('regsitrations')->group(function () {
+    # Prakerin register
+    Route::resource('registrations', RegistrationController::class);
+
+    # Student management
+    Route::resource('students', StudentController::class);
   });
 });

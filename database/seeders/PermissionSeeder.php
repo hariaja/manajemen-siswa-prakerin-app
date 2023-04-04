@@ -24,35 +24,35 @@ class PermissionSeeder extends Seeder
         'permission_category_id' => 1,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'users.show',
         'permission_category_id' => 1,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'users.update',
         'permission_category_id' => 1,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'users.status',
         'permission_category_id' => 1,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'users.password',
         'permission_category_id' => 1,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
 
       // Roles
@@ -61,42 +61,42 @@ class PermissionSeeder extends Seeder
         'permission_category_id' => 2,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'roles.create',
         'permission_category_id' => 2,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'roles.store',
         'permission_category_id' => 2,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'roles.edit',
         'permission_category_id' => 2,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'roles.update',
         'permission_category_id' => 2,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'roles.destroy',
         'permission_category_id' => 2,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
 
       // Schedules
@@ -105,42 +105,56 @@ class PermissionSeeder extends Seeder
         'permission_category_id' => 3,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'schedules.create',
         'permission_category_id' => 3,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'schedules.store',
         'permission_category_id' => 3,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'schedules.show',
+        'permission_category_id' => 3,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
       ],
       [
         'name' => 'schedules.edit',
         'permission_category_id' => 3,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'schedules.show',
+        'permission_category_id' => 3,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
       ],
       [
         'name' => 'schedules.update',
         'permission_category_id' => 3,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'schedules.destroy',
         'permission_category_id' => 3,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
 
       // Study Programs
@@ -149,42 +163,42 @@ class PermissionSeeder extends Seeder
         'permission_category_id' => 4,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'study-programs.create',
         'permission_category_id' => 4,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'study-programs.store',
         'permission_category_id' => 4,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'study-programs.edit',
         'permission_category_id' => 4,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'study-programs.update',
         'permission_category_id' => 4,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'study-programs.destroy',
         'permission_category_id' => 4,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
 
       // Leaders
@@ -193,49 +207,49 @@ class PermissionSeeder extends Seeder
         'permission_category_id' => 5,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'leaders.create',
         'permission_category_id' => 5,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'leaders.store',
         'permission_category_id' => 5,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'leaders.show',
         'permission_category_id' => 5,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'leaders.edit',
         'permission_category_id' => 5,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'leaders.update',
         'permission_category_id' => 5,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'leaders.destroy',
         'permission_category_id' => 5,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
 
       // Mentors
@@ -244,49 +258,49 @@ class PermissionSeeder extends Seeder
         'permission_category_id' => 6,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'mentors.create',
         'permission_category_id' => 6,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'mentors.store',
         'permission_category_id' => 6,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'mentors.show',
         'permission_category_id' => 6,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'mentors.edit',
         'permission_category_id' => 6,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'mentors.update',
         'permission_category_id' => 6,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'mentors.destroy',
         'permission_category_id' => 6,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
 
       // Schools
@@ -295,42 +309,42 @@ class PermissionSeeder extends Seeder
         'permission_category_id' => 7,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'schools.create',
         'permission_category_id' => 7,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'schools.store',
         'permission_category_id' => 7,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'schools.edit',
         'permission_category_id' => 7,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'schools.update',
         'permission_category_id' => 7,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'schools.destroy',
         'permission_category_id' => 7,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
 
       // Teachers
@@ -339,35 +353,144 @@ class PermissionSeeder extends Seeder
         'permission_category_id' => 8,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'teachers.show',
         'permission_category_id' => 8,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'teachers.edit',
         'permission_category_id' => 8,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'teachers.update',
         'permission_category_id' => 8,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
       ],
       [
         'name' => 'teachers.destroy',
         'permission_category_id' => 8,
         'guard_name' => 'web',
         'created_at' => now(),
-        'updated_at' => now()
+        'updated_at' => now(),
+      ],
+
+      // Students
+      [
+        'name' => 'students.index',
+        'permission_category_id' => 9,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'students.create',
+        'permission_category_id' => 9,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'students.store',
+        'permission_category_id' => 9,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'students.show',
+        'permission_category_id' => 9,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'students.edit',
+        'permission_category_id' => 9,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'students.show',
+        'permission_category_id' => 9,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'students.update',
+        'permission_category_id' => 9,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'students.destroy',
+        'permission_category_id' => 9,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+
+      // Registrations
+      [
+        'name' => 'registrations.index',
+        'permission_category_id' => 10,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'registrations.create',
+        'permission_category_id' => 10,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'registrations.store',
+        'permission_category_id' => 10,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'registrations.show',
+        'permission_category_id' => 10,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'registrations.edit',
+        'permission_category_id' => 10,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'registrations.update',
+        'permission_category_id' => 10,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'registrations.destroy',
+        'permission_category_id' => 10,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
       ],
     ];
 

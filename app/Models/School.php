@@ -25,6 +25,11 @@ class School extends Model
     'status'
   ];
 
+  protected $with = [
+    'teachers',
+    'students',
+  ];
+
   /**
    * Get the route key for the model.
    */
@@ -52,5 +57,13 @@ class School extends Model
   public function teachers(): HasMany
   {
     return $this->hasMany(Teacher::class, 'school_id');
+  }
+
+  /**
+   * Relationship to student model.
+   */
+  public function students(): HasMany
+  {
+    return $this->hasMany(Student::class, 'school_id');
   }
 }

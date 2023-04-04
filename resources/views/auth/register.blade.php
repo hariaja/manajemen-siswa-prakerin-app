@@ -27,13 +27,6 @@
               <form action="{{ route('register') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                {{-- <div class="row">
-                  <div class="col-md-6">
-                    
-                  </div>
-                  <div class="col-md-6"></div>
-                </div> --}}
-
                 <div class="py-3">
 
                   <div class="mb-4">

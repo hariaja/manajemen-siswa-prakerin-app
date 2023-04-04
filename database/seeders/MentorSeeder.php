@@ -23,7 +23,7 @@ class MentorSeeder extends Seeder
       'password' => bcrypt('password'),
       'email_verified_at' => now(),
       'remember_token' => Str::random(60),
-      'status' => Constant::INACTIVE,
+      'status' => Constant::ACTIVE,
     ]);
     $user->assignRole(Constant::MENTOR);
 

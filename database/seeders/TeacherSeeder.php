@@ -16,7 +16,7 @@ class TeacherSeeder extends Seeder
    */
   public function run(): void
   {
-    $user = User::factory()->create([
+    $user1 = User::factory()->create([
       'name' => 'Nisrina Amalina',
       'email' => 'nisrina@gmail.com',
       'phone' => '085797777833',
@@ -25,12 +25,30 @@ class TeacherSeeder extends Seeder
       'remember_token' => Str::random(60),
       'status' => Constant::ACTIVE,
     ]);
-    $user->assignRole(Constant::TEACHER);
+    $user1->assignRole(Constant::TEACHER);
+
+    $user2 = User::factory()->create([
+      'name' => 'Fajar Abdul Malik',
+      'email' => 'fajar@gmail.com',
+      'phone' => '085797777888',
+      'password' => bcrypt('password'),
+      'email_verified_at' => now(),
+      'remember_token' => Str::random(60),
+      'status' => Constant::ACTIVE,
+    ]);
+    $user2->assignRole(Constant::TEACHER);
 
     Teacher::create([
-      'user_id' => $user->id,
+      'user_id' => $user1->id,
       'school_id' => 14,
       'gender' => Constant::FEMALE,
+      'address' => 'Planet Saturnus',
+    ]);
+
+    Teacher::create([
+      'user_id' => $user2->id,
+      'school_id' => 3,
+      'gender' => Constant::MALE,
       'address' => 'Planet Saturnus',
     ]);
   }

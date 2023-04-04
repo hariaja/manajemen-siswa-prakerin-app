@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use App\Traits\Uuid;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Teacher extends Model
+class Student extends Model
 {
   use Uuid;
 
@@ -20,8 +20,21 @@ class Teacher extends Model
   protected $fillable = [
     'user_id',
     'school_id',
+    'uuid',
+    'nisn',
+    'major',
+    'date_birth',
     'gender',
     'address',
+  ];
+
+  /**
+   * The attributes that should be cast.
+   *
+   * @var array<string, string>
+   */
+  protected $casts = [
+    'date_birth' => 'date:c',
   ];
 
   /**
@@ -41,7 +54,7 @@ class Teacher extends Model
   }
 
   /**
-   * Relationship to school model.
+   * Relationship to school models.
    */
   public function school(): BelongsTo
   {
@@ -49,10 +62,15 @@ class Teacher extends Model
   }
 
   /**
-   * Relationship to registration model.
+   * Relationship to Registration models.
    */
-  public function registrations(): HasMany
+  public function registrations(): BelongsToMany
   {
-    return $this->hasMany(Registration::class, 'teacher_id');
+    return $this->belongsToMany(
+      Registration::class,
+      'student_has_registrations',
+      'student_id',
+      'registration_id',
+    );
   }
 }

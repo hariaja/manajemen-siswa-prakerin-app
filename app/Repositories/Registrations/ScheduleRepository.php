@@ -12,6 +12,14 @@ class ScheduleRepository
     # code...
   }
 
+  public function scheduleOpen()
+  {
+    return $this->schedule
+      ->open()
+      ->orderBy('title')
+      ->get();
+  }
+
   public function save($request)
   {
     return $this->schedule->firstOrCreate([

@@ -40,6 +40,11 @@ class MentorRepository
     return $this->mentor->findOrFail($id);
   }
 
+  public function getDataByUserId($id): Model
+  {
+    return $this->mentor->where('user_id', $id)->first();
+  }
+
   public function edit($id, $request, $avatar)
   {
     $mentor = $this->getDataById($id);

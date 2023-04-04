@@ -50,9 +50,21 @@
             </a>
           </li>
         @endcan
+
+        @canany([
+          'study-programs.index', 
+          'leaders.index', 
+          'mentors.index',
+          'schools.index',
+          'teachers.index',
+          'registrations.index',
+          'roels.index',
+          'users.index',
+          ])
+          <li class="nav-main-heading">{{ trans('Prakerin') }}</li>
+        @endcanany
         
         @canany(['study-programs.index', 'leaders.index', 'mentors.index'])
-          <li class="nav-main-heading">{{ trans('Management') }}</li>
           <li class="nav-main-item {{ Request::is('prodi*') ? 'open' : '' }}">
             <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="{{ Request::is('prodi*') ? 'true' : 'false' }}" href="#">
               <i class="nav-main-link-icon fa fa-file"></i>
@@ -85,30 +97,54 @@
         @endcan
 
         @canany(['schools.index', 'teachers.index'])
-        <li class="nav-main-heading">{{ trans('Management') }}</li>
-        <li class="nav-main-item {{ Request::is('educations*') ? 'open' : '' }}">
-          <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="{{ Request::is('educations*') ? 'true' : 'false' }}" href="#">
-            <i class="nav-main-link-icon fa fa-school"></i>
-            <span class="nav-main-link-name">{{ trans('Education Data') }}</span>
-          </a>
-          <ul class="nav-main-submenu">
-            @can('teachers.index')
-            <li class="nav-main-item">
-              <a class="nav-main-link {{ Request::is('educations/teachers*') ? 'active' : '' }}" href="{{ route('teachers.index') }}">
-                <span class="nav-main-link-name">{{ trans('Guru') }}</span>
-              </a>
-            </li>
-            @endcan
-            @can('schools.index')
-            <li class="nav-main-item">
-              <a class="nav-main-link {{ Request::is('educations/schools*') ? 'active' : '' }}" href="{{ route('schools.index') }}">
-                <span class="nav-main-link-name">{{ trans('Sekolah') }}</span>
-              </a>
-            </li>
-            @endcan
-          </ul>
-        </li>
-      @endcan
+          <li class="nav-main-item {{ Request::is('educations*') ? 'open' : '' }}">
+            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="{{ Request::is('educations*') ? 'true' : 'false' }}" href="#">
+              <i class="nav-main-link-icon fa fa-school"></i>
+              <span class="nav-main-link-name">{{ trans('Education') }}</span>
+            </a>
+            <ul class="nav-main-submenu">
+              @can('teachers.index')
+              <li class="nav-main-item">
+                <a class="nav-main-link {{ Request::is('educations/teachers*') ? 'active' : '' }}" href="{{ route('teachers.index') }}">
+                  <span class="nav-main-link-name">{{ trans('Guru') }}</span>
+                </a>
+              </li>
+              @endcan
+              @can('schools.index')
+              <li class="nav-main-item">
+                <a class="nav-main-link {{ Request::is('educations/schools*') ? 'active' : '' }}" href="{{ route('schools.index') }}">
+                  <span class="nav-main-link-name">{{ trans('Sekolah') }}</span>
+                </a>
+              </li>
+              @endcan
+            </ul>
+          </li>
+        @endcan
+
+        @canany(['registrations.index', 'students.index'])
+          <li class="nav-main-item {{ Request::is('regsitrations*') ? 'open' : '' }}">
+            <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="{{ Request::is('regsitrations*') ? 'true' : 'false' }}" href="#">
+              <i class="nav-main-link-icon fa fa-users"></i>
+              <span class="nav-main-link-name">{{ trans('Prakerin') }}</span>
+            </a>
+            <ul class="nav-main-submenu">
+              @can('students.index')
+              <li class="nav-main-item">
+                <a class="nav-main-link {{ Request::is('regsitrations/students*') ? 'active' : '' }}" href="{{ route('students.index') }}">
+                  <span class="nav-main-link-name">{{ trans('Siswa') }}</span>
+                </a>
+              </li>
+              @endcan
+              @can('registrations.index')
+              <li class="nav-main-item">
+                <a class="nav-main-link {{ Request::is('regsitrations/registrations*') ? 'active' : '' }}" href="{{ route('registrations.index') }}">
+                  <span class="nav-main-link-name">{{ trans('Pendaftaran') }}</span>
+                </a>
+              </li>
+              @endcan
+            </ul>
+          </li>
+        @endcan
 
         @canany(['roles.index', 'users.index'])
           <li class="nav-main-heading">{{ trans('Management') }}</li>

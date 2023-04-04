@@ -41,6 +41,11 @@ class LeaderRepository
     return $this->leader->findOrFail($id);
   }
 
+  public function getDataByUserId($id): Model
+  {
+    return $this->leader->where('user_id', $id)->first();
+  }
+
   public function edit($id, $request, $avatar)
   {
     $leader = $this->getDataById($id);

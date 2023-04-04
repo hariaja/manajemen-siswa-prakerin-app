@@ -50,5 +50,16 @@ class RoleSeeder extends Seeder
         ->orWhere('name', 'LIKE', 'users.password')
         ->get()
     );
+
+    $teacher = $roles->where('name', Constant::TEACHER)->first();
+    $teacher->syncPermissions(
+      Permission::where('name', 'LIKE', 'users.show')
+        ->orWhere('name', 'LIKE', 'users.update')
+        ->orWhere('name', 'LIKE', 'users.password')
+        ->orWhere('name', 'LIKE', 'schedules.show')
+        ->orWhere('name', 'LIKE', 'students.%')
+        ->orWhere('name', 'LIKE', 'registrations.%')
+        ->get()
+    );
   }
 }

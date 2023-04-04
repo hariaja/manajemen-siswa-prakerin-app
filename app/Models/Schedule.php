@@ -7,6 +7,7 @@ use App\Helpers\Global\Constant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Schedule extends Model
 {
@@ -31,8 +32,12 @@ class Schedule extends Model
    * @var array<string, string>
    */
   protected $casts = [
+    'end' => 'date:c',
     'start' => 'date:c',
-    'end' => 'date:c'
+  ];
+
+  protected $with = [
+    'registrations',
   ];
 
   /**
@@ -66,5 +71,13 @@ class Schedule extends Model
   public function getOpen(): Collection
   {
     return $this->open()->get();
+  }
+
+  /**
+   * Relationship to registration model.
+   */
+  public function registrations(): HasMany
+  {
+    return $this->hasMany(Registration::class, 'schedule_id');
   }
 }

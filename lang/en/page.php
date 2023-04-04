@@ -74,4 +74,20 @@ return [
     'edit' => 'Ubah Data Guru',
     'show' => 'Detail Data Guru',
   ],
+
+  'registrations' => [
+    'title' => 'Halaman Pendaftaran',
+    'index' => 'Tabel Data Pendaftaran',
+    'create' => 'Tambah Data Pendaftaran',
+    'edit' => 'Ubah Data Pendaftaran',
+    'show' => 'Detail Data Pendaftaran',
+  ],
+
+  'students' => [
+    'title' => 'Halaman Siswa',
+    'index' => 'Tabel Data Siswa',
+    'create' => 'Tambah Data Siswa',
+    'edit' => 'Ubah Data Siswa',
+    'show' => 'Detail Data Siswa',
+  ],
 ];

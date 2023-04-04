@@ -18,6 +18,11 @@ class TeacherRepository
     return $this->teacher->findOrFail($id);
   }
 
+  public function getDataByUserId($user_id): Model
+  {
+    return $this->teacher->where('user_id', $user_id)->first();
+  }
+
   public function edit($id, $request, $avatar)
   {
     $teacher = $this->getDataById($id);
