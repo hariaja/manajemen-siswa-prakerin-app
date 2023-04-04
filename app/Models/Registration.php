@@ -20,6 +20,7 @@ class Registration extends Model
   protected $fillable = [
     'teacher_id',
     'schedule_id',
+    'study_program_id',
     'uuid',
     'code',
     'note',
@@ -71,5 +72,13 @@ class Registration extends Model
       'registration_id',
       'student_id',
     );
+  }
+
+  /**
+   * Relationship to study program model.
+   */
+  public function studyProgram(): BelongsTo
+  {
+    return $this->belongsTo(StudyProgram::class, 'study_program_id');
   }
 }

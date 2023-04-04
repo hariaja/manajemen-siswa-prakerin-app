@@ -6,13 +6,14 @@ use App\Models\Teacher;
 use App\Models\Registration;
 use Illuminate\Http\Request;
 use App\Helpers\Global\Constant;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\DataTables\Scopes\StatusFilter;
+use App\Services\Master\StudyProgramService;
 use App\Services\Registrations\StudentService;
 use App\Services\Registrations\RegistrationService;
 use App\DataTables\Registrations\RegistrationDataTable;
 use App\Http\Requests\Registrations\RegistrationRequest;
-use Illuminate\Support\Facades\DB;
 
 class RegistrationController extends Controller
 {
@@ -22,6 +23,7 @@ class RegistrationController extends Controller
    * @return void
    */
   public function __construct(
+    protected StudyProgramService $prodiService,
     protected RegistrationService $registrationService,
     protected StudentService $studentService,
   ) {
@@ -87,7 +89,8 @@ class RegistrationController extends Controller
     endif;
 
     $teacher = $registration->teacher;
-    return view('registrations.registrations.show', compact('registration', 'teacher'));
+    $studyPrograms = $this->prodiService->all();
+    return view('registrations.registrations.show', compact('registration', 'teacher', 'studyPrograms'));
   }
 
   public function update(Request $request, Registration $registration)

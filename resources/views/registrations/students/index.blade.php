@@ -26,6 +26,12 @@
         @endcan
       @endif
 
+      <div class="mb-4">
+        <div class="fw-semibold">{{ trans('Note:') }}</div>
+        <div class="text-muted">Semua data siswa yang telah di tambahkan memiliki default password = <strong>"password"</strong> <em>(Tanpa Petik)</em> jika akun sudah aktif, maka siswa bisa mengakses aplikasi.</div>
+        <div class="text-muted">{{ trans('Akun siswa bisa aktif ketika pendaftaran disetujui oleh Administrator.') }}</div>
+      </div>
+
       <div class="my-3">
         {{ $dataTable->table() }}
       </div>

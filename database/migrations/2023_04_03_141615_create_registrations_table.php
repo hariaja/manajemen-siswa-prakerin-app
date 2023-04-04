@@ -17,6 +17,7 @@ return new class extends Migration
       $table->string('uuid');
       $table->foreignId('teacher_id')->constrained('teachers')->onDelete('cascade');
       $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
+      $table->foreignId('study_program_id')->nullable()->constrained('study_programs')->onDelete('cascade');
       $table->string('code')->unique();
       $table->string('note');
       $table->date('register_date');

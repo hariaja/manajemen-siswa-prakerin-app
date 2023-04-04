@@ -70,7 +70,7 @@
                   @endif
                 @endforeach
               </select>
-              <div class="my-2 schedule">
+              <div class="my-2 schedule" style="display: none">
                 <span class="fw-semibold text-center" id="schedule-start"></span><br>
                 <span class="fw-semibold text-center" id="schedule-end"></span>
               </div>
@@ -165,8 +165,6 @@
 
     $(document).ready(function () {
 
-      $('.schedule').hide()
-
       $('#schedule_id').change(function () {
         var schedule_uuid = $(this).children(':selected').data('uuid')
         if (schedule_uuid) {
@@ -186,14 +184,14 @@
       $('[name="all_students"]').on('click', function() {
         if($(this).is(':checked')) {
           $.each($('.student'), function() {
-            $(this).prop('checked',true);
+            $(this).prop('checked',true)
           });
         } else {
           $.each($('.student'), function() {
-            $(this).prop('checked', false);
-          });
+            $(this).prop('checked', false)
+          })
         }
-      });
+      })
 
     })
 

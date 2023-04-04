@@ -63,7 +63,16 @@ class RegistrationRepository
   public function editStatus($id, $request)
   {
     $registration = $this->getDataById($id);
+
+    foreach ($registration->students as $student) {
+      $user = User::findOrFail($student->user_id);
+      $user->updateOrFail([
+        'status' => Constant::ACTIVE,
+      ]);
+    }
+
     return $registration->updateOrFail([
+      'study_program_id' => $request->study_program_id,
       'status' => $request->status,
     ]);
   }

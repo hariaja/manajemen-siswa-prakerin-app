@@ -2,6 +2,7 @@
 
 namespace App\Services\Registrations;
 
+use App\Helpers\Global\Constant;
 use Exception;
 use InvalidArgumentException;
 use Illuminate\Support\Facades\DB;
@@ -59,6 +60,13 @@ class RegistrationService
   {
     DB::beginTransaction();
     try {
+
+      if ($request->status === Constant::APPROVED) :
+        $request->study_program_id = $request->study_program_id;
+      else :
+        $request->study_program_id = null;
+      endif;
+
       $execute = $this->registrationRepository->editStatus($data->id, $request);
     } catch (Exception $e) {
       DB::rollBack();

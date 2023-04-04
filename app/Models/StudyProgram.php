@@ -7,8 +7,9 @@ use App\Helpers\Global\Constant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class StudyProgram extends Model
 {
@@ -73,5 +74,16 @@ class StudyProgram extends Model
   public function mentor(): HasMany
   {
     return $this->hasMany(Mentor::class, 'study_program_id');
+  }
+
+  /**
+   * Relationship to Registration models.
+   */
+  public function registrations(): HasMany
+  {
+    return $this->hasMany(
+      Registration::class,
+      'study_program_id'
+    );
   }
 }

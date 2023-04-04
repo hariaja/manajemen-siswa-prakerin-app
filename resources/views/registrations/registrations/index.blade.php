@@ -40,6 +40,11 @@
         @endcan
       @endif
 
+      <div class="mb-4">
+        <div class="fw-semibold">{{ trans('Note:') }}</div>
+        <div class="text-muted">{{ trans('Mohon untuk menambahkan data siswa anda yang akan didaftarkan sebagai peserta prakerin di halaman siswa.') }}</div>
+      </div>
+
       <div class="my-3">
         {{ $dataTable->table() }}
       </div>
