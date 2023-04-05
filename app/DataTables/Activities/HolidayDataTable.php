@@ -38,7 +38,23 @@ class HolidayDataTable extends DataTable
    */
   public function query(Holiday $model): QueryBuilder
   {
-    return $model->newQuery();
+    if (isRoleName() === Constant::LEADER) :
+      return $model->newQuery()
+        ->join('study_programs', 'holidays.study_program_id', '=', 'study_programs.id')
+        ->join('leaders', 'study_programs.id', '=', 'leaders.study_program_id')
+        ->select('holidays.*')
+        ->where('leaders.study_program_id', isLeader()->study_program_id)
+        ->orderBy('title', 'ASC');
+    elseif (isRoleName() === Constant::MENTOR) :
+      return $model->newQuery()
+        ->join('study_programs', 'holidays.study_program_id', '=', 'study_programs.id')
+        ->join('mentors', 'study_programs.id', '=', 'mentors.study_program_id')
+        ->select('holidays.*')
+        ->where('mentors.study_program_id', isMentor()->study_program_id)
+        ->orderBy('title', 'ASC');
+    else :
+      return $model->newQuery()->orderBy('title', 'ASC');
+    endif;
   }
 
   /**

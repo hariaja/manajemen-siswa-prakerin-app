@@ -40,6 +40,8 @@ Auth::routes(['verify' => true]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+require __DIR__ . '/student.php';
+
 Route::middleware(['auth', 'permission', 'verified'])->group(function () {
   # Setting menu
   Route::prefix('settings')->group(function () {

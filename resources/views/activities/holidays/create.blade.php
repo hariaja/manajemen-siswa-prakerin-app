@@ -69,7 +69,7 @@
 
           <div class="mb-4">
             <label for="description" class="form-label">{{ trans('Deskripsi') }} <em class="fs-sm text-muted">{{ trans('Opsional') }}</em></label>
-            <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" cols="30" rows="10" placeholder="Input Deskripsi">{{ old('description') }}</textarea>
+            <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" cols="30" rows="5" placeholder="Input Deskripsi">{{ old('description') }}</textarea>
             @error('description')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror

@@ -147,7 +147,8 @@
         @endcan
 
         @canany([
-          'holidays.index'
+          'holidays.index',
+          'attendances.index',
         ])
           <li class="nav-main-heading">{{ trans('Kegiatan') }}</li>
         @endcan
@@ -163,6 +164,13 @@
               <li class="nav-main-item">
                 <a class="nav-main-link {{ Request::is('activities/holidays*') ? 'active' : '' }}" href="{{ route('holidays.index') }}">
                   <span class="nav-main-link-name">{{ trans('Hari Libur') }}</span>
+                </a>
+              </li>
+              @endcan
+              @can('attendances.index')
+              <li class="nav-main-item">
+                <a class="nav-main-link {{ Request::is('activities/attendances*') ? 'active' : '' }}" href="{{ route('attendances.index') }}">
+                  <span class="nav-main-link-name">{{ trans('Kehadiran') }}</span>
                 </a>
               </li>
               @endcan

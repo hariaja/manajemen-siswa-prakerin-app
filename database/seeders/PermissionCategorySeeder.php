@@ -25,6 +25,7 @@ class PermissionCategorySeeder extends Seeder
       'students.name',
       'registrations.name',
       'holidays.name',
+      'attendances.name',
     ];
 
     foreach ($items as $name) :

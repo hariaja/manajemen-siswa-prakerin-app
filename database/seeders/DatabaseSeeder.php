@@ -23,8 +23,9 @@ class DatabaseSeeder extends Seeder
       LeaderSeeder::class,
       MentorSeeder::class,
       TeacherSeeder::class,
-      StudentSeeder::class,
+      // StudentSeeder::class,
       HolidaySeeder::class,
+      AttendanceSeeder::class,
     ]);
   }
 }

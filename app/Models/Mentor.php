@@ -23,6 +23,11 @@ class Mentor extends Model
     'gender',
   ];
 
+  protected $with = [
+    'user',
+    'studyProgram',
+  ];
+
   /**
    * Get the route key for the model.
    */

@@ -98,4 +98,12 @@ return [
     'edit' => 'Ubah Data Hari Libur',
     'show' => 'Detail Data Hari Libur',
   ],
+
+  'attendances' => [
+    'title' => 'Halaman Kehadiran',
+    'index' => 'Tabel Data Kehadiran',
+    'create' => 'Tambah Data Kehadiran',
+    'edit' => 'Ubah Data Kehadiran',
+    'show' => 'Detail Data Kehadiran',
+  ],
 ];

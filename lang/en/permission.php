@@ -119,4 +119,15 @@ return [
     'update' => 'Akses Memperbaharui Hari Libur',
     'destroy' => 'Menghapus Hari Libur',
   ],
+
+  'attendances' => [
+    'name' => 'Management Kehadiran',
+    'index' => 'Melihat Daftar Kehadiran',
+    'create' => 'Akses Formulir Tambah Kehadiran',
+    'store' => 'Akses Menambahkan Kehadiran',
+    'show' => 'Melihat Detail Data Kehadiran',
+    'edit' => 'Akses Formulir Ubah Kehadiran',
+    'update' => 'Akses Memperbaharui Kehadiran',
+    'destroy' => 'Menghapus Kehadiran',
+  ],
 ];

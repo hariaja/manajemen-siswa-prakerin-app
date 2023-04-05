@@ -24,6 +24,12 @@ class Teacher extends Model
     'address',
   ];
 
+  protected $with = [
+    'user',
+    'school',
+    'registrations',
+  ];
+
   /**
    * Get the route key for the model.
    */

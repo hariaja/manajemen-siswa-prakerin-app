@@ -529,6 +529,50 @@ class PermissionSeeder extends Seeder
         'created_at' => now(),
         'updated_at' => now(),
       ],
+
+      // Attendances
+      [
+        'name' => 'attendances.index',
+        'permission_category_id' => 12,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'attendances.create',
+        'permission_category_id' => 12,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'attendances.store',
+        'permission_category_id' => 12,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'attendances.edit',
+        'permission_category_id' => 12,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'attendances.update',
+        'permission_category_id' => 12,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'attendances.destroy',
+        'permission_category_id' => 12,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
     ];
 
     $collects = collect($permissions);

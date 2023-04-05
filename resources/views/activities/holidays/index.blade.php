@@ -41,11 +41,6 @@
 
     $(function () {
       table = $('.table').DataTable()
-
-      $('#status').on('change', function (e) {
-        table.draw()
-        e.preventDefault()
-      })
     })
 
     function deleteHoliday(url) {
