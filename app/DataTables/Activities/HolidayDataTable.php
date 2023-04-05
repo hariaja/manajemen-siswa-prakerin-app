@@ -3,14 +3,15 @@
 namespace App\DataTables\Activities;
 
 use App\Models\Holiday;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use App\Helpers\Global\Constant;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class HolidayDataTable extends DataTable
 {
@@ -22,8 +23,14 @@ class HolidayDataTable extends DataTable
   public function dataTable(QueryBuilder $query): EloquentDataTable
   {
     return (new EloquentDataTable($query))
-      ->addColumn('action', 'holiday.action')
-      ->setRowId('id');
+      ->addIndexColumn()
+      ->editColumn('holiday_date', function ($row) {
+        return customDate($row->holiday_date);
+      })
+      ->addColumn('study_program', function ($row) {
+        return $row->studyProgram->name;
+      })
+      ->addColumn('action', 'activities.holidays.action');
   }
 
   /**
@@ -42,18 +49,21 @@ class HolidayDataTable extends DataTable
     return $this->builder()
       ->setTableId('holiday-table')
       ->columns($this->getColumns())
-      ->minifiedAjax()
-      //->dom('Bfrtip')
-      ->orderBy(1)
-      ->selectStyleSingle()
-      ->buttons([
-        Button::make('excel'),
-        Button::make('csv'),
-        Button::make('pdf'),
-        Button::make('print'),
-        Button::make('reset'),
-        Button::make('reload')
-      ]);
+      ->addTableClass([
+        'table',
+        'table-striped',
+        'table-bordered',
+        'table-hover',
+        'table-vcenter',
+      ])
+      ->processing(true)
+      ->retrieve(true)
+      ->serverSide(true)
+      ->autoWidth(false)
+      ->pageLength(5)
+      ->responsive(true)
+      ->lengthMenu([5, 10, 20])
+      ->orderBy(1);
   }
 
   /**
@@ -62,15 +72,27 @@ class HolidayDataTable extends DataTable
   public function getColumns(): array
   {
     return [
+      Column::make('DT_RowIndex')
+        ->title(trans('#'))
+        ->orderable(false)
+        ->searchable(false)
+        ->width('10%')
+        ->addClass('text-center'),
+      Column::make('title')
+        ->title(trans('Agenda'))
+        ->addClass('text-center'),
+      Column::make('holiday_date')
+        ->title(trans('Tanggal'))
+        ->addClass('text-center'),
+      Column::make('study_program')
+        ->title(trans('Program Studi'))
+        ->addClass('text-center'),
       Column::computed('action')
         ->exportable(false)
         ->printable(false)
-        ->width(60)
+        ->width('15%')
+        ->visible(true)
         ->addClass('text-center'),
-      Column::make('id'),
-      Column::make('add your columns'),
-      Column::make('created_at'),
-      Column::make('updated_at'),
     ];
   }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Activities\AttendanceController;
 use App\Http\Controllers\Activities\HolidayController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -91,5 +92,8 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
   Route::prefix('activities')->group(function () {
     # Holiday management
     Route::resource('holidays', HolidayController::class)->except('show');
+
+    # Attendance management
+    Route::resource('attendances', AttendanceController::class)->except('show');
   });
 });

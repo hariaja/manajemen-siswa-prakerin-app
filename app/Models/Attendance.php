@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Holiday extends Model
+class Attendance extends Model
 {
   use Uuid;
 
@@ -20,7 +20,10 @@ class Holiday extends Model
     'uuid',
     'study_program_id',
     'title',
-    'holiday_date',
+    'start_time',
+    'timeout_start_time',
+    'end_time',
+    'timeout_end_time',
     'description',
   ];
 
@@ -31,16 +34,6 @@ class Holiday extends Model
   {
     return 'uuid';
   }
-
-  /**
-   * The attributes that should be cast.
-   *
-   * @var array<string, string>
-   */
-  protected $casts = [
-    'holiday_date' => 'date:c',
-  ];
-
   /**
    * Relationship to study program model.
    */
