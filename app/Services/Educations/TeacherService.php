@@ -19,6 +19,20 @@ class TeacherService
     # code...
   }
 
+  public function all()
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->teacherRepository->all();
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
   public function getSchools()
   {
     DB::beginTransaction();

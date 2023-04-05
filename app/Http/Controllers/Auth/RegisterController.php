@@ -48,7 +48,7 @@ class RegisterController extends Controller
    */
   public function showRegistrationForm(): View
   {
-    $schools = $this->service->getSchools();
+    $schools = $this->service->getSchools()->get();
     return view('auth.register', compact('schools'));
   }
 

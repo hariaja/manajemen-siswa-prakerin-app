@@ -20,6 +20,48 @@ class RegistrationService
     # code...
   }
 
+  public function all()
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->registrationRepository->all();
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
+  public function dataByTeacherId()
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->registrationRepository->dataByTeacherId();
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
+  public function dataByStudyProgramId()
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->registrationRepository->dataByStudyProgramId();
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
   public function scheduleOpen()
   {
     DB::beginTransaction();

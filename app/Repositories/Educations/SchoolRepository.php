@@ -14,7 +14,12 @@ class SchoolRepository
 
   public function getSchools()
   {
-    return $this->school->orderBy('id', 'ASC')->get();
+    return $this->school->newQuery()->orderBy('id', 'ASC')->select('schools.*');
+  }
+
+  public function all()
+  {
+    # code...
   }
 
   public function save($request)

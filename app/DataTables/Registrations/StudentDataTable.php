@@ -47,18 +47,17 @@ class StudentDataTable extends DataTable
   public function query(Student $model): QueryBuilder
   {
     if (isRoleName() == Constant::TEACHER) :
-      $teacher = Teacher::where('user_id', me()->id)->first();
       return $model->newQuery()
         ->join('users', 'students.user_id', '=', 'users.id')
         ->join('schools', 'students.school_id', '=', 'schools.id')
-        ->where('school_id', '=', $teacher->school_id)
+        ->where('school_id', '=', isTeacher()->school_id)
         ->orderBy('users.name', 'ASC')->select('students.*');
+    else :
+      return $model->newQuery()
+        ->join('users', 'students.user_id', '=', 'users.id')
+        ->orderBy('name', 'ASC')
+        ->select('students.*');
     endif;
-
-    return $model->newQuery()
-      ->join('users', 'students.user_id', '=', 'users.id')
-      ->orderBy('name', 'ASC')
-      ->select('students.*');
   }
 
   /**

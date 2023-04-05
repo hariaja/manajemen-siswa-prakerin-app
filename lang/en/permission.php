@@ -130,4 +130,26 @@ return [
     'update' => 'Akses Memperbaharui Kehadiran',
     'destroy' => 'Menghapus Kehadiran',
   ],
+
+  'presences' => [
+    'name' => 'Management Absensi',
+    'index' => 'Melihat Daftar Absensi',
+    'create' => 'Akses Formulir Tambah Absensi',
+    'store' => 'Akses Menambahkan Absensi',
+    'show' => 'Melihat Detail Data Absensi',
+    'edit' => 'Akses Formulir Ubah Absensi',
+    'update' => 'Akses Memperbaharui Absensi',
+    'destroy' => 'Menghapus Absensi',
+  ],
+
+  'excuses' => [
+    'name' => 'Management Ketidakhadiran',
+    'index' => 'Melihat Daftar Ketidakhadiran',
+    'create' => 'Akses Formulir Tambah Ketidakhadiran',
+    'store' => 'Akses Menambahkan Ketidakhadiran',
+    'show' => 'Melihat Detail Data Ketidakhadiran',
+    'edit' => 'Akses Formulir Ubah Ketidakhadiran',
+    'update' => 'Akses Memperbaharui Ketidakhadiran',
+    'destroy' => 'Menghapus Ketidakhadiran',
+  ],
 ];

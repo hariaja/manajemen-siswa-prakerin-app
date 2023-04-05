@@ -132,7 +132,7 @@
 
           <div class="mb-4">
             <label for="address" class="form-label">{{ trans('Alamat') }}</label>
-            <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" cols="30" rows="10" placeholder="Input Alamat Lengkap">{{ old('address') }}</textarea>
+            <textarea class="form-control @error('address') is-invalid @enderror" name="address" id="address" cols="30" rows="5" placeholder="Input Alamat Lengkap">{{ old('address') }}</textarea>
             @error('address')
               <div class="invalid-feedback">{{ $message }}</div>
             @enderror

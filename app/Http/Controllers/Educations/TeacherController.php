@@ -42,7 +42,7 @@ class TeacherController extends Controller
    */
   public function edit(Teacher $teacher)
   {
-    $schools = $this->service->getSchools();
+    $schools = $this->service->getSchools()->get();
     return view('educations.teachers.edit', compact('teacher', 'schools'));
   }
 

@@ -4,6 +4,7 @@ namespace App\DataTables\Educations;
 
 use App\Helpers\Global\Constant;
 use App\Models\School;
+use App\Services\Educations\SchoolService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -15,6 +16,11 @@ use Yajra\DataTables\Services\DataTable;
 
 class SchoolDataTable extends DataTable
 {
+  public function __construct(protected SchoolService $service)
+  {
+    # code ...
+  }
+
   /**
    * Build the DataTable class.
    *
@@ -36,7 +42,7 @@ class SchoolDataTable extends DataTable
    */
   public function query(School $model): QueryBuilder
   {
-    return $model->newQuery()->orderBy('npsn', 'ASC');
+    return $this->service->getSchools();
   }
 
   /**

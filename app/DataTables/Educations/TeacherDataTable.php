@@ -4,6 +4,7 @@ namespace App\DataTables\Educations;
 
 use App\Models\Teacher;
 use App\Helpers\Global\Constant;
+use App\Services\Educations\TeacherService;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\EloquentDataTable;
@@ -15,6 +16,11 @@ use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class TeacherDataTable extends DataTable
 {
+  public function __construct(protected TeacherService $service)
+  {
+    # code...
+  }
+
   /**
    * Build the DataTable class.
    *
@@ -45,7 +51,7 @@ class TeacherDataTable extends DataTable
    */
   public function query(Teacher $model): QueryBuilder
   {
-    return $model->newQuery()->join('users', 'teachers.user_id', '=', 'users.id')->orderBy('name', 'ASC')->select('teachers.*');
+    return $this->service->all();
   }
 
   /**

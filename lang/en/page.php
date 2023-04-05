@@ -106,4 +106,20 @@ return [
     'edit' => 'Ubah Data Kehadiran',
     'show' => 'Detail Data Kehadiran',
   ],
+
+  'presences' => [
+    'title' => 'Halaman Absensi',
+    'index' => 'Tabel Data Absensi',
+    'create' => 'Tambah Data Absensi',
+    'edit' => 'Ubah Data Absensi',
+    'show' => 'Detail Data Absensi',
+  ],
+
+  'excuses' => [
+    'title' => 'Halaman Ketidakhadiran',
+    'index' => 'Tabel Data Ketidakhadiran',
+    'create' => 'Tambah Data Ketidakhadiran',
+    'edit' => 'Ubah Data Ketidakhadiran',
+    'show' => 'Detail Data Ketidakhadiran',
+  ],
 ];

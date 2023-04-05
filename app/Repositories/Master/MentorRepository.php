@@ -7,12 +7,31 @@ use App\Models\Mentor;
 use App\Helpers\Global\Constant;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class MentorRepository
 {
   public function __construct(protected Mentor $mentor)
   {
     # code...
+  }
+
+  public function all(): QueryBuilder
+  {
+    return $this->mentor->newQuery()
+      ->whereHas('user', function ($row) {
+        $row->orderBy('name', 'ASC');
+      })->select('mentors.*');
+  }
+
+  public function getByStudyProgramId(): QueryBuilder
+  {
+    return $this->mentor->newQuery()
+      ->whereHas('user', function ($row) {
+        $row->orderBy('name', 'ASC');
+      })
+      ->where('study_program_id', isLeader()->study_program_id)
+      ->select('mentors.*');
   }
 
   public function save($request, $avatar)

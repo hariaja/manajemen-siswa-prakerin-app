@@ -37,7 +37,7 @@ class LeaderController extends Controller
    */
   public function create()
   {
-    $studyPrograms = $this->prodiService->all();
+    $studyPrograms = $this->prodiService->all()->get();
     return view('master.leaders.create', compact('studyPrograms'));
   }
 
@@ -64,7 +64,7 @@ class LeaderController extends Controller
    */
   public function edit(Leader $leader)
   {
-    $studyPrograms = $this->prodiService->all();
+    $studyPrograms = $this->prodiService->all()->get();
     return view('master.leaders.edit', compact('studyPrograms', 'leader'));
   }
 

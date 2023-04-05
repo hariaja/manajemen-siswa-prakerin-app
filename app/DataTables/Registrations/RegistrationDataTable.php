@@ -5,6 +5,7 @@ namespace App\DataTables\Registrations;
 use App\Models\Teacher;
 use App\Models\Registration;
 use App\Helpers\Global\Constant;
+use App\Services\Registrations\RegistrationService;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Services\DataTable;
@@ -13,6 +14,11 @@ use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class RegistrationDataTable extends DataTable
 {
+  public function __construct(protected RegistrationService $service)
+  {
+    # code...
+  }
+
   /**
    * Build the DataTable class.
    *
@@ -29,7 +35,7 @@ class RegistrationDataTable extends DataTable
         return $row->teacher->user->name;
       })
       ->addColumn('students', function ($row) {
-        return $row->students->count();
+        return $row->students->count() . ' Siswa';
       })
       ->editColumn('status', 'registrations.registrations.status')
       ->addColumn('action', 'registrations.registrations.action')
@@ -46,14 +52,16 @@ class RegistrationDataTable extends DataTable
   {
 
     if (isRoleName() == Constant::TEACHER) :
-      $teacher = Teacher::where('user_id', me()->id)->first();
-      return $model->newQuery()
-        ->join('teachers', 'registrations.teacher_id', '=', 'teachers.id')
-        ->where('teacher_id', '=', $teacher->id)
-        ->select('registrations.*');
+      return $this->service->dataByTeacherId();
     endif;
 
-    return $model->newQuery();
+    if (isRoleName() == Constant::ADMIN) :
+      return $this->service->all();
+    endif;
+
+    if (isRoleName() == Constant::LEADER) :
+      return $this->service->dataByStudyProgramId();
+    endif;
   }
 
   /**

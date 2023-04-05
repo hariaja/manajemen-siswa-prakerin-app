@@ -2,7 +2,9 @@
 
 namespace App\DataTables\Master;
 
+use App\Helpers\Global\Constant;
 use App\Models\StudyProgram;
+use App\Services\Master\StudyProgramService;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -14,6 +16,11 @@ use Yajra\DataTables\Services\DataTable;
 
 class StudyProgramDataTable extends DataTable
 {
+  public function __construct(protected StudyProgramService $service)
+  {
+    # code...
+  }
+
   /**
    * Build the DataTable class.
    *
@@ -35,7 +42,7 @@ class StudyProgramDataTable extends DataTable
    */
   public function query(StudyProgram $model): QueryBuilder
   {
-    return $model->newQuery()->orderBy('name', 'ASC');
+    return $this->service->all();
   }
 
   /**
@@ -77,6 +84,8 @@ class StudyProgramDataTable extends DataTable
    */
   public function getColumns(): array
   {
+    $visibility = isRoleName() === Constant::ADMIN ? true : false;
+
     return [
       Column::make('DT_RowIndex')
         ->title(trans('#'))
@@ -94,6 +103,7 @@ class StudyProgramDataTable extends DataTable
         ->exportable(false)
         ->printable(false)
         ->width('15%')
+        ->visible($visibility)
         ->addClass('text-center'),
     ];
   }

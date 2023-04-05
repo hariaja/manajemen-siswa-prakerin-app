@@ -17,6 +17,25 @@ class RegistrationRepository
     # code...
   }
 
+  public function all()
+  {
+    return $this->registration->newQuery()->latest();
+  }
+
+  public function dataByTeacherId()
+  {
+    return $this->registration->whereHas('teacher', function ($row) {
+      $row->where('teacher_id', isTeacher()->id);
+    })->select('registrations.*');
+  }
+
+  public function dataByStudyProgramId()
+  {
+    return $this->registration->whereHas('studyProgram', function ($row) {
+      $row->where('study_program_id', isLeader()->study_program_id);
+    })->select('registrations.*');
+  }
+
   public function save($request, $file)
   {
     // Add to registrations models

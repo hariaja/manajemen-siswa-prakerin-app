@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Student extends Model
 {
@@ -72,5 +73,21 @@ class Student extends Model
       'student_id',
       'registration_id',
     );
+  }
+
+  /**
+   * Relationship to presence models.
+   */
+  public function presences(): HasMany
+  {
+    return $this->hasMany(Presence::class, 'student_id');
+  }
+
+  /**
+   * Relationship to excuse models.
+   */
+  public function excuses(): HasMany
+  {
+    return $this->hasMany(Excuse::class, 'student_id');
   }
 }

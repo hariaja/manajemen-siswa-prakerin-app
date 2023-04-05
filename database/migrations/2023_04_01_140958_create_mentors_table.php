@@ -14,8 +14,8 @@ return new class extends Migration
   {
     Schema::create('mentors', function (Blueprint $table) {
       $table->id();
-      $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-      $table->foreignId('study_program_id')->constrained()->cascadeOnDelete();
+      $table->foreignId('user_id')->constrained()->onDelete('cascade');
+      $table->foreignId('study_program_id')->constrained()->onDelete('cascade');
       $table->string('uuid');
       $table->enum('gender', [Constant::MALE, Constant::FEMALE]);
       $table->timestamps();

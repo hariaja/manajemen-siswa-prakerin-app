@@ -89,7 +89,7 @@ class RegistrationController extends Controller
     endif;
 
     $teacher = $registration->teacher;
-    $studyPrograms = $this->prodiService->all();
+    $studyPrograms = $this->prodiService->all()->get();
     return view('registrations.registrations.show', compact('registration', 'teacher', 'studyPrograms'));
   }
 

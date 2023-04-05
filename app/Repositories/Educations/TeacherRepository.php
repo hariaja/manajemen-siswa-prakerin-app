@@ -5,12 +5,21 @@ namespace App\Repositories\Educations;
 use App\Models\User;
 use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class TeacherRepository
 {
   public function __construct(protected Teacher $teacher)
   {
     # code...
+  }
+
+  public function all(): QueryBuilder
+  {
+    return $this->teacher->newQuery()
+      ->whereHas('user', function ($row) {
+        $row->orderBy('name', 'ASC');
+      })->select('teachers.*');
   }
 
   public function getDataById($id): Model

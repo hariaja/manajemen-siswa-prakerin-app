@@ -37,7 +37,7 @@ class MentorController extends Controller
    */
   public function create()
   {
-    $studyPrograms = $this->prodiService->all();
+    $studyPrograms = $this->prodiService->all()->get();
     return view('master.mentors.create', compact('studyPrograms'));
   }
 
@@ -63,7 +63,7 @@ class MentorController extends Controller
    */
   public function edit(Mentor $mentor)
   {
-    $studyPrograms = $this->prodiService->all();
+    $studyPrograms = $this->prodiService->all()->get();
     return view('master.mentors.edit', compact('studyPrograms', 'mentor'));
   }
 

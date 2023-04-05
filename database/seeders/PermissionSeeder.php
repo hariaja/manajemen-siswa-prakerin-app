@@ -573,6 +573,94 @@ class PermissionSeeder extends Seeder
         'created_at' => now(),
         'updated_at' => now(),
       ],
+
+      // Presences
+      [
+        'name' => 'presences.index',
+        'permission_category_id' => 13,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'presences.create',
+        'permission_category_id' => 13,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'presences.store',
+        'permission_category_id' => 13,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'presences.edit',
+        'permission_category_id' => 13,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'presences.update',
+        'permission_category_id' => 13,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'presences.destroy',
+        'permission_category_id' => 13,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+
+      // Excuses
+      [
+        'name' => 'excuses.index',
+        'permission_category_id' => 14,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'excuses.create',
+        'permission_category_id' => 14,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'excuses.store',
+        'permission_category_id' => 14,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'excuses.edit',
+        'permission_category_id' => 14,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'excuses.update',
+        'permission_category_id' => 14,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'excuses.destroy',
+        'permission_category_id' => 14,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
     ];
 
     $collects = collect($permissions);

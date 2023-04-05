@@ -15,6 +15,20 @@ class SchoolService
     # code...
   }
 
+  public function getSchools()
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->repository->getSchools();
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
   public function save($request)
   {
     DB::beginTransaction();

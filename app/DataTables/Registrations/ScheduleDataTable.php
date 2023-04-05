@@ -2,6 +2,7 @@
 
 namespace App\DataTables\Registrations;
 
+use App\Helpers\Global\Constant;
 use App\Models\Schedule;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
@@ -83,6 +84,8 @@ class ScheduleDataTable extends DataTable
    */
   public function getColumns(): array
   {
+    $visiblity = isRoleName() === Constant::ADMIN ? true : false;
+
     return [
       Column::make('DT_RowIndex')
         ->title(trans('#'))
@@ -105,6 +108,7 @@ class ScheduleDataTable extends DataTable
       Column::computed('action')
         ->exportable(false)
         ->printable(false)
+        ->visible($visiblity)
         ->width('15%')
         ->addClass('text-center'),
     ];

@@ -16,6 +16,16 @@ class MentorService
     # code...
   }
 
+  public function all()
+  {
+    return $this->repository->all();
+  }
+
+  public function getByStudyProgramId()
+  {
+    return $this->repository->getByStudyProgramId();
+  }
+
   public function save($request)
   {
     DB::beginTransaction();

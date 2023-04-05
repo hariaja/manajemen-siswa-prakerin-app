@@ -4,6 +4,7 @@ namespace App\DataTables\Master;
 
 use App\Models\Mentor;
 use App\Helpers\Global\Constant;
+use App\Services\Master\MentorService;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\EloquentDataTable;
@@ -15,6 +16,11 @@ use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class MentorDataTable extends DataTable
 {
+  public function __construct(protected MentorService $mentorService)
+  {
+    # code... 
+  }
+
   /**
    * Build the DataTable class.
    *
@@ -41,7 +47,11 @@ class MentorDataTable extends DataTable
    */
   public function query(Mentor $model): QueryBuilder
   {
-    return $model->newQuery()->join('users', 'mentors.user_id', '=', 'users.id')->orderBy('name', 'ASC')->select('mentors.*');
+    if (isRoleName() === Constant::ADMIN) {
+      return $this->mentorService->all();
+    } else {
+      return $this->mentorService->getByStudyProgramId();
+    }
   }
 
   /**
@@ -94,7 +104,7 @@ class MentorDataTable extends DataTable
         ->exportable(false)
         ->printable(false)
         ->width('15%')
-        ->visible(isRoleName() == Constant::ADMIN ? true : false) // Only admin can view action column
+        // ->visible(isRoleName() === Constant::ADMIN ? true : false)
         ->addClass('text-center'),
     ];
   }

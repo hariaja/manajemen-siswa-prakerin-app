@@ -40,8 +40,37 @@ class RoleSeeder extends Seeder
       Permission::where('name', 'LIKE', 'users.show')
         ->orWhere('name', 'LIKE', 'users.update')
         ->orWhere('name', 'LIKE', 'users.password')
-        ->orWhere('name', 'LIKE', 'holidays.%')
-        ->orWhere('name', 'LIKE', 'attendances.%')
+        // Holidays menu
+        ->orWhere('name', 'LIKE', 'holidays.index')
+        ->orWhere('name', 'LIKE', 'holidays.create')
+        ->orWhere('name', 'LIKE', 'holidays.store')
+        ->orWhere('name', 'LIKE', 'holidays.edit')
+        ->orWhere('name', 'LIKE', 'holidays.update')
+        // Attendance menu
+        ->orWhere('name', 'LIKE', 'attendances.index')
+        ->orWhere('name', 'LIKE', 'attendances.create')
+        ->orWhere('name', 'LIKE', 'attendances.store')
+        ->orWhere('name', 'LIKE', 'attendances.edit')
+        ->orWhere('name', 'LIKE', 'attendances.update')
+        // Schedule menu
+        ->orWhere('name', 'LIKE', 'schedules.index')
+        // Mentor menu
+        ->orWhere('name', 'LIKE', 'mentors.index')
+        ->orWhere('name', 'LIKE', 'mentors.show')
+        // Teacher menu
+        ->orWhere('name', 'LIKE', 'teachers.index')
+        ->orWhere('name', 'LIKE', 'teachers.show')
+        // Study Program menu
+        ->orWhere('name', 'LIKE', 'study-programs.index')
+        ->orWhere('name', 'LIKE', 'study-programs.show')
+        // School menu
+        ->orWhere('name', 'LIKE', 'schools.index')
+        // Student menu
+        ->orWhere('name', 'LIKE', 'students.index')
+        ->orWhere('name', 'LIKE', 'students.show')
+        // Registration menu
+        ->orWhere('name', 'LIKE', 'registrations.index')
+        ->orWhere('name', 'LIKE', 'registrations.show')
         ->get()
     );
 
@@ -59,8 +88,20 @@ class RoleSeeder extends Seeder
         ->orWhere('name', 'LIKE', 'users.update')
         ->orWhere('name', 'LIKE', 'users.password')
         ->orWhere('name', 'LIKE', 'schedules.show')
-        ->orWhere('name', 'LIKE', 'students.%')
-        ->orWhere('name', 'LIKE', 'registrations.%')
+        // Student menu
+        ->orWhere('name', 'LIKE', 'students.index')
+        ->orWhere('name', 'LIKE', 'students.create')
+        ->orWhere('name', 'LIKE', 'students.store')
+        ->orWhere('name', 'LIKE', 'students.edit')
+        ->orWhere('name', 'LIKE', 'students.update')
+        ->orWhere('name', 'LIKE', 'students.show')
+        // Registration menu
+        ->orWhere('name', 'LIKE', 'registrations.index')
+        ->orWhere('name', 'LIKE', 'registrations.create')
+        ->orWhere('name', 'LIKE', 'registrations.store')
+        ->orWhere('name', 'LIKE', 'registrations.edit')
+        ->orWhere('name', 'LIKE', 'registrations.update')
+        ->orWhere('name', 'LIKE', 'registrations.show')
         ->get()
     );
   }

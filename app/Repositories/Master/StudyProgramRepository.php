@@ -4,6 +4,7 @@ namespace App\Repositories\Master;
 
 use App\Models\StudyProgram;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class StudyProgramRepository
 {
@@ -12,9 +13,9 @@ class StudyProgramRepository
     // 
   }
 
-  public function all()
+  public function all(): QueryBuilder
   {
-    return $this->studyProgram->orderBy('name', 'ASC')->active()->get();
+    return $this->studyProgram->newQuery()->orderBy('name', 'ASC');
   }
 
   public function save($request)
