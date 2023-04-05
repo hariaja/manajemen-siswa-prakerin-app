@@ -60,12 +60,22 @@ class AttendanceController extends Controller
     return redirect()->route('attendances.index')->withSuccess(trans('session.create'));
   }
 
+  public function show(Attendance $attendance)
+  {
+    // if (isRoleName() === Constant::STUDENT) :
+
+
+
+    //   return view('students.presences.show', compact('attendances'));
+    // endif;
+  }
+
   /**
    * Show the form for editing the specified resource.
    */
   public function edit(Attendance $attendance)
   {
-    $this->middleware(['role:' . Constant::LEADER]);
+    # code...
   }
 
   /**

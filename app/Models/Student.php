@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Student extends Model
 {
@@ -89,5 +90,13 @@ class Student extends Model
   public function excuses(): HasMany
   {
     return $this->hasMany(Excuse::class, 'student_id');
+  }
+
+  /**
+   * Relation to study program models.
+   */
+  public function studyPrograms(): HasManyThrough
+  {
+    return $this->hasManyThrough(StudyProgram::class, Registration::class);
   }
 }

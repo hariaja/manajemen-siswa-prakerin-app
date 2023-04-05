@@ -2,24 +2,24 @@
 
 namespace App\Services\Activities;
 
+use App\Repositories\Activities\PresenceRepository;
 use Exception;
 use InvalidArgumentException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use App\Repositories\Activities\HolidayRepository;
 
-class HolidayService
+class PresenceService
 {
-  public function __construct(protected HolidayRepository $repository)
+  public function __construct(protected PresenceRepository $presenceRepository)
   {
     # code...
   }
 
-  public function isHolidayToday()
+  public function getByStudent($attendance_id)
   {
     DB::beginTransaction();
     try {
-      $execute = $this->repository->isHolidayToday();
+      $execute = $this->presenceRepository->getByStudent($attendance_id);
     } catch (Exception $e) {
       DB::rollBack();
       Log::info($e->getMessage());
@@ -29,11 +29,11 @@ class HolidayService
     return $execute;
   }
 
-  public function save($request)
+  public function isHasEnterToday($attendance_id)
   {
     DB::beginTransaction();
     try {
-      $execute = $this->repository->save($request);
+      $execute = $this->presenceRepository->isHasEnterToday($attendance_id);
     } catch (Exception $e) {
       DB::rollBack();
       Log::info($e->getMessage());
@@ -43,25 +43,11 @@ class HolidayService
     return $execute;
   }
 
-  public function edit($data, $request)
+  public function isNotOutYet($attendance_id)
   {
     DB::beginTransaction();
     try {
-      $execute = $this->repository->edit($request, $data->id);
-    } catch (Exception $e) {
-      DB::rollBack();
-      Log::info($e->getMessage());
-      throw new InvalidArgumentException(trans('state.log.error'));
-    }
-    DB::commit();
-    return $execute;
-  }
-
-  public function delete($data)
-  {
-    DB::beginTransaction();
-    try {
-      $execute = $this->repository->delete($data->id);
+      $execute = $this->presenceRepository->isNotOutYet($attendance_id);
     } catch (Exception $e) {
       DB::rollBack();
       Log::info($e->getMessage());

@@ -12,6 +12,16 @@ class AttendanceRepository
     # code...
   }
 
+  public function getAll()
+  {
+    return $this->attendance->all()->sortByDesc('data.is_end')->sortByDesc('data.start');
+  }
+
+  public function getByStudyProdiId($study_program_id)
+  {
+    return $this->attendance->all()->where('study_program_id', $study_program_id)->sortByDesc('data.is_end')->sortByDesc('data.is_start');
+  }
+
   public function count()
   {
     $studyProgramId = isLeader()->study_program_id;

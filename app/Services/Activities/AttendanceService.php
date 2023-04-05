@@ -15,6 +15,34 @@ class AttendanceService
     # code...
   }
 
+  public function all()
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->repository->getAll();
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
+  public function getByStudyProdiIds($studyProgramId)
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->repository->getByStudyProdiId($studyProgramId);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
   public function count()
   {
     DB::beginTransaction();

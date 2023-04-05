@@ -12,6 +12,13 @@ class HolidayRepository
     # code...
   }
 
+  public function isHolidayToday()
+  {
+    return $this->holiday->query()
+      ->where('holiday_date', now()->toDateString())
+      ->first();
+  }
+
   public function save($request)
   {
     $this->holiday->firstOrCreate([

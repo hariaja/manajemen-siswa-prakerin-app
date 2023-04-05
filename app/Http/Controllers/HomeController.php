@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Helpers\Global\Constant;
 use App\Helpers\Global\Dashboard;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -22,8 +24,13 @@ class HomeController extends Controller
    *
    * @return \Illuminate\Contracts\Support\Renderable
    */
-  public function index(Request $request)
+  public function index()
   {
+    if (Auth::check() && isRoleName() === Constant::STUDENT) :
+      // dd(getStudentStudyProgramIds());
+      return redirect()->route('students.home');
+    endif;
+
     $data = array();
     $data['dashboard'] = new Dashboard;
     return view('home', $data);

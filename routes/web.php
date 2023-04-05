@@ -16,6 +16,7 @@ use App\Http\Controllers\Master\StudyProgramController;
 use App\Http\Controllers\Registrations\StudentController;
 use App\Http\Controllers\Registrations\ScheduleController;
 use App\Http\Controllers\Registrations\RegistrationController;
+use App\Providers\RouteServiceProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,7 @@ use App\Http\Controllers\Registrations\RegistrationController;
 */
 
 Route::get('/', function () {
-  return view('welcome');
+  return redirect(RouteServiceProvider::HOME);
 });
 
 Route::get('certificate', function () {
@@ -96,6 +97,6 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
     Route::resource('holidays', HolidayController::class)->except('show');
 
     # Attendance management
-    Route::resource('attendances', AttendanceController::class)->except('show');
+    Route::resource('attendances', AttendanceController::class);
   });
 });

@@ -81,10 +81,7 @@ class StudyProgram extends Model
    */
   public function registrations(): HasMany
   {
-    return $this->hasMany(
-      Registration::class,
-      'study_program_id'
-    );
+    return $this->hasMany(Registration::class, 'study_program_id');
   }
 
   /**
