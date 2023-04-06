@@ -43,11 +43,39 @@ class AttendanceService
     return $execute;
   }
 
+  public function getAttendancePresence($attendance_id)
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->repository->getAttendancePresence($attendance_id);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
   public function count()
   {
     DB::beginTransaction();
     try {
       $execute = $this->repository->count();
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
+  public function getById($attendance)
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->repository->getById($attendance->id);
     } catch (Exception $e) {
       DB::rollBack();
       Log::info($e->getMessage());

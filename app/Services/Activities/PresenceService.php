@@ -29,6 +29,20 @@ class PresenceService
     return $execute;
   }
 
+  public function getByNow($attendance_id)
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->presenceRepository->getByNow($attendance_id);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
   public function isHasEnterToday($attendance_id)
   {
     DB::beginTransaction();
@@ -48,6 +62,20 @@ class PresenceService
     DB::beginTransaction();
     try {
       $execute = $this->presenceRepository->isNotOutYet($attendance_id);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
+  public function save($attendance_id)
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->presenceRepository->save($attendance_id);
     } catch (Exception $e) {
       DB::rollBack();
       Log::info($e->getMessage());

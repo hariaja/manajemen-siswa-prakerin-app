@@ -2,20 +2,32 @@
 
 namespace App\DataTables\Activities;
 
-use App\Helpers\Global\Constant;
-use App\Models\Attendance;
 use App\Models\Leader;
-use Illuminate\Database\Eloquent\Builder as QueryBuilder;
-use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use App\Models\Attendance;
+use App\Helpers\Global\Constant;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
+use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
+use App\Services\Activities\AttendanceService;
+use Yajra\DataTables\Html\Builder as HtmlBuilder;
+use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 
 class AttendanceDataTable extends DataTable
 {
+  /**
+   * Create a new datatable instance.
+   *
+   * @return void
+   */
+  public function __construct(
+    protected AttendanceService $attendanceService,
+  ) {
+    // 
+  }
+
   /**
    * Build the DataTable class.
    *
@@ -91,7 +103,7 @@ class AttendanceDataTable extends DataTable
    */
   public function getColumns(): array
   {
-    $roles = isRoleName() === Constant::ADMIN ? true  : (isRoleName() === Constant::LEADER ? true : false);
+    $roles = isRoleName() === Constant::ADMIN ? true  : (isRoleName() === Constant::LEADER ? true : (isRoleName() === Constant::MENTOR ? true : false));
     return [
       Column::make('DT_RowIndex')
         ->title(trans('#'))

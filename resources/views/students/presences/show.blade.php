@@ -23,7 +23,115 @@
           <h3 class="block-title">{{ trans('Absensi') }}</h3>
         </div>
         <div class="block-content">
-          
+
+          @if($holiday)
+            <div class="mb-4">
+              <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <div class="flex-shrink-0">
+                  <i class="fa fa-fw fa-times"></i>
+                </div>
+                <div class="flex-grow-1 ms-3">
+                  <p class="mb-0">{{ trans('Hari Ini Adalah Hari Libur.') }}</p>
+                </div>
+              </div>
+            </div>
+          @else
+
+            @if(!$datas['is_there_permission'])
+              
+              @if($attendance->data->is_start && !$datas['is_has_enter_today'])
+                <div class="mb-4">
+                  <a href="{{ route('students.presences.store', $attendance->uuid) }}" class="btn btn-success" onclick="event.preventDefault(); document.getElementById('presence-in').submit();">Absen Sekarang Juga</a>
+
+                  <a href="#" class="btn btn-info">Izin Tidak Hadir</a>
+                  <form id="presence-in" action="{{ route('students.presences.store', $attendance->uuid) }}" method="POST">
+                    @csrf
+                  </form>
+                </div>
+        
+                <div class="text-muted text-center mb-4">
+                  <strong>{{ trans('Anda akan bisa membuka Halaman Jurnal Praktik Kerja Lapangan jika sudah melakukan absensi masuk pada hari ini.') }}</strong>
+                </div>
+              @endif
+
+              @if($datas['is_has_enter_today'])
+                <div class="mb-4">
+                  <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <div class="flex-shrink-0">
+                      <i class="fa fa-fw fa-check"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                      <p class="mb-0">Anda sudah berhasil mengirim absensi masuk.</p>
+                    </div>
+                  </div>
+                </div>
+              @endif
+  
+              @if($attendance->data->is_end && $datas['is_has_enter_today'] && $datas['is_not_out_yet'])
+                <div class="mb-4">
+                  <a href="{{ route('students.presences.update', $attendance->uuid) }}" class="btn btn-warning text-white" onclick="event.preventDefault(); document.getElementById('presence-out').submit();">Checkout Pulang Sekarang Juga</a>
+                  <form id="presence-out" action="{{ route('students.presences.update', $attendance->uuid) }}" method="POST">
+                    @csrf
+                  </form>
+                </div>
+              @endif
+  
+              @if($datas['is_has_enter_today'] && !$datas['is_not_out_yet'])
+                <div class="mb-4">
+                  <div class="alert alert-success d-flex align-items-center" role="alert">
+                    <div class="flex-shrink-0">
+                      <i class="fa fa-fw fa-check"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                      <p class="mb-0">Anda sudah melakukan absen masuk dan absen pulang.</p>
+                    </div>
+                  </div>
+                </div>
+              @endif
+  
+              @if($datas['is_has_enter_today'] && !$attendance->data->is_end)
+                <div class="mb-4">
+                  <div class="alert alert-danger d-flex align-items-center" role="alert">
+                    <div class="flex-shrink-0">
+                      <i class="fa fa-fw fa-times"></i>
+                    </div>
+                    <div class="flex-grow-1 ms-3">
+                      <p class="mb-0">Belum saatnya melakukan absensi Pulang.</p>
+                    </div>
+                  </div>
+                </div>
+              @endif
+
+            @endif
+
+            @if($datas['is_there_permission'] && !$datas['is_permission_accepted'])
+              <div class="mb-4">
+                <div class="alert alert-primary d-flex align-items-center" role="alert">
+                  <div class="flex-shrink-0">
+                    <i class="fa fa-fw fa-exclamation"></i>
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <p class="mb-0">Permintaan izin sedang diproses (atau masih belum di terima).</p>
+                  </div>
+                </div>
+              </div>
+            @endif
+
+            @if($datas['is_there_permission'] && $datas['is_permission_accepted'])
+              <div class="mb-4">
+                <div class="alert alert-success d-flex align-items-center" role="alert">
+                  <div class="flex-shrink-0">
+                    <i class="fa fa-fw fa-check"></i>
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <p class="mb-0">Permintaan izin sudah diterima. Anda pada hari <strong>{{ customDate($attendance->created_at, true) }}</strong> izin tidak mengikuti Praktik Kerja Lapangan.</p>
+                  </div>
+                </div>
+              </div>
+            @endif
+
+          @endif
+
         </div>
       </div>
 

@@ -8,7 +8,7 @@
     </li>
     <li class="nav-main-heading">{{ trans('Feature') }}</li>
     <li class="nav-main-item">
-      <a class="nav-main-link {{ request()->is('presences*') ? 'active' : '' }}" href="{{ route('presences.index') }}">
+      <a class="nav-main-link {{ request()->is('students/presences*') ? 'active' : '' }}" href="{{ route('students.presences.index') }}">
         <i class="nav-main-link-icon si si-cup"></i>
         <span class="nav-main-link-name">{{ trans('Absensi') }}</span>
       </a>

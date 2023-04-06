@@ -51,7 +51,7 @@ class Attendance extends Model
    */
   public function presences(): HasMany
   {
-    return $this->hasMany(Presence::class, 'attedance_id');
+    return $this->hasMany(Presence::class, 'attendance_id');
   }
 
   /**
@@ -59,36 +59,39 @@ class Attendance extends Model
    */
   public function excuses(): HasMany
   {
-    return $this->hasMany(Excuse::class, 'attedance_id');
+    return $this->hasMany(Excuse::class, 'attendance_id');
   }
 
   protected $appends = ['data'];
 
   protected function data(): Attribute
   {
-    return Attribute::get(function ($value) {
-      $now = now();
-      $startTime = Carbon::parse($this->start_time);
-      $timeoutStartTime = Carbon::parse($this->timeout_start_time);
+    return Attribute::make(
+      get: function ($value) {
+        $now = now();
+        $startTime = Carbon::parse($this->start_time);
+        $timeoutStartTime = Carbon::parse($this->timeout_start_time);
 
-      $endTime = Carbon::parse($this->end_time);
-      $timeoutEndTime = Carbon::parse($this->timeout_end_time);
+        $endTime = Carbon::parse($this->end_time);
+        $timeoutEndTime = Carbon::parse($this->timeout_end_time);
 
-      $isHolidayToday = Holiday::query()
-        ->where('holiday_date', now()->toDateString())
-        ->get();
+        $isHolidayToday = Holiday::query()
+          ->where('holiday_date', now()->toDateString())
+          ->get();
 
-      return (object) [
-        'start_time' => $this->start_time,
-        'timeout_start_time' => $this->timeout_start_time,
-        'end_time' => $this->end_time,
-        'timeout_end_time' => $this->timeout_end_time,
-        'now' => $now->format('H:i:s'),
-        'is_start' => $startTime <= $now && $timeoutStartTime >= $now,
-        'is_end' => $endTime <= $now && $timeoutEndTime >= $now,
-        'is_holiday_today' => $isHolidayToday->isNotEmpty(),
-      ];
-    });
+        return (object) [
+          "start_time" => $this->start_time,
+          "timeout_start_time" => $this->timeout_start_time,
+          "end_time" => $this->end_time,
+          "timeout_end_time" => $this->timeout_end_time,
+          "now" => $now->format("H:i:s"),
+          "is_start" => $startTime <= $now && $timeoutStartTime >= $now,
+          "is_end" => $endTime <= $now && $timeoutEndTime >= $now,
+          'is_using_qrcode' => $this->code ? true : false,
+          'is_holiday_today' => $isHolidayToday->isNotEmpty()
+        ];
+      },
+    );
   }
 
   public function isAttendanceStatus()
@@ -98,7 +101,7 @@ class Attendance extends Model
     elseif ($this->data->is_start) :
       return '<span class="badge text-success">Jam Masuk</span>';
     elseif ($this->data->is_end) :
-      return '<span class="badge text-warning">Jam Masuk</span>';
+      return '<span class="badge text-warning">Jam Pulang</span>';
     else :
       return '<span class="badge text-secondary">Absensi Ditutup</span>';
     endif;

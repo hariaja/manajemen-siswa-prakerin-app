@@ -96,6 +96,17 @@ return [
     'edit' => 'Akses Formulir Ubah Siswa',
     'update' => 'Akses Memperbaharui Siswa',
     'destroy' => 'Menghapus Siswa',
+
+    'presences' => [
+      'name' => 'Management Absensi Siswa',
+      'index' => 'Melihat Daftar Absensi Siswa',
+      'create' => 'Akses Formulir Tambah Absensi Siswa',
+      'store' => 'Akses Menambahkan Absensi Siswa',
+      'show' => 'Melihat Detail Data Absensi Siswa',
+      'edit' => 'Akses Formulir Ubah Absensi Siswa',
+      'update' => 'Akses Memperbaharui Absensi Siswa',
+      'destroy' => 'Menghapus Absensi Siswa',
+    ],
   ],
 
   'registrations' => [

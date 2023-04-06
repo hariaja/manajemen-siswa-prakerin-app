@@ -50,6 +50,7 @@ class RoleSeeder extends Seeder
         ->orWhere('name', 'LIKE', 'attendances.index')
         ->orWhere('name', 'LIKE', 'attendances.create')
         ->orWhere('name', 'LIKE', 'attendances.store')
+        ->orWhere('name', 'LIKE', 'attendances.show')
         ->orWhere('name', 'LIKE', 'attendances.edit')
         ->orWhere('name', 'LIKE', 'attendances.update')
         // Schedule menu
@@ -79,6 +80,9 @@ class RoleSeeder extends Seeder
       Permission::where('name', 'LIKE', 'users.show')
         ->orWhere('name', 'LIKE', 'users.update')
         ->orWhere('name', 'LIKE', 'users.password')
+
+        ->orWhere('name', 'LIKE', 'attendances.index')
+        ->orWhere('name', 'LIKE', 'attendances.show')
         ->get()
     );
 
@@ -102,6 +106,9 @@ class RoleSeeder extends Seeder
         ->orWhere('name', 'LIKE', 'registrations.edit')
         ->orWhere('name', 'LIKE', 'registrations.update')
         ->orWhere('name', 'LIKE', 'registrations.show')
+
+        ->orWhere('name', 'LIKE', 'attendances.index')
+        ->orWhere('name', 'LIKE', 'attendances.show')
         ->get()
     );
   }

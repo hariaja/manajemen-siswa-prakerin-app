@@ -27,7 +27,6 @@ class HomeController extends Controller
   public function index()
   {
     if (Auth::check() && isRoleName() === Constant::STUDENT) :
-      // dd(getStudentStudyProgramIds());
       return redirect()->route('students.home');
     endif;
 

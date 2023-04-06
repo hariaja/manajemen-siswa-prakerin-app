@@ -83,7 +83,6 @@ class RegistrationController extends Controller
    */
   public function show(Registration $registration, Request $request)
   {
-
     if ($request->ajax()) :
       return $this->registrationService->details($registration);
     endif;

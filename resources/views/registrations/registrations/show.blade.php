@@ -100,6 +100,22 @@
               {{ trans('Program Studi') }}
               <span class="fw-semibold">{{ $registration->studyProgram->name }}</span>
             </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ trans('Status Prakerin') }}
+              @if($registration->datas()->status_prakerin == Constant::ACTIVE)
+                <div class="badge text-success">{{ trans('Active') }}</div>
+              @else
+                <div class="badge text-danger">{{ trans('Inactive') }}</div>
+              @endif
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ trans('Durasi Prakerin') }}
+              <span class="fw-semibold">{{ $registration->datas()->duration_prakerin }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              {{ trans('Jumlah Siswa') }}
+              <span class="fw-semibold">{{ $registration->datas()->total_student }}</span>
+            </li>
           @endif
         </ul>
 

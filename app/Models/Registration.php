@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Carbon;
 
 class Registration extends Model
 {
@@ -71,6 +72,10 @@ class Registration extends Model
       'student_has_registrations',
       'registration_id',
       'student_id',
+    )->withPivot(
+      'status',
+      'duration_end_date',
+      'duration_start_date',
     );
   }
 
@@ -80,5 +85,47 @@ class Registration extends Model
   public function studyProgram(): BelongsTo
   {
     return $this->belongsTo(StudyProgram::class, 'study_program_id');
+  }
+
+  public function getDiffDuration()
+  {
+    if ($this->students) :
+      foreach ($this->students as $item) :
+        $start_date = Carbon::parse($item->pivot->duration_start_date);
+        $end_date = Carbon::parse($item->pivot->duration_end_date);
+        $end_final = $end_date->diffInDays($start_date);
+        return $end_final . ' Hari';
+      endforeach;
+    else :
+      return 'Data Siswa Belum Terdaftar';
+    endif;
+  }
+
+  public function datas()
+  {
+    foreach ($this->students as $item) {
+      $status_prakerin = $item->pivot->status;
+      $start_date = Carbon::parse($item->pivot->duration_start_date);
+      $end_date = Carbon::parse($item->pivot->duration_end_date);
+      $duration = $end_date->diffInDays($start_date);
+    }
+
+    $total_student = $this->students->count();
+
+    if ($this->students->isNotEmpty()) {
+      $data = [
+        'status_prakerin' => $status_prakerin,
+        'duration_prakerin' => $duration . ' Hari',
+        'total_student' => $total_student . ' Siswa',
+      ];
+    } else {
+      $data = [
+        'status_prakerin' => 0,
+        'duration_prakerin' => '-',
+        'total_student' => '-',
+      ];
+    }
+
+    return (object) $data;
   }
 }

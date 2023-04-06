@@ -41,7 +41,7 @@ class AttendanceController extends Controller
     endif;
 
     if (isRoleName() !== Constant::LEADER) :
-      return back()->with('error', 'Hanya kaprodi yang bisa menambahkan data kehadiran');
+      abort('403', 'Anda tidak memiliki akses untuk melakukan penambahan data');
     endif;
 
     return view('activities.attendances.create');
@@ -60,14 +60,13 @@ class AttendanceController extends Controller
     return redirect()->route('attendances.index')->withSuccess(trans('session.create'));
   }
 
-  public function show(Attendance $attendance)
+  public function show(Attendance $attendance, Request $request)
   {
-    // if (isRoleName() === Constant::STUDENT) :
-
-
-
-    //   return view('students.presences.show', compact('attendances'));
-    // endif;
+    // dd($attendance->studyProgram->registrationData());
+    if ($request->ajax()) {
+      return $this->attendanceService->getAttendancePresence($attendance->id);
+    }
+    return view('activities.attendances.show', compact('attendance'));
   }
 
   /**
@@ -75,7 +74,11 @@ class AttendanceController extends Controller
    */
   public function edit(Attendance $attendance)
   {
-    # code...
+    if (isRoleName() !== Constant::LEADER) :
+      abort('403', 'Anda tidak memiliki akses untuk melakukan perubahan');
+    endif;
+
+    return view('activities.attendances.edit', compact('attendance'));
   }
 
   /**
@@ -83,7 +86,12 @@ class AttendanceController extends Controller
    */
   public function update(AttendanceRequest $request, Attendance $attendance)
   {
-    //
+    if ($request->study_program_id != isLeader()->studyProgram->id) :
+      return back()->with('error', 'Program study is invalid.');
+    endif;
+
+    $this->attendanceService->edit($attendance, $request);
+    return redirect()->route('attendances.index')->withSuccess(trans('session.update'));
   }
 
   /**

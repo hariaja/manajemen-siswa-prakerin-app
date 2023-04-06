@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Activities\AttendanceController;
 use App\Http\Controllers\Activities\HolidayController;
+use App\Http\Controllers\Activities\PresenceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;

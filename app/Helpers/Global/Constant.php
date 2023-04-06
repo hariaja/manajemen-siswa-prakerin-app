@@ -47,4 +47,8 @@ class Constant
   public const SMK = 'SMK';
   public const SMA = 'SMA';
   public const STM = 'STM';
+
+  // Permissions
+  public const IZIN = 1;
+  public const TIDAK_IZIN = 0;
 }

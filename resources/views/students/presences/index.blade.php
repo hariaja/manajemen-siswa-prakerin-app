@@ -18,7 +18,7 @@
 <div class="row justify-content-center">
   @forelse ($attendances as $attendance)
     <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-      <a class="block block-rounded block-link-pop" href="{{ route('presences.show', $attendance->uuid) }}">
+      <a class="block block-rounded block-link-pop" href="{{ route('students.presences.show', $attendance->uuid) }}">
         <div class="block-content block-content-full">
           <div class="text-center">
             <div class="fs-sm fw-semibold text-uppercase text-muted">

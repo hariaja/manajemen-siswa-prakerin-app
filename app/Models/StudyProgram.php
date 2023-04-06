@@ -4,12 +4,14 @@ namespace App\Models;
 
 use App\Traits\Uuid;
 use App\Helpers\Global\Constant;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Carbon;
 
 class StudyProgram extends Model
 {
@@ -25,6 +27,10 @@ class StudyProgram extends Model
     'name',
     'status',
   ];
+
+  // protected $appends = [
+  //   'registration_data'
+  // ];
 
   /**
    * Get the route key for the model.
@@ -90,5 +96,40 @@ class StudyProgram extends Model
   public function holiday(): HasMany
   {
     return $this->hasMany(Holiday::class, 'study_program_id');
+  }
+
+  public function registrationData()
+  {
+    // registration status
+    $registrations = $this->registrations;
+
+    // dd($registrations);
+
+    foreach ($registrations as $items) {
+      foreach ($items->students as $item) {
+        $status_prakerin = $item->pivot->status;
+        $start_date = Carbon::parse($item->pivot->duration_start_date);
+        $end_date = Carbon::parse($item->pivot->duration_end_date);
+        $duration = $end_date->diffInDays($start_date);
+      }
+
+      $total_student = $items->students->count();
+    }
+
+    if ($registrations->isNotEmpty()) {
+      $data = [
+        'status_prakerin' => $status_prakerin,
+        'duration_prakerin' => $duration . ' Hari',
+        'total_student' => $total_student . ' Siswa',
+      ];
+    } else {
+      $data = [
+        'status_prakerin' => 0,
+        'duration_prakerin' => '-',
+        'total_student' => '-',
+      ];
+    }
+
+    return (object) $data;
   }
 }

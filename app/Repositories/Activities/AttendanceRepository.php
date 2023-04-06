@@ -3,6 +3,8 @@
 namespace App\Repositories\Activities;
 
 use App\Models\Attendance;
+use Illuminate\Support\Str;
+use App\Helpers\Global\Constant;
 use Illuminate\Database\Eloquent\Model;
 
 class AttendanceRepository
@@ -20,6 +22,43 @@ class AttendanceRepository
   public function getByStudyProdiId($study_program_id)
   {
     return $this->attendance->all()->where('study_program_id', $study_program_id)->sortByDesc('data.is_end')->sortByDesc('data.is_start');
+  }
+
+  public function getById($id)
+  {
+    return $this->attendance->query()->where('id', $id)->first();
+  }
+
+  public function getAttendancePresence($id)
+  {
+    $attendance = $this->getById($id);
+    return datatables()->of($attendance->presences)
+      ->addIndexColumn()
+      ->addColumn('student_name', function ($row) {
+        return $row->student->user->name;
+      })
+      ->editColumn('presence_date', function ($row) {
+        return customDate($row->presence_date);
+      })
+      ->editColumn('is_permission', function ($row) {
+        if ($row->is_permission == Constant::IZIN) {
+          return '<span class="badge rounded text-white bg-warning">Izin</span>';
+        } else {
+          return '<span class="badge rounded text-bg-success">Hadir</span>';
+        }
+      })
+      ->editColumn('presence_enter_time', function ($row) {
+        return Str::substr($row->presence_enter_time, 0, -3);
+      })
+      ->editColumn('presence_out_time', function ($row) {
+        if ($row->presence_out_time) {
+          return Str::substr($row->presence_out_time, 0, -3);
+        } else {
+          return 'Belum absen pulang';
+        }
+      })
+      ->rawColumns(['is_permission'])
+      ->make(true);
   }
 
   public function count()

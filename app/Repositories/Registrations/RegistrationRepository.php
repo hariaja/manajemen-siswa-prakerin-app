@@ -5,10 +5,8 @@ namespace App\Repositories\Registrations;
 use App\Models\User;
 use App\Models\Registration;
 use App\Helpers\Global\Constant;
-use App\Models\Student;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class RegistrationRepository
 {
@@ -48,7 +46,10 @@ class RegistrationRepository
       'status' => Constant::PENDING,
     ]);
 
-    $registration->students()->attach($request->student);
+    $registration->students()->attach($request->student, [
+      'created_at' => now(),
+      'updated_at' => now(),
+    ]);
   }
 
   public function getDataById($id): Model
@@ -88,9 +89,15 @@ class RegistrationRepository
       $user->updateOrFail([
         'status' => Constant::ACTIVE,
       ]);
+
+      $registration->students()->updateExistingPivot($student->id, [
+        'status' => Constant::ACTIVE,
+        'duration_start_date' => Carbon::now(),
+        'duration_end_date' => Carbon::now()->addDays(90),
+      ]);
     }
 
-    return $registration->updateOrFail([
+    $registration->updateOrFail([
       'study_program_id' => $request->study_program_id,
       'status' => $request->status,
     ]);

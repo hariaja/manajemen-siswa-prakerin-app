@@ -73,6 +73,10 @@ class Student extends Model
       'student_has_registrations',
       'student_id',
       'registration_id',
+    )->withPivot(
+      'status',
+      'duration_end_date',
+      'duration_start_date',
     );
   }
 
