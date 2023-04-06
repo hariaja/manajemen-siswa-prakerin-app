@@ -163,4 +163,15 @@ return [
     'update' => 'Akses Memperbaharui Ketidakhadiran',
     'destroy' => 'Menghapus Ketidakhadiran',
   ],
+
+  'journals' => [
+    'name' => 'Management Journal Prakerin',
+    'index' => 'Melihat Daftar Journal Prakerin',
+    'create' => 'Akses Formulir Tambah Journal Prakerin',
+    'store' => 'Akses Menambahkan Journal Prakerin',
+    'show' => 'Melihat Detail Data Journal Prakerin',
+    'edit' => 'Akses Formulir Ubah Journal Prakerin',
+    'update' => 'Akses Memperbaharui Journal Prakerin',
+    'destroy' => 'Menghapus Journal Prakerin',
+  ],
 ];

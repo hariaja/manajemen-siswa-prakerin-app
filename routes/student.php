@@ -15,6 +15,6 @@ Route::middleware(['auth', 'role:' . Constant::STUDENT])->group(function () {
     Route::get('presences/{attendance}', [PresenceController::class, 'show'])->name('presences.show');
     Route::post('presences/store/{attendance}', [PresenceController::class, 'store'])->name('presences.store');
     Route::post('presences/update/{attendance}', [PresenceController::class, 'update'])->name('presences.update');
-    Route::resource('presences', PresenceController::class)->except('show', 'store', 'update');
+    Route::resource('presences', PresenceController::class)->only('index');
   });
 });

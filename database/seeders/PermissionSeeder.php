@@ -634,13 +634,6 @@ class PermissionSeeder extends Seeder
         'updated_at' => now(),
       ],
       [
-        'name' => 'students.presences.create',
-        'permission_category_id' => 14,
-        'guard_name' => 'web',
-        'created_at' => now(),
-        'updated_at' => now(),
-      ],
-      [
         'name' => 'students.presences.store',
         'permission_category_id' => 14,
         'guard_name' => 'web',
@@ -648,7 +641,7 @@ class PermissionSeeder extends Seeder
         'updated_at' => now(),
       ],
       [
-        'name' => 'students.presences.edit',
+        'name' => 'students.presences.show',
         'permission_category_id' => 14,
         'guard_name' => 'web',
         'created_at' => now(),
@@ -661,9 +654,53 @@ class PermissionSeeder extends Seeder
         'created_at' => now(),
         'updated_at' => now(),
       ],
+
+      // Journals
       [
-        'name' => 'students.presences.destroy',
-        'permission_category_id' => 14,
+        'name' => 'journals.index',
+        'permission_category_id' => 15,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'journals.create',
+        'permission_category_id' => 15,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'journals.store',
+        'permission_category_id' => 15,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'journals.show',
+        'permission_category_id' => 15,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'journals.edit',
+        'permission_category_id' => 15,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'journals.update',
+        'permission_category_id' => 15,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'journals.destroy',
+        'permission_category_id' => 15,
         'guard_name' => 'web',
         'created_at' => now(),
         'updated_at' => now(),

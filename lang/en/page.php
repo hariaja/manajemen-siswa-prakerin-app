@@ -122,4 +122,12 @@ return [
     'edit' => 'Ubah Data Ketidakhadiran',
     'show' => 'Detail Data Ketidakhadiran',
   ],
+
+  'journals' => [
+    'title' => 'Halaman Jurnal Prakerin',
+    'index' => 'Tabel Data Jurnal Prakerin',
+    'create' => 'Tambah Data Jurnal Prakerin',
+    'edit' => 'Ubah Data Jurnal Prakerin',
+    'show' => 'Detail Data Jurnal Prakerin',
+  ],
 ];

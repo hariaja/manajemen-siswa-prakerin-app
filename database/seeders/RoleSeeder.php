@@ -109,6 +109,8 @@ class RoleSeeder extends Seeder
 
         ->orWhere('name', 'LIKE', 'attendances.index')
         ->orWhere('name', 'LIKE', 'attendances.show')
+
+        ->orWhere('name', 'LIKE', 'journals.%')
         ->get()
     );
   }
