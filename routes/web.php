@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Activities\AttendanceController;
+use App\Http\Controllers\Activities\ExcuseController;
 use App\Http\Controllers\Activities\HolidayController;
 use App\Http\Controllers\Activities\PresenceController;
 use Illuminate\Support\Facades\Auth;
@@ -100,4 +101,15 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
     # Attendance management
     Route::resource('attendances', AttendanceController::class);
   });
+
+  # Excuse management
+  Route::get('excuses/{attendance}', [ExcuseController::class, 'index'])->name('excuses.index');
+  Route::get('excuses/{excuse}/show', [ExcuseController::class, 'show'])->name('excuses.show');
+  Route::resource('excuses', ExcuseController::class)
+    ->except(
+      'create',
+      'store',
+      'index',
+      'show',
+    );
 });

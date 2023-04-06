@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Activities;
 
-use App\DataTables\Activities\AttendanceDataTable;
+use App\Models\Attendance;
+use App\Models\StudyProgram;
+use Illuminate\Http\Request;
 use App\Helpers\Global\Constant;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Activities\AttendanceRequest;
-use App\Models\Attendance;
+use Illuminate\Database\Eloquent\Builder;
 use App\Services\Activities\AttendanceService;
-use Illuminate\Http\Request;
+use App\DataTables\Activities\AttendanceDataTable;
+use App\Http\Requests\Activities\AttendanceRequest;
 
 class AttendanceController extends Controller
 {

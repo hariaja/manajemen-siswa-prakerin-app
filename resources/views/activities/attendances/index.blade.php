@@ -28,6 +28,14 @@
           @endcan
         @endif
 
+        @if(isRoleName() === Constant::TEACHER)
+          <div class="mb-4">
+            <div class="fw-normal text-center">
+              {{ trans('Data kehadiran akan muncul pada menu ini jika Administrator sudah melakukan Approval pada pendaftaran anda') }}
+            </div>
+          </div>
+        @endif
+
       <div class="my-3">
         {{ $dataTable->table() }}
       </div>

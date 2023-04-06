@@ -43,6 +43,20 @@ class AttendanceService
     return $execute;
   }
 
+  public function getDataByStudyProgram()
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->repository->getDataByStudyProgram();
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
   public function getAttendancePresence($attendance_id)
   {
     DB::beginTransaction();

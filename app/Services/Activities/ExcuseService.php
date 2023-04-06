@@ -15,11 +15,53 @@ class ExcuseService
     # code...
   }
 
+  public function getByDate($attendance_id)
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->excuseRepository->getByDate($attendance_id);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
   public function isTherePermission($attendance_id)
   {
     DB::beginTransaction();
     try {
       $execute = $this->excuseRepository->isTherePermission($attendance_id);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
+  public function save($request, $attendance_id)
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->excuseRepository->save($request, $attendance_id);
+    } catch (Exception $e) {
+      DB::rollBack();
+      Log::info($e->getMessage());
+      throw new InvalidArgumentException(trans('state.log.error'));
+    }
+    DB::commit();
+    return $execute;
+  }
+
+  public function update($excus, $request)
+  {
+    DB::beginTransaction();
+    try {
+      $execute = $this->excuseRepository->update($excus->id, $request);
     } catch (Exception $e) {
       DB::rollBack();
       Log::info($e->getMessage());

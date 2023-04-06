@@ -604,6 +604,13 @@ class PermissionSeeder extends Seeder
         'updated_at' => now(),
       ],
       [
+        'name' => 'excuses.show',
+        'permission_category_id' => 13,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
         'name' => 'excuses.edit',
         'permission_category_id' => 13,
         'guard_name' => 'web',

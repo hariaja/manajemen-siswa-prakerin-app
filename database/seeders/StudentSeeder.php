@@ -15,7 +15,7 @@ class StudentSeeder extends Seeder
    */
   public function run(): void
   {
-    $user1 = User::factory()->create([
+    $ayu = User::factory()->create([
       'name' => 'Ayu Budi Laksana',
       'email' => 'ayu@gmail.com',
       'phone' => '085797790833',
@@ -24,12 +24,54 @@ class StudentSeeder extends Seeder
       'remember_token' => Str::random(60),
       'status' => Constant::INACTIVE,
     ]);
-    $user1->assignRole(Constant::STUDENT);
+    $ayu->assignRole(Constant::STUDENT);
 
-    Student::create([
-      'user_id' => $user1->id,
+    $riki = User::factory()->create([
+      'name' => 'Riki Adi Permana',
+      'email' => 'riki@gmail.com',
+      'phone' => '085797790844',
+      'password' => bcrypt('password'),
+      'email_verified_at' => now(),
+      'remember_token' => Str::random(60),
+      'status' => Constant::INACTIVE,
+    ]);
+    $riki->assignRole(Constant::STUDENT);
+
+    $jamal = User::factory()->create([
+      'name' => 'Jamaludin',
+      'email' => 'jamal@gmail.com',
+      'phone' => '085797790822',
+      'password' => bcrypt('password'),
+      'email_verified_at' => now(),
+      'remember_token' => Str::random(60),
+      'status' => Constant::INACTIVE,
+    ]);
+    $jamal->assignRole(Constant::STUDENT);
+
+    Student::firstOrcreate([
+      'user_id' => $ayu->id,
       'school_id' => 14,
       'nisn' => '312019115',
+      'major' => 'Teknik Komputer',
+      'date_birth' => '2000-11-05',
+      'gender' => Constant::FEMALE,
+      'address' => 'Jl. Kusuma Nagara No. 31 Bandung, Jawa Barat',
+    ]);
+
+    Student::firstOrcreate([
+      'user_id' => $riki->id,
+      'school_id' => 14,
+      'nisn' => '312019116',
+      'major' => 'Teknik Komputer',
+      'date_birth' => '2000-11-05',
+      'gender' => Constant::FEMALE,
+      'address' => 'Jl. Kusuma Nagara No. 31 Bandung, Jawa Barat',
+    ]);
+
+    Student::firstOrcreate([
+      'user_id' => $jamal->id,
+      'school_id' => 14,
+      'nisn' => '312019117',
       'major' => 'Teknik Komputer',
       'date_birth' => '2000-11-05',
       'gender' => Constant::FEMALE,

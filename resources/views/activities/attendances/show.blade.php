@@ -39,9 +39,6 @@
           <li class="list-group-item">{{ $attendance->title }}</li>
         </ul>
 
-        {{-- Button presence permission, not yet --}}
-        {{-- Button presence permission, not yet --}}
-
         <ul class="list-group push text-center">
           <li class="list-group-item">
             <div class="row">
@@ -100,6 +97,15 @@
             </li>
           @endif
         </ul>
+
+        <div class="mb-4 text-center">
+          {{-- Button presence permission, not yet --}}
+          @can('excuses.index')
+            <a href="{{ route('excuses.index', $attendance->uuid) }}" class="btn btn-primary">Siswa Mengajukan Izin</a>
+          @endcan
+          <a href="#" class="btn btn-danger">Siswa Belum Absen</a>
+          {{-- Button presence permission, not yet --}}
+        </div>
 
       </div>
     </div>

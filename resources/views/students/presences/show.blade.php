@@ -41,9 +41,10 @@
               
               @if($attendance->data->is_start && !$datas['is_has_enter_today'])
                 <div class="mb-4">
-                  <a href="{{ route('students.presences.store', $attendance->uuid) }}" class="btn btn-success" onclick="event.preventDefault(); document.getElementById('presence-in').submit();">Absen Sekarang Juga</a>
+                  <a href="{{ route('students.presences.store', $attendance->uuid) }}" class="btn btn-success" onclick="event.preventDefault(); document.getElementById('presence-in').submit();">{{ trans('Absen Masuk Sekarang Juga') }}</a>
 
-                  <a href="#" class="btn btn-info">Izin Tidak Hadir</a>
+                  <a href="{{ route('excuses.create', $attendance->uuid) }}" class="btn btn-info">{{ trans('Izin Tidak Hadir') }}</a>
+
                   <form id="presence-in" action="{{ route('students.presences.store', $attendance->uuid) }}" method="POST">
                     @csrf
                   </form>
@@ -61,7 +62,7 @@
                       <i class="fa fa-fw fa-check"></i>
                     </div>
                     <div class="flex-grow-1 ms-3">
-                      <p class="mb-0">Anda sudah berhasil mengirim absensi masuk.</p>
+                      <p class="mb-0">{{ trans('Anda sudah berhasil mengirim absensi masuk.') }}</p>
                     </div>
                   </div>
                 </div>
@@ -83,7 +84,7 @@
                       <i class="fa fa-fw fa-check"></i>
                     </div>
                     <div class="flex-grow-1 ms-3">
-                      <p class="mb-0">Anda sudah melakukan absen masuk dan absen pulang.</p>
+                      <p class="mb-0">{{ trans('Anda sudah melakukan absen masuk dan absen pulang.') }}</p>
                     </div>
                   </div>
                 </div>
@@ -96,7 +97,7 @@
                       <i class="fa fa-fw fa-times"></i>
                     </div>
                     <div class="flex-grow-1 ms-3">
-                      <p class="mb-0">Belum saatnya melakukan absensi Pulang.</p>
+                      <p class="mb-0">{{ trans('Belum saatnya melakukan absensi Pulang.') }}</p>
                     </div>
                   </div>
                 </div>
@@ -111,7 +112,7 @@
                     <i class="fa fa-fw fa-exclamation"></i>
                   </div>
                   <div class="flex-grow-1 ms-3">
-                    <p class="mb-0">Permintaan izin sedang diproses (atau masih belum di terima).</p>
+                    <p class="mb-0">{{ trans('Permintaan izin sedang diproses (atau masih belum di terima).') }}</p>
                   </div>
                 </div>
               </div>
@@ -129,6 +130,10 @@
                 </div>
               </div>
             @endif
+
+            <div class="pb-4">
+              {!! $attendance->isAttendanceStatus() !!}
+            </div>
 
           @endif
 

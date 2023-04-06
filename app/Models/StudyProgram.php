@@ -28,10 +28,6 @@ class StudyProgram extends Model
     'status',
   ];
 
-  // protected $appends = [
-  //   'registration_data'
-  // ];
-
   /**
    * Get the route key for the model.
    */
@@ -69,15 +65,15 @@ class StudyProgram extends Model
   /**
    * Relationship to leader model.
    */
-  public function leader(): HasOne
+  public function leaders(): HasMany
   {
-    return $this->hasOne(Leader::class, 'study_program_id');
+    return $this->hasMany(Leader::class, 'study_program_id');
   }
 
   /**
    * Relationship to mentor model.
    */
-  public function mentor(): HasMany
+  public function mentors(): HasMany
   {
     return $this->hasMany(Mentor::class, 'study_program_id');
   }

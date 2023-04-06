@@ -29,6 +29,21 @@ class AttendanceRepository
     return $this->attendance->query()->where('id', $id)->first();
   }
 
+  public function getDataByStudyProgram()
+  {
+    if (isRoleName() === Constant::LEADER) {
+      $studyProgramId = isLeader()->study_program_id;
+    } else {
+      $studyProgramId = isMentor()->study_program_id;
+    }
+
+    return $this->attendance->query()
+      ->whereHas('studyProgram.leaders', function ($query) use ($studyProgramId) {
+        $query->where('study_programs.id', $studyProgramId);
+      })
+      ->orderBy('title', 'ASC');
+  }
+
   public function getAttendancePresence($id)
   {
     $attendance = $this->getById($id);

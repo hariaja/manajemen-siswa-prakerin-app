@@ -2,14 +2,10 @@
 
 namespace App\DataTables\Activities;
 
-use App\Models\Leader;
 use App\Models\Attendance;
 use App\Helpers\Global\Constant;
-use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\EloquentDataTable;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 use App\Services\Activities\AttendanceService;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -54,20 +50,14 @@ class AttendanceDataTable extends DataTable
    */
   public function query(Attendance $model): QueryBuilder
   {
-    if (isRoleName() === Constant::LEADER) :
+    if (isRoleName() === Constant::LEADER || isRoleName() === Constant::MENTOR) :
+      return $this->attendanceService->getDataByStudyProgram();
+    elseif (isRoleName() === Constant::TEACHER) :
       return $model->newQuery()
         ->join('study_programs', 'attendances.study_program_id', '=', 'study_programs.id')
-        ->join('leaders', 'study_programs.id', '=', 'leaders.study_program_id')
-        ->select('attendances.*')
-        ->where('leaders.study_program_id', isLeader()->study_program_id)
-        ->orderBy('title', 'ASC');
-    elseif (isRoleName() === Constant::MENTOR) :
-      return $model->newQuery()
-        ->join('study_programs', 'attendances.study_program_id', '=', 'study_programs.id')
-        ->join('mentors', 'study_programs.id', '=', 'mentors.study_program_id')
-        ->select('attendances.*')
-        ->where('mentors.study_program_id', isMentor()->study_program_id)
-        ->orderBy('title', 'ASC');
+        ->join('registrations', 'study_programs.id', '=', 'registrations.study_program_id')
+        ->select('study_programs.*', 'attendances.*')
+        ->where('registrations.teacher_id', '=', isTeacher()->id);
     else :
       return $model->newQuery()->orderBy('title', 'ASC');
     endif;
@@ -103,7 +93,7 @@ class AttendanceDataTable extends DataTable
    */
   public function getColumns(): array
   {
-    $roles = isRoleName() === Constant::ADMIN ? true  : (isRoleName() === Constant::LEADER ? true : (isRoleName() === Constant::MENTOR ? true : false));
+    $roles = isRoleName() === Constant::ADMIN ? true  : (isRoleName() === Constant::LEADER ? true : (isRoleName() === Constant::MENTOR ? true : (isRoleName() === Constant::TEACHER ? true : false)));
     return [
       Column::make('DT_RowIndex')
         ->title(trans('#'))
