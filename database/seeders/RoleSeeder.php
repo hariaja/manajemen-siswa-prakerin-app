@@ -72,6 +72,9 @@ class RoleSeeder extends Seeder
         // Registration menu
         ->orWhere('name', 'LIKE', 'registrations.index')
         ->orWhere('name', 'LIKE', 'registrations.show')
+
+        ->orWhere('name', 'LIKE', 'journals.index')
+        ->orWhere('name', 'LIKE', 'journals.edit')
         ->get()
     );
 
@@ -83,6 +86,11 @@ class RoleSeeder extends Seeder
 
         ->orWhere('name', 'LIKE', 'attendances.index')
         ->orWhere('name', 'LIKE', 'attendances.show')
+
+        ->orWhere('name', 'LIKE', 'journals.index')
+        ->orWhere('name', 'LIKE', 'journals.edit')
+        ->orWhere('name', 'LIKE', 'journals.update')
+        ->orWhere('name', 'LIKE', 'journals.destroy')
         ->get()
     );
 
@@ -109,6 +117,17 @@ class RoleSeeder extends Seeder
 
         ->orWhere('name', 'LIKE', 'attendances.index')
         ->orWhere('name', 'LIKE', 'attendances.show')
+
+        ->orWhere('name', 'LIKE', 'journals.index')
+        ->orWhere('name', 'LIKE', 'journals.edit')
+        ->get()
+    );
+
+    $student = $roles->where('name', Constant::STUDENT)->first();
+    $student->syncPermissions(
+      Permission::where('name', 'LIKE', 'users.show')
+        ->orWhere('name', 'LIKE', 'users.update')
+        ->orWhere('name', 'LIKE', 'users.password')
 
         ->orWhere('name', 'LIKE', 'journals.%')
         ->get()

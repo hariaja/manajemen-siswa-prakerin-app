@@ -103,6 +103,12 @@
                 </div>
               @endif
 
+              @if($datas['is_has_enter_today'])
+                <div class="mb-4">
+                  <a href="{{ route('journals.index') }}" class="btn btn-primary">{{ trans('page.journals.title') }}</a>
+                </div>
+              @endif
+
             @endif
 
             @if($datas['is_there_permission'] && !$datas['is_permission_accepted'])

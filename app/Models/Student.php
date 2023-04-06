@@ -97,6 +97,14 @@ class Student extends Model
   }
 
   /**
+   * Relationship to excuse models.
+   */
+  public function journals(): HasMany
+  {
+    return $this->hasMany(Journal::class, 'student_id');
+  }
+
+  /**
    * Relation to study program models.
    */
   public function studyPrograms(): HasManyThrough

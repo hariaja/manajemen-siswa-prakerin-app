@@ -74,7 +74,7 @@ class PresenceController extends Controller
       'is_has_enter_today' => $isHasEnterToday, // sudah absen masuk
       'is_not_out_yet' => $isNotOutYet, // belum absen pulang
       'is_there_permission' => (bool) $isTherePermission,
-      'is_permission_accepted' => $isTherePermission->izin_diterima ?? false
+      'is_permission_accepted' => $isTherePermission->is_accepted ?? false,
     ];
 
     $holiday = $attendance->data->is_holiday_today ? $this->holidayService->isHolidayToday() : false;

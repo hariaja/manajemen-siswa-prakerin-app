@@ -1,24 +1,25 @@
 <?php
 
-use App\Http\Controllers\Activities\AttendanceController;
-use App\Http\Controllers\Activities\ExcuseController;
-use App\Http\Controllers\Activities\HolidayController;
-use App\Http\Controllers\Activities\PresenceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Providers\RouteServiceProvider;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Master\LeaderController;
 use App\Http\Controllers\Master\MentorController;
 use App\Http\Controllers\Settings\RoleController;
 use App\Http\Controllers\Settings\UserController;
+use App\Http\Controllers\Activities\ExcuseController;
 use App\Http\Controllers\Educations\SchoolController;
 use App\Http\Controllers\Settings\PasswordController;
+use App\Http\Controllers\Activities\HolidayController;
+use App\Http\Controllers\Activities\JournalController;
 use App\Http\Controllers\Educations\TeacherController;
+use App\Http\Controllers\Activities\PresenceController;
 use App\Http\Controllers\Master\StudyProgramController;
+use App\Http\Controllers\Activities\AttendanceController;
 use App\Http\Controllers\Registrations\StudentController;
 use App\Http\Controllers\Registrations\ScheduleController;
 use App\Http\Controllers\Registrations\RegistrationController;
-use App\Providers\RouteServiceProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,4 +113,8 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
       'index',
       'show',
     );
+
+  # Journals menu
+  Route::put('journals/{journal}/status', [JournalController::class, 'status'])->name('journals.status');
+  Route::resource('journals', JournalController::class)->except('show');
 });

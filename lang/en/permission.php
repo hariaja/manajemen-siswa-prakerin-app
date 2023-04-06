@@ -173,5 +173,6 @@ return [
     'edit' => 'Akses Formulir Ubah Journal Prakerin',
     'update' => 'Akses Memperbaharui Journal Prakerin',
     'destroy' => 'Menghapus Journal Prakerin',
+    'status' => 'Akses Mengubah Status Prakerin',
   ],
 ];

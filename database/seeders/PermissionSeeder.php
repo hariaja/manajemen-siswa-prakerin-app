@@ -685,13 +685,6 @@ class PermissionSeeder extends Seeder
         'updated_at' => now(),
       ],
       [
-        'name' => 'journals.show',
-        'permission_category_id' => 15,
-        'guard_name' => 'web',
-        'created_at' => now(),
-        'updated_at' => now(),
-      ],
-      [
         'name' => 'journals.edit',
         'permission_category_id' => 15,
         'guard_name' => 'web',
@@ -700,6 +693,13 @@ class PermissionSeeder extends Seeder
       ],
       [
         'name' => 'journals.update',
+        'permission_category_id' => 15,
+        'guard_name' => 'web',
+        'created_at' => now(),
+        'updated_at' => now(),
+      ],
+      [
+        'name' => 'journals.status',
         'permission_category_id' => 15,
         'guard_name' => 'web',
         'created_at' => now(),

@@ -178,6 +178,15 @@
           </li>
         @endcan
 
+        @can('journals.index')
+          <li class="nav-main-item">
+            <a class="nav-main-link {{ Request::is('journals*') ? 'active' : '' }}" href="{{ route('journals.index') }}">
+              <i class="nav-main-link-icon fa fa-pencil-alt"></i>
+              <span class="nav-main-link-name">{{ trans('Journal Siswa') }}</span>
+            </a>
+          </li>
+        @endcan
+
         @canany(['roles.index', 'users.index'])
           <li class="nav-main-heading">{{ trans('Management') }}</li>
           <li class="nav-main-item {{ Request::is('settings*') ? 'open' : '' }}">
