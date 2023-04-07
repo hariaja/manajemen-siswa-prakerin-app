@@ -5,7 +5,7 @@
     <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-md-center py-2 text-center text-md-start">
       <div class="flex-grow-1 mb-1 mb-md-0">
         <h1 class="h3 fw-bold mb-2">
-          {{ trans('page.dashboard.title') }}
+          Home
         </h1>
         <h2 class="h6 fw-medium fw-medium text-muted mb-0">
           Selamat Datang <a class="fw-semibold" href="{{ route('users.show', me()->uuid) }}">{{ me()->name }}</a>, semuanya terlihat baik.

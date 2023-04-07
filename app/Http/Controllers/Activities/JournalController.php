@@ -15,7 +15,7 @@ class JournalController extends Controller
 {
   public function __construct(protected JournalService $service)
   {
-    $this->middleware('role:Student|Mentor|Teacher');
+    $this->middleware('role:Student|Mentor|Teacher|Leader');
   }
 
   /**
