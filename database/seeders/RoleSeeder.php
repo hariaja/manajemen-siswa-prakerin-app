@@ -72,7 +72,7 @@ class RoleSeeder extends Seeder
         // Registration menu
         ->orWhere('name', 'LIKE', 'registrations.index')
         ->orWhere('name', 'LIKE', 'registrations.show')
-
+        // Journal menu
         ->orWhere('name', 'LIKE', 'journals.index')
         ->orWhere('name', 'LIKE', 'journals.edit')
         ->get()
@@ -83,14 +83,23 @@ class RoleSeeder extends Seeder
       Permission::where('name', 'LIKE', 'users.show')
         ->orWhere('name', 'LIKE', 'users.update')
         ->orWhere('name', 'LIKE', 'users.password')
-
+        // Attendance menu
         ->orWhere('name', 'LIKE', 'attendances.index')
         ->orWhere('name', 'LIKE', 'attendances.show')
-
+        // Journal Menu
         ->orWhere('name', 'LIKE', 'journals.index')
         ->orWhere('name', 'LIKE', 'journals.edit')
         ->orWhere('name', 'LIKE', 'journals.update')
+        ->orWhere('name', 'LIKE', 'journals.status')
         ->orWhere('name', 'LIKE', 'journals.destroy')
+
+        // Excuses
+        ->orWhere('name', 'LIKE', 'excuses.index')
+        ->orWhere('name', 'LIKE', 'excuses.create')
+        ->orWhere('name', 'LIKE', 'excuses.store')
+        ->orWhere('name', 'LIKE', 'excuses.edit')
+        ->orWhere('name', 'LIKE', 'excuses.update')
+        ->orWhere('name', 'LIKE', 'excuses.show')
         ->get()
     );
 
@@ -114,10 +123,10 @@ class RoleSeeder extends Seeder
         ->orWhere('name', 'LIKE', 'registrations.edit')
         ->orWhere('name', 'LIKE', 'registrations.update')
         ->orWhere('name', 'LIKE', 'registrations.show')
-
+        // Attendance menu
         ->orWhere('name', 'LIKE', 'attendances.index')
         ->orWhere('name', 'LIKE', 'attendances.show')
-
+        // Journals Menu
         ->orWhere('name', 'LIKE', 'journals.index')
         ->orWhere('name', 'LIKE', 'journals.edit')
         ->get()
@@ -128,8 +137,12 @@ class RoleSeeder extends Seeder
       Permission::where('name', 'LIKE', 'users.show')
         ->orWhere('name', 'LIKE', 'users.update')
         ->orWhere('name', 'LIKE', 'users.password')
-
-        ->orWhere('name', 'LIKE', 'journals.%')
+        // Journal Menu
+        ->orWhere('name', 'LIKE', 'journals.index')
+        ->orWhere('name', 'LIKE', 'journals.create')
+        ->orWhere('name', 'LIKE', 'journals.store')
+        ->orWhere('name', 'LIKE', 'journals.edit')
+        ->orWhere('name', 'LIKE', 'journals.update')
         ->get()
     );
   }

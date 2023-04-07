@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Traits\Uuid;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Carbon;
+use App\Helpers\Global\Constant;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Registration extends Model
 {
@@ -127,5 +129,44 @@ class Registration extends Model
     }
 
     return (object) $data;
+  }
+
+  /**
+   * Scope a query to only include pending registration.
+   */
+  public function scopePending($data)
+  {
+    return $data->where('status', Constant::PENDING);
+  }
+
+  public function getPending(): Collection
+  {
+    return $this->pending()->get();
+  }
+
+  /**
+   * Scope a query to only include approved registration.
+   */
+  public function scopeApproved($data)
+  {
+    return $data->where('status', Constant::APPROVED);
+  }
+
+  public function getApproved(): Collection
+  {
+    return $this->approved()->get();
+  }
+
+  /**
+   * Scope a query to only include rejected registration.
+   */
+  public function scopeRejected($data)
+  {
+    return $data->where('status', Constant::REJECTED);
+  }
+
+  public function getRejected(): Collection
+  {
+    return $this->rejected()->get();
   }
 }

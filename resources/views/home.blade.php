@@ -15,8 +15,10 @@
   </div>
 @endsection
 @section('content')
-  @if(isRoleName() == Constant::ADMIN)
+  @if(me()->hasRole(Constant::ADMIN))
     @include('home.admin')
+  @elseif (me()->hasRole(Constant::LEADER) || me()->hasRole(Constant::MENTOR))
+    @include('home.leader')
   @else
     {{-- @include('home.admin') --}}
   @endif

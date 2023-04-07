@@ -14,7 +14,6 @@ use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Activities\HolidayController;
 use App\Http\Controllers\Activities\JournalController;
 use App\Http\Controllers\Educations\TeacherController;
-use App\Http\Controllers\Activities\PresenceController;
 use App\Http\Controllers\Master\StudyProgramController;
 use App\Http\Controllers\Activities\AttendanceController;
 use App\Http\Controllers\Registrations\StudentController;
@@ -114,7 +113,7 @@ Route::middleware(['auth', 'permission', 'verified'])->group(function () {
       'show',
     );
 
-  # Journals menu
+  # Journals management
   Route::put('journals/{journal}/status', [JournalController::class, 'status'])->name('journals.status');
   Route::resource('journals', JournalController::class)->except('show');
 });
